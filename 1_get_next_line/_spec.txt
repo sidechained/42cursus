@@ -1,0 +1,50 @@
+https://www.codequoi.com/en/42-get_next_line-project/
+
+Reading in chunks
+
+chunk		raw_line
+"Test"		"Test"
+" thi"		"Test thi"
+"s\nfi"		"Test this\nfi"
+- \n detected, exit returning 1
+- print everything before \n
+- send everything before n back in
+"le"
+- no_bytes < 4 detected, return 0 (EOF)
+
+Write a function which returns a line read from a file descriptor, without the newline.
+
+Files:
+- get_next_line.c
+- get_next_line_utils.c
+- get_next_line.h
+
+Prototype/Parameters:
+int get_next_line(int fd, char **line);
+
+Ext funcs:
+read, malloc, free
+
+Return value(s)
+1 : A line has been read
+0 : EOF has been reached
+-1 : An error happened
+
+BIG Q:
+- will this approach still work when chunk size covers more than one nl?
+
+OTHER NOTES:
+
+https://en.wikipedia.org/wiki/Static_variable
+
+static variable is a variable whose lifetime is the entire run of the program
+static memory happens at compile time, not run time
+can be modified
+Q: how to know when a var should be static and when not?
+Q: what are the static variables in our get_next_line?
+
+// ssize_t read(int fildes, void *buf, size_t nbyte);
+// Upon successful completion, these functions shall return a non-
+//        negative integer indicating the number of bytes actually read.
+//        Otherwise, the functions shall return -1 and set errno to
+//        indicate the error.
