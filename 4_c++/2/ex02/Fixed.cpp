@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:10:26 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 13:38:05 by grm              ###   ########.fr       */
+/*   Updated: 2022/09/27 13:41:32 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int Fixed::toInt(void) const
 	return (this->_fixedPointValue >> Fixed::numFractionalBits);
 }
 
-Fixed &Fixed::min(Fixed &fpv1, Fixed &fpv2)
+Fixed &Fixed::min(const Fixed &fpv1, const Fixed &fpv2)
 {
 	if (fpv1 < fpv2)
 		return(fpv1);
@@ -174,7 +174,7 @@ Fixed &Fixed::min(Fixed &fpv1, Fixed &fpv2)
 		return(fpv2);
 }
 
-Fixed &Fixed::max(Fixed &fpv1, Fixed &fpv2)
+Fixed &Fixed::max(const Fixed &fpv1, const Fixed &fpv2)
 {
 	if (fpv1 > fpv2)
 		return(fpv1);

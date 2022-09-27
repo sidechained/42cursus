@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:10:28 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 13:37:25 by grm              ###   ########.fr       */
+/*   Updated: 2022/09/27 13:39:06 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void)
 {
 	Fixed a;
-	Fixed b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
