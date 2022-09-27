@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:10:26 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 08:32:24 by grm              ###   ########.fr       */
+/*   Updated: 2022/09/27 09:33:07 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
+	this->fpv = 0;
 }
 
 Fixed::~Fixed()
