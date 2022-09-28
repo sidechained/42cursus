@@ -10,6 +10,23 @@
 
 int main(void)
 {
+	std::cout << std::endl;
+	std::cout << "-- Testing copy constructor:             " << std::endl;
+	ClapTrap jimbob("Jimbob");
+	ClapTrap jimbob2(jimbob);
+	jimbob2.attack("Jimbob");
+	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "-- Testing assignment operator overload: " << std::endl;	
+	ClapTrap milou("Milou");
+	ClapTrap jonas("Jonas");	
+	milou = jonas;
+	milou.attack("Jonas");
+	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "-- Testing functionality:                " << std::endl;	
 	ClapTrap dave("Dave");
 	ClapTrap silvia("Silvia");	
 	dave.attack("Silvia");
@@ -25,5 +42,8 @@ int main(void)
 	silvia.beRepaired(2);
 	silvia.attack("Dave");
 	dave.takeDamage(dave.getAttackDamage());	
+	std::cout << "------------------------------------------" << std::endl;
+	std::cout << std::endl;
+
 	return (0);
 }
