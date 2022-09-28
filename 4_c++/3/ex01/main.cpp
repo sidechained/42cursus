@@ -10,7 +10,7 @@
 // ScavTrap will use attributes of ClapTrap but set to Hitpoints 100, Energy points 50, attack damage 20 [DONE]
 // ScavTrap will also have function void guardGate(); which displays message 'entered Gatekeeper mode' [DONE]
 // main function must test everything [same tests modified for ScavTrap]
-// TODO: define max points
+// TODO: fix floating point error (rand modulo)
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"

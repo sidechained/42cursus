@@ -4,8 +4,10 @@ ClapTrap::ClapTrap(std::string givenName)
 {
 	this->name = givenName;
 	this->hitPoints = 10;
+	this->maxHitPoints = 10;
 	this->energyPoints = 10;
-	this->attackDamage = 0;	
+	this->attackDamage = 0;
+	this->maxAttackDamage = 10;
 	std::cout << "CLAPTRAP CONSTRUCTING:	Joy to the world, " << this->name << " has been born!" << std::endl;
 }
 
@@ -34,7 +36,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &copy)
 
 void ClapTrap::attack(std::string const &target)
 {
-	this->attackDamage = std::rand() % 10;
+	this->attackDamage = std::rand() % 10; // hardcoded, as replacing with this->attackDamage causes floating point error
 	std::cout << "CLAPTRAP ATTACKING:	" << name << " attacks " << target << ", causing " << attackDamage << " point(s) of damage!" << std::endl;
 }
 
@@ -71,10 +73,10 @@ void ClapTrap::beRepaired(unsigned int amount)
 		{
 			std::cout << "Sorry, you don't have enough energy points for that amount of repair." << std::endl;
 		}
-		else if ((this->hitPoints + amount) > 10)
+		else if ((this->hitPoints + amount) > this->maxHitPoints)
 		{
-			this->energyPoints = this->hitPoints + amount - 10;
-			this->hitPoints = 10;
+			this->energyPoints = this->hitPoints + amount - this->maxHitPoints;
+			this->hitPoints = this->maxHitPoints;
 			std::cout << this->name << " fully repaired (" << this->hitPoints << ") and has " << this->energyPoints << " energy point(s) left." << std::endl;
 		}
 		else
