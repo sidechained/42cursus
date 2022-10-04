@@ -3,7 +3,6 @@
 Bureaucrat::Bureaucrat(const std::string name, int grade)
 {
 	std::cout << "Bureaucrat constructor called" << std::endl;
-	std::cout << "name = " << name << ", grade = " << grade << std::endl;
 	this->_name = name;
 	this->_grade = grade;
 	checkGrade();
@@ -28,15 +27,15 @@ Bureaucrat&	Bureaucrat::operator=(Bureaucrat &orig)
 	return(*this);
 }
 
-std::string	Bureaucrat::getName()
+std::string	Bureaucrat::getName() const
 {
-	std::cout << "Bureaucrat getName method called" << std::endl;	
+	// std::cout << "Bureaucrat getName method called" << std::endl;	
 	return(this->_name);
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
-	std::cout << "Bureaucrat getGrade method called" << std::endl;	
+	// std::cout << "Bureaucrat getGrade method called" << std::endl;	
 	return(this->_grade);
 }
 
@@ -61,4 +60,13 @@ void	Bureaucrat::checkGrade() const
 		throw Bureaucrat::GradeTooHighException();
 	else if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException();
+}
+
+// non-member function
+std::ostream&	operator<<(std::ostream &stream, const Bureaucrat &bureaucrat)
+{
+	stream << 
+	"Bureaucrat is called: " << bureaucrat.getName() << std::endl <<
+	"Bureaucrat has a grade of: " << bureaucrat.getGrade() << std::endl;
+	return(stream);
 }
