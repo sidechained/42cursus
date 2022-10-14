@@ -6,9 +6,13 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:10:28 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 09:54:01 by grm              ###   ########.fr       */
+/*   Updated: 2022/10/14 22:18:20 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// https://www.geeksforgeeks.org/left-shift-right-shift-operators-c-cpp/
+// https://inst.eecs.berkeley.edu/~cs61c/sp06/handout/fixedpt.html
+// shifting an integer to the right by 1 bit position is equivalent to dividing the number by 2
 
 #include "Fixed.hpp"
 
