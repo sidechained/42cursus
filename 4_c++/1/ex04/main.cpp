@@ -1,15 +1,6 @@
-// Make a program called replace that takes a filename and two strings, let’s call them s1 and s2, that are NOT empty
-// It will open the file, and write its contents to FILENAME.replace, after replacing every occurrence of s1 with s2.
-// - All the member functions of the class std::string are allowed, except replace. Use them wisely!
-// - handle errors
-// - do not use the C file manipulation functions
-// - turn in some test files to show your program works.
-// std::string filename, std::string s1, sd::string s2
-
-#include <iostream>
-#include <fstream> // ifstream (+ ofstream?)
+#include <iostream> // cout, string
+#include <fstream> // ifstream, ofstream
 #include <sstream> // stringstream
-//#include <string>
 
 std::string readFromFile(std::string filename)
 {
@@ -27,13 +18,26 @@ void writeToFile(std::string filename, std::string contentsToWrite)
 	outputFile.close();
 }
 
+int countOccurences(std::string fileString, std::string stringToFind)
+{
+	int occurrences;
+	occurrences = 0;
+	std::string::size_type pos = 0;
+	while ((pos = fileString.find(stringToFind, pos )) != std::string::npos)
+	{
+		++occurrences;
+		pos += stringToFind.length();
+	}
+	return(occurrences);
+}
+
 // only replaces first instance
-// iterate until EOF/EOS
 std::string replaceString(std::string fileString, std::string stringToFind, std::string replacementString)
 {
 	size_t pos;
 	pos = fileString.find(stringToFind);
-	fileString.replace(pos, stringToFind.length(), replacementString);
+	fileString.erase(pos, stringToFind.length());	\
+	fileString.insert(pos, replacementString);
 	return(fileString);
 }
 
@@ -44,6 +48,8 @@ int main(int argc, char** argv)
 	std::string s1;
 	std::string s2;
 	size_t pos;
+	int occurrences;
+	int i;
 
 	if (argc != 4)
 	{
@@ -59,9 +65,16 @@ int main(int argc, char** argv)
 		return(0);
 	}	
 	fileString = readFromFile(filename);
-	fileString = replaceString(fileString, s1, s2);
+	occurrences = countOccurences(fileString, s1);
+	i = 0;
+	while(i < occurrences)
+	{
+		fileString = replaceString(fileString, s1, s2);
+		i++;
+	}
 	pos = filename.find(".txt");
-	filename.replace(pos, 5, ".replace");
+	filename.erase(pos, 4);
+	filename.insert(pos, ".replace"); // replace use of replace!
 	writeToFile(filename, fileString);
 	return (0);
 }

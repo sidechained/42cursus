@@ -4,10 +4,7 @@ NAME = replace
 all: $(NAME)
 
 $(NAME):
-	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME).out
-
-# run: $(NAME)
-# 	./$(NAME).out
+	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 clean:
-	rm -f testfile.replace $(NAME).out
+	rm -f $(NAME) *.$(NAME)
