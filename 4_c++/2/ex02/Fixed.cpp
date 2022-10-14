@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:10:26 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 13:41:32 by grm              ###   ########.fr       */
+/*   Updated: 2022/10/14 22:35:32 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ bool Fixed::operator!=(const Fixed &copy) const
 	return (this->getRawBits() != copy.getRawBits());
 }
 
+// set raw bits to:
+// this instances' raw bits value (left side of operator)
+// +
+// raw bits value of instance to add (right side of operator)
 Fixed Fixed::operator+(const Fixed &copy) const
 {
 	// EXPLAIN THIS:
@@ -87,6 +91,10 @@ Fixed Fixed::operator+(const Fixed &copy) const
 	return (val);
 }
 
+// set raw bits to:
+// this instances' raw bits value (left side of operator)
+// -
+// raw bits value of instance to add (right side of operator)
 Fixed Fixed::operator-(const Fixed &copy) const
 {
 	Fixed val(*this);
@@ -95,9 +103,13 @@ Fixed Fixed::operator-(const Fixed &copy) const
 	return (val);
 }
 
+// set raw bits to:
+// this instances' raw bits value (converted to long)
+// *
+// raw bits value of instance to copy (converted to long)
+// result of this divided by '1' shifted 8 places to left
 Fixed Fixed::operator*(const Fixed &copy) const
 {
-	// EXPLAIN THIS:	
 	Fixed val(*this);
 	long tmp1, tmp2;
 
@@ -107,6 +119,9 @@ Fixed Fixed::operator*(const Fixed &copy) const
 	return (val);
 }
 
+// set raw bits to:
+// '1' shifted 8 places to left, multipied by this instances' raw bits value
+// result of this divided by raw bits value of instance to copy (converted to long)
 Fixed Fixed::operator/(const Fixed &copy) const
 {
 	Fixed val(*this);
@@ -118,26 +133,29 @@ Fixed Fixed::operator/(const Fixed &copy) const
 	return (val);
 }
 
+// pre-increment
 Fixed Fixed::operator++()
 {
 	this->_fixedPointValue++;
 	return(*this);
 }
 
+// post-increment
 Fixed Fixed::operator++(int)
 {
-	// EXPLAIN THIS:
 	Fixed tmp(*this);
 	operator++();
 	return (tmp);
 }
 
+// pre-increment
 Fixed Fixed::operator--()
 {
 	this->_fixedPointValue--;
 	return(*this);
 }
 
+// post-increment
 Fixed Fixed::operator--(int)
 {
 	Fixed tmp(*this);
@@ -166,7 +184,7 @@ int Fixed::toInt(void) const
 	return (this->_fixedPointValue >> Fixed::numFractionalBits);
 }
 
-Fixed &Fixed::min(const Fixed &fpv1, const Fixed &fpv2)
+const Fixed &Fixed::min(const Fixed &fpv1, const Fixed &fpv2)
 {
 	if (fpv1 < fpv2)
 		return(fpv1);
@@ -174,7 +192,7 @@ Fixed &Fixed::min(const Fixed &fpv1, const Fixed &fpv2)
 		return(fpv2);
 }
 
-Fixed &Fixed::max(const Fixed &fpv1, const Fixed &fpv2)
+const Fixed &Fixed::max(const Fixed &fpv1, const Fixed &fpv2)
 {
 	if (fpv1 > fpv2)
 		return(fpv1);
