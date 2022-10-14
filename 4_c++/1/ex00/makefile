@@ -1,9 +1,9 @@
 SRCS = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
-NAME = Zombie.out
+NAME = zombie
 
-all: Zombie
+all: $(NAME)
 
-Zombie:
+$(NAME):
 	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 run:

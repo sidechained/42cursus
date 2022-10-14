@@ -6,22 +6,22 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:01:55 by grm               #+#    #+#             */
-/*   Updated: 2022/09/26 12:26:06 by grm              ###   ########.fr       */
+/*   Updated: 2022/10/14 12:23:59 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-// function prototypes:
 Zombie	*newZombie(std::string name);
 void	randomChump(std::string name);
 
-// example of allocating on stack (lines 22-24) vs heap (line 25)
 int		main(void)
 {
+	// example of allocating on stack:
 	Zombie	*z = newZombie("Alex");
 	z->announce();
 	delete z;
+	// example of allocating on heap:
 	randomChump("Bruno");
 	return (0);
 }
