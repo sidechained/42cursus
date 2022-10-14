@@ -6,14 +6,13 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:01:55 by grm               #+#    #+#             */
-/*   Updated: 2022/09/26 14:16:29 by grm              ###   ########.fr       */
+/*   Updated: 2022/10/14 12:29:35 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-// function prototypes:
-Zombie* zombieHorde( int N, std::string name );
+Zombie* zombieHorde(int N, std::string name);
 
 int		main(void)
 {

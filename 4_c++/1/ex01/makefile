@@ -1,9 +1,9 @@
 SRCS = Zombie.cpp ZombieHorde.cpp main.cpp
-NAME = ZombieHorde.out
+NAME = zombieHorde
 
-all: ZombieHorde
+all: $(NAME)
 
-ZombieHorde:
+$(NAME):
 	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 run:
