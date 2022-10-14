@@ -1,3 +1,8 @@
+# Helpful Notes
+
+## Module0 ex00 - bash code needed to compile
+clang++ -Wall -Wextra -Werror -o megaphone megaphone.cpp && ./megaphone test
+
 # C++ Glossary
 
 ## Member Function

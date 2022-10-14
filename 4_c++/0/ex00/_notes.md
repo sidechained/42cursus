@@ -1,1 +1,0 @@
-clang++ -Wall -Wextra -Werror -o megaphone megaphone.cpp && ./megaphone test
