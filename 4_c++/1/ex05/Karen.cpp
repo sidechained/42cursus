@@ -6,18 +6,23 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:01:20 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 07:54:40 by grm              ###   ########.fr       */
+/*   Updated: 2022/10/14 17:10:09 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Karen.hpp"
 
-
-
 Karen::Karen()
 {
-	levels = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	func_ptrs = {&Karen::debug, &Karen::info, &Karen::warning, &Karen::error};
+	complaint[0] = &Karen::debug;
+	complaint[1] = &Karen::info;
+	complaint[2] = &Karen::warning;
+	complaint[3] = &Karen::error;
+
+	complaintLevels[0] = "DEBUG";
+	complaintLevels[1] = "INFO";
+	complaintLevels[2] = "WARNING";
+	complaintLevels[3] = "ERROR";
 }
 
 void Karen::debug(void)
@@ -55,8 +60,11 @@ void Karen::complain(std::string level)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (levels[i] == level)
-			return (this->*func_ptrs[i])();
+		if (level == complaintLevels[i])
+		{
+			(this->*complaint[i])();
+			return;
+		}
 	}
 	std::cout << "ERROR: level not found" << std::endl;
 }

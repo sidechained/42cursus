@@ -4,10 +4,10 @@ NAME = Karen
 all: $(NAME)
 
 $(NAME):
-	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME).out
+	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
-# run: $(NAME)
-# 	./$(NAME).out
+# run:
+#  	./$(NAME)
 
 clean:
-	rm -f $(NAME).out
+	rm -f $(NAME)
