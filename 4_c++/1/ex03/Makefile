@@ -1,12 +1,12 @@
 SRCS = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
-NAME = UnnecessaryViolence.out
+NAME = UnnecessaryViolence
 
-all: UnnecessaryViolence
+all: $(NAME)
 
-UnnecessaryViolence:
+$(NAME):
 	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
-run: UnnecessaryViolence
+run:
 	./$(NAME)
 
 clean:

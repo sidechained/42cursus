@@ -1,5 +1,5 @@
 /* ************************************************************************** */
-/*                                                                            */
+	/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -14,37 +14,28 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
+// don't understand this very well but the key takeaway is: 
+// HumanA takes the Weapon in its constructor and stores it as a reference (&)
+// HumanB takes the Weapon in its setWeapon method and stores it as a pointer (*)
+
 int		main(void)
 {
-	// std::string type;
-	// Weapon weapon1("sword");
+	{
+		Weapon        club = Weapon("crude spiked club");
 
-	// type = weapon1.getType();
-	// std::cout << type << std::endl;
-	// HumanA humanA("tim", weapon1.getType());
-	// humanA.attack();
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon        club = Weapon("crude spiked club");
 
-	// HumanB humanB1("kim");
-	// std::cout << humanB1.getWeaponType() << std::endl;
-	// humanB1.attack();	
-
-	// HumanB humanB2("dave");
-	// humanB2.setWeaponType("gun");
-	// std::cout << humanB2.getWeaponType() << std::endl;
-	// humanB2.attack();	
-
-	// Weapon        club = Weapon("crude spiked club");
-	// HumanA bob("Bob", club);
-	// bob.attack();
-	// club.setType("some other type of club");
-	// bob.attack();
-
-	Weapon 	club = Weapon("crude spiked club");
-	HumanB jim("Jim");
-	jim.setWeapon(club);
-	jim.attack();
-	club.setType("some other type of club");
-	jim.attack();
-
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
 	return (0);
 }

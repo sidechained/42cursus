@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:44:59 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 08:14:39 by grm              ###   ########.fr       */
+/*   Updated: 2022/10/14 13:42:30 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Weapon {
 		Weapon();
 		Weapon(std::string type);
 		void	setType(std::string type);
-		std::string	getType();		
+		std::string	const &getType() const;		
 };
 
 #endif
