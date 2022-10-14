@@ -1,7 +1,12 @@
-# Helpful Notes
+# Exercise Status
 
-## Module0 ex00 - bash code needed to compile
-clang++ -Wall -Wextra -Werror -o megaphone megaphone.cpp && ./megaphone test
+0ex00 - ready for submission
+0ex01 - ready for submission
+1ex00 - ready for submission
+1ex01 - ready for submission
+1ex02 - ready for submission  
+1ex03 - ready for submission (could add destructors)
+1ex04 - ready for submission
 
 # C++ Glossary
 
