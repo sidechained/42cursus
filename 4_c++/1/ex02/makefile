@@ -1,13 +1,13 @@
 SRCS = main.cpp
 NAME = hiThisIsBrain
 
-all: hiThisIsBrain
+all: $(NAME)
 
 $(NAME):
-	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME).out
+	g++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 run: $(NAME)
-	./$(NAME).out
+	./$(NAME)
 
 clean:
-	rm -f $(NAME).out
+	rm -f $(NAME)
