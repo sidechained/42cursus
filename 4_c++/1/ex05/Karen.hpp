@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Karen.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 11:44:59 by grm               #+#    #+#             */
-/*   Updated: 2022/09/27 08:14:39 by grm              ###   ########.fr       */
+/*   Created: 2022/09/26 18:01:20 by grm               #+#    #+#             */
+/*   Updated: 2022/09/26 21:14:19 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
+#ifndef KAREN_HPP
 
-# define WEAPON_HPP
+# define KAREN_HPP
 
 #include <iostream> // cout
 
-class Weapon {
+# define DEBUG 0
+# define INFO 1
+# define WARNING 2
+# define ERROR 3
+
+class Karen {
 	private:
-		std::string	_type;
+		std::string levels[4];
+		void *func_ptrs[4];
+		void debug(void);
+		void info(void);
+		void warning(void);
+		void error(void);
 	public:
-		Weapon();
-		Weapon(std::string type);
-		void	setType(std::string type);
-		std::string	getType();		
+		Karen(void);
+		void complain(std::string level);
 };
 
 #endif

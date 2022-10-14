@@ -12,7 +12,7 @@
 
 void standardTests()
 {
-	std::cout << std::endl << "First the standard tests:" << std::endl;	
+	std::cout << std::endl << "First the standard tests:" << std::endl;
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();

@@ -4,17 +4,17 @@
 ScavTrap::ScavTrap(std::string givenName) : ClapTrap(givenName)
 {
 	this->name = givenName;
-	this->hitPoints = this->hitPoints;
+	this->hitPoints = 100;
 	this->maxHitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
-	this->maxAttackDamage = this->attackDamage;
+	maxAttackDamage = 20;
 	std::cout << "SCAVTRAP CONSTRUCTING:	Oh rejoice fellow countrymen, " << this->name << " has entered into the world!" << std::endl;
-	std::cout << "hitPoints: " << this->hitPoints;
-	std::cout << ", maxHitPoints: " << this->maxHitPoints;
-	std::cout << ", energyPoints: " << this->energyPoints;
-	std::cout << ", attackDamage: " << this->attackDamage;
-	std::cout << ", maxAttackDamage: " << this->attackDamage << std::endl;
+	std::cout << "hitPoints: " << this->hitPoints << std::endl;
+	std::cout << "maxHitPoints: " << this->maxHitPoints << std::endl;
+	std::cout << "energyPoints: " << this->energyPoints << std::endl;
+	std::cout << "attackDamage: " << this->attackDamage << std::endl;
+	std::cout << "maxAttackDamage: " << this->attackDamage << std::endl;
 }
 
 ScavTrap::~ScavTrap(void)

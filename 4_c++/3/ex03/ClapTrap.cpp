@@ -6,7 +6,7 @@ ClapTrap::ClapTrap(std::string givenName)
 	this->hitPoints = 10;
 	this->maxHitPoints = 10;
 	this->energyPoints = 10;
-	this->attackDamage = 0; // doesn't matter what this is at first
+	this->attackDamage = 0;
 	this->maxAttackDamage = 10;
 	std::cout << "CLAPTRAP CONSTRUCTING:	Joy to the world, " << this->name << " has been born!" << std::endl;
 }
