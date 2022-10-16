@@ -1,14 +1,11 @@
 // key point: in order to override a function, the base function should be declared as 'virtual'
 // the destructor of the base class should also be declared virtual
-// in WrongAnimal.hpp I removed both the above 'virtuals'
+// in WrongAnimal.hpp I removed both the above 'virtuals' (makeSound + destructor)
 // in WrongCat, nothing has changed apart from class/type name
 
-// should all of these includes be here?
-#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongCat.hpp"
-#include "WrongAnimal.hpp"
 
 void standardTests()
 {
