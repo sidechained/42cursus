@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#define BRAINSIZE 4
+
 class Brain
 {
 	public:
@@ -10,7 +12,7 @@ class Brain
 		~Brain();
 		void	sayFirstIdea() const;
 	protected:
-		std::string ideas[3];
+		std::string ideas[BRAINSIZE];
 };
 
 #endif

@@ -2,22 +2,21 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-// TODO: deep copies
-// TODO: brain should have 100 ideas
-
 void constructDestructTest()
 {
-	const Animal* animalArray[6];
+	std::cout << "--- Testing Construction and Destruction:" << std::endl;
+
+	const Animal* animalArray[BRAINSIZE];
 	int i;
 
 	i = 0;
-	while(i < 3)
+	while(i < BRAINSIZE/2)
 	{
 		std::cout << i << ":" << std::endl;
 		animalArray[i] = new Dog();
 		i++;
 	}
-	while(i < 6)
+	while(i < BRAINSIZE)
 	{
 		std::cout << i << ":" << std::endl;
 		animalArray[i] = new Cat();
@@ -25,7 +24,7 @@ void constructDestructTest()
 	}
 
 	i = 0;
-	while(i < 6)
+	while(i < BRAINSIZE)
 	{
 		std::cout << i << ":" << std::endl;
 		animalArray[i]->makeSound();
@@ -33,55 +32,45 @@ void constructDestructTest()
 	}
 
 	i = 0;
-	while(i < 6)
+	while(i < BRAINSIZE)
 	{
 		std::cout << i << ":" << std::endl;		
 		delete animalArray[i];
 		i++;
 	}
+	std::cout << std::endl;
 }
 
+// Tests if copying Cat also copies state of base class Animal, by:
+// - creating instance of Cat and copying it (either by copy constructor or assignment operator)
+// - calling getType() method (which belongs only to Animal class) to see if it returns 'Cat'
+// - also calling other methods that belong to cat, for confirmation
 void deepCopiesTest()
 {
-	// How can we tell this has been done correctly?
-	// Should we also test with Dog and Animal?
+	std::cout << "--- Testing if copies are 'deep':" << std::endl;
 
 	// TESTING COPY CONSTRUCTOR
-	std::cout << "COPYING Cat into Cat using Copy Constructor:" << std::endl;
+	std::cout << "COPYING Cat using Copy Constructor:" << std::endl;
 	const Cat* original1 = new Cat();
-	std::cout << "ORIGINAL:" << std::endl;
-	original1->makeSound();
-	original1->brain->sayFirstIdea();
-	original1->getType();
-	std::cout << "COPY:" << std::endl;	
 	const Cat* copy1(original1);	
-	original1 = copy1;
-	original1->makeSound();
-	original1->brain->sayFirstIdea();
-	original1->getType();	
+	std::cout << copy1->getType() << std::endl;	
+	copy1->makeSound();
+	copy1->brain->sayFirstIdea();
 	std::cout << std::endl;
 
 	// TESTING ASSIGNMENT OPERATOR
-	// our test of 'deep' is, when Dog is copied into Cat, is getType() correctly printed?
-	std::cout << "COPYING Cat into Cat using Assignment Operator:" << std::endl;		
+	std::cout << "COPYING Cat using Assignment Operator:" << std::endl;		
 	const Cat* original2 = new Cat();
 	const Cat* copy2 = new Cat();
-	std::cout << "ORIGINAL:" << std::endl;	
-	original2->makeSound();
-	original2->brain->sayFirstIdea();
-	original2->getType();
-	std::cout << "COPY:" << std::endl;	
-	original2 = copy2;
-	original2->makeSound();
-	original2->brain->sayFirstIdea();
-	original2->getType();
+	copy2 = original2;
+	std::cout << copy2->getType() << std::endl;	
+	copy2->makeSound();
+	copy2->brain->sayFirstIdea();
 	std::cout << std::endl;
 }
 
 int main()
 {
-	const Animal* animal = new Animal();
-	animal->getType();
-	//constructDestructTest();
-	//deepCopiesTest();
+	constructDestructTest();
+	deepCopiesTest();
 }
