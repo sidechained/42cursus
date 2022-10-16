@@ -14,15 +14,15 @@ void standardTests()
 {
 	std::cout << std::endl << "First the standard tests:" << std::endl;
 	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
+	const Animal* d = new Dog();
+	const Animal* c = new Cat();
+	std::cout << d->getType() << " " << std::endl;
+	std::cout << c->getType() << " " << std::endl;
+	d->makeSound();
+	c->makeSound();
 	meta->makeSound();
-	delete i;
-	delete j;
+	delete d;
+	delete c;
 	delete meta;
 }
 
