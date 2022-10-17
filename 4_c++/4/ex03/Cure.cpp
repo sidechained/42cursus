@@ -30,7 +30,7 @@ AMateria	*Cure::clone() const
 	return (new Cure(*this)); // uses copy constructor?
 }
 
-// virtual void use(ICharacter& target) // name of character given, not object instance
-// {
-// 	std::cout << "* heals " << target << "'s wounds *" << std::endl;
-// }
+void	Cure::use(ICharacter& target) // name of character given, not object instance
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+}

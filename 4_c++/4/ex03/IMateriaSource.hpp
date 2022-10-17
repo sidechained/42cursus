@@ -4,6 +4,8 @@
 #include <iostream>
 #include "AMateria.hpp"
 
+class AMateria; // this has to be here otherwise "error: unknown type name 'AMateria'""
+
 class IMateriaSource
 {
 	public:

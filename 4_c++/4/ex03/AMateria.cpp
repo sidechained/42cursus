@@ -26,12 +26,6 @@ AMateria	&AMateria::operator=(const AMateria &orig)
 
 std::string const &AMateria::getType() const
 {
-	std::cout << "AMateria getType method called" << std::endl;
+	// std::cout << "AMateria getType method called" << std::endl;
 	return(this->_type);
-}
-
-virtual void use(ICharacter& target)
-{
-	std::cout << "AMateria use method called" << std::endl;
-	// what should be here when this method is overriden higher up?
 }

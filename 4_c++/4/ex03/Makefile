@@ -1,4 +1,4 @@
-SRCS = Amateria.cpp Ice.cpp Cure.cpp ICharacter.cpp main.cpp
+SRCS = Amateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp main.cpp
 NAME = Materia
 
 $(NAME):

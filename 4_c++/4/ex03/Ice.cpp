@@ -30,7 +30,7 @@ AMateria	*Ice::clone() const
 	return (new Ice(*this)); // uses copy constructor?
 }
 
-// virtual void use(ICharacter& target) // name of character given, not object instance
-// {
-// 	std::cout << "* shoots an ice bolt at " << target << " *" << std::endl;
-// }
+void	Ice::use(ICharacter& target) // name of character given, not object instance
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
