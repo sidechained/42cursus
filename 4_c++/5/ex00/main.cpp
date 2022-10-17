@@ -1,16 +1,8 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-int main()
+void	gradeWithinRange()
 {
-	std::cout << std::endl;
-
-	std::cout << "TESTING: override of << for Bureaucrat:" << std::endl;
-	Bureaucrat *dave = new Bureaucrat("Dave", 5);
-	std::cout << *dave;
-	delete dave;
-	std::cout << std::endl;
-
 	std::cout << "TESTING: Grade within normal range (shouldn't raise an error):" << std::endl;
 	try
 	{
@@ -23,7 +15,10 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << std::endl;
+}
 
+void	gradeTooLow()
+{
 	std::cout << "TESTING: Grade set too low in constructor:" << std::endl;
 	try
 	{
@@ -36,6 +31,10 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << std::endl;
+}
+
+void	gradeTooHigh()
+{
 
 	std::cout << "TESTING: Grade set too high in constructor:" << std::endl;
 	try
@@ -51,6 +50,10 @@ int main()
 	}
 	std::cout << std::endl;
 
+}
+
+void	gradeDecrementedTooLow()
+{
 	std::cout << "TESTING: Grade decremented too low:" << std::endl;
 	try
 	{
@@ -67,6 +70,10 @@ int main()
 	}
 	std::cout << std::endl;
 
+}
+
+void	gradeIncrementedTooHigh()
+{
 	std::cout << "TESTING: Grade incremented too high:" << std::endl;
 	try
 	{
@@ -82,6 +89,16 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << std::endl;
+}
+
+int main()
+{
+	std::cout << std::endl;
+	gradeWithinRange();
+	gradeTooLow();
+	gradeTooHigh();
+	gradeDecrementedTooLow();
+	gradeIncrementedTooHigh();
 
 	return(0);
 }
