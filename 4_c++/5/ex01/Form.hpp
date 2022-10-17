@@ -15,7 +15,6 @@ class Form
 		const int	_requiredGradeToSign;
 		const int	_requiredGradeToExecute;
 	public:
-		// Form(const std::string name, int grade);
 		Form(const std::string name, const int requiredGradeToSign, const int requiredGradeToExecute);
 		// Form();
 		~Form();
@@ -25,6 +24,7 @@ class Form
 		bool	getIsSigned() const;
 		int	getRequiredGradeToSign() const;
 		int	getRequiredGradeToExecute() const;
+		void	checkGrade() const;
 		void	beSigned(Bureaucrat &bureaucrat);
 
 		class GradeTooHighException : public std::exception
@@ -32,7 +32,7 @@ class Form
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("ERROR: Grade too high...aborting!");
+					return ("FORM ERROR: Grade too high...aborting!");
 				}
 		};
 
@@ -41,7 +41,7 @@ class Form
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("ERROR: Grade too low...aborting!");
+					return ("FORM ERROR: Grade too low...aborting!");
 				}
 		};		
 };
