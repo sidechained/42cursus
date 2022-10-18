@@ -1,5 +1,5 @@
 SRCS = Bureaucrat.cpp Form.cpp main.cpp
-NAME = Bureaucrat
+NAME = Form
 
 all: $(NAME)
 
