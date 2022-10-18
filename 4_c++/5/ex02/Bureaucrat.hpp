@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <stdexcept>
-#include "ShrubberyCreationForm.hpp"
+#include "Form.hpp"
 
 class Form;
 
@@ -23,14 +23,14 @@ class Bureaucrat
 		void decGrade();
 		void checkGrade() const;
 		void signForm(Form &form) const;
-		void executeForm(Form const &form);
+		void executeForm(Form const &form) const;
 
 		class GradeTooHighException : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("ERROR: Grade too high...aborting!");
+					return ("BUREAUCRAT ERROR: Grade too high...aborting!");
 				}
 		};
 
@@ -39,7 +39,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("ERROR: Grade too low...aborting!");
+					return ("BUREAUCRAT ERROR: Grade too low...aborting!");
 				}
 		};
 

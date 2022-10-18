@@ -4,18 +4,14 @@ Form::Form(const std::string name, const int requiredGradeToSign, const int requ
 	_name(name), _isSigned(false), _requiredGradeToSign(requiredGradeToSign), _requiredGradeToExecute(requiredGradeToExecute)
 {
 	std::cout << "Form constructor called" << std::endl;
-	// this->_name = name;
-	// this->_isSigned = false;
-	// this->_requiredGradeToSign = requiredGradeToSign;
-	// this->_requiredGradeToExecute = requiredGradeToExecute;
-	// check grades
+	checkGrade();
 }
 
-// Form::Form():
-// 	_name(""), _isSigned(false), _requiredGradeToSign(1), _requiredGradeToExecute(1)
-// {
-// 	std::cout << "For default constructor called" << std::endl;
-// }
+Form::Form():
+	_name(""), _isSigned(false), _requiredGradeToSign(1), _requiredGradeToExecute(1)
+{
+	std::cout << "Form default constructor called" << std::endl;
+}
 
 Form::~Form()
 {
@@ -59,7 +55,16 @@ int	Form::getRequiredGradeToSign() const
 int	Form::getRequiredGradeToExecute() const
 {
 	// std::cout << "Form getRequiredGradeToExecute method called" << std::endl;
-	return(this->_requiredGradeToExecute);
+	return(this->_requiredGradeToExecute);	
+}
+
+void	Form::checkGrade() const
+{
+	std::cout << "Form checkGrade method called" << std::endl;
+	if (this->_requiredGradeToSign < 1 || this->_requiredGradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (this->_requiredGradeToSign > 150 || this->_requiredGradeToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 // 	makes the form signed if the bureaucrat’s grade is high enough.
@@ -78,7 +83,7 @@ void	Form::beSigned(Bureaucrat &bureaucrat)
 
 void 	Form::checkIfExecutable(Bureaucrat const & executor) const
 {
-	std::cout << "Form execute method called" << std::endl;
+	std::cout << "Form checkIfExecutable method called" << std::endl;
 	if (this->_isSigned == false)
 	{
 		throw Form::FormIsNotSignedException();

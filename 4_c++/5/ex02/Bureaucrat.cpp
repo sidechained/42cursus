@@ -73,8 +73,9 @@ void	Bureaucrat::signForm(Form &form) const
 // attempt to execute the form
 // if successful, print something like <bureaucrat> executes <form>.
 // if unsuccessful, print an explicit error message.
-void	Bureaucrat::executeForm(Form const &form)
-{
+void	Bureaucrat::executeForm(Form const &form) const
+{	
+	std::cout << "Bureaucrat executeForm method called" << std::endl;
 	try
 	{
 		form.execute(*this);
@@ -83,7 +84,7 @@ void	Bureaucrat::executeForm(Form const &form)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << this->_name << " executes " << form.getName() << std::endl;
+	std::cout << "NOTIFICATION: " << this->_name << " has executed " << form.getName() << std::endl;
 }
 
 // non-member function
