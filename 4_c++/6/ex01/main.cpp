@@ -1,60 +1,57 @@
-#include <stdlib.h>
 #include <iostream>
+#include <time.h>	
+#include "main.hpp"
 
-// https://isocpp.org/wiki/faq/serialization#serialize-text-format
-
-// std::string gen_random(const int len) {
-//     static const char alphanum[] =
-//         "0123456789"
-//         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-//         "abcdefghijklmnopqrstuvwxyz";
-//     std::string tmp_s;
-//     tmp_s.reserve(len);
-
-//     for (int i = 0; i < len; ++i) {
-//         tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
-//     }
-    
-//     return tmp_s;
-// }
-
-struct Data {
-  std::string* ptrToRandStr1;
-  int randInt;
-  std::string* ptrToRandStr2; 
-} myData;
-
-// Q: this function is supposed to return an address, but how can it when the type is void?
-void* serialize(void)
+std::string generateRandomString()
 {
-	std::string* ptrToRandStr1;
- 	int randInt;
-  	std::string* ptrToRandStr2;
-    char* raw;
+	std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+	int strlen = rand() % 10;
+	std::string randomString;
+	int i = 0;
+	time_t t;
 
-    raw = new char[20];
+	randomString.resize(strlen);
+	srand((unsigned) time(&t));
 
-  	*ptrToRandStr1 = "abcde";
-  	randInt = rand() % 100;
-  	*ptrToRandStr2 = "fghij";
-
-    // return the address on the heap of a sequence of bytes that represent a piece of serialized data
-
-	return (reinterpret_cast<uintptr_t>(ptr));
+	while(i < strlen)
+	{
+		randomString[i] = alphabet[rand() % 26];
+		i++;
+	}
+	return(randomString);
 }
 
-Data* deserialize(void * raw)
+void*	serialize(Data *ptrToData_before)
 {
-	// deserialize the raw data to a data structure
-	// that contains the same elements that you just serialized and allocated on the heap
-    myData.ptrToRandStr1 = ;
-    myData.randInt = ;
-    myData.ptrToRandStr2 = ;
-	return (reinterpret_cast<Data *>(raw));
+	return reinterpret_cast<void*>(ptrToData_before);
 }
 
-int main()
+Data*	deserialize(void* ptrToData_serialized)
 {
-	serialize();
-	deserialize
+	return reinterpret_cast<Data*>(ptrToData_serialized);
+}
+
+int	main()
+{
+	Data*		ptrToData_before = new Data;
+	Data*		ptrToData_after;
+	void*		ptrToData_serialized;
+
+	ptrToData_before->str1 = generateRandomString();
+	ptrToData_before->i = rand();
+	ptrToData_before->str2 = generateRandomString();
+	ptrToData_serialized = serialize(ptrToData_before);
+	ptrToData_after = deserialize(ptrToData_serialized);
+
+	std::cout << std::endl;	
+	std::cout << "first random string (before deserialization): " << ptrToData_before->str1 << std::endl;
+	std::cout << "integer (before deserialization): " << ptrToData_before->i << std::endl;
+	std::cout << "second random string  (before deserialization): " << ptrToData_before->str2 << std::endl;
+	std::cout << std::endl;
+	std::cout << "first random string (after deserialization): " << ptrToData_after->str1 << std::endl;
+	std::cout << "integer (after deserialization): " << ptrToData_after->i << std::endl;
+	std::cout << "second random string  (after deserialization): " << ptrToData_after->str2 << std::endl;
+	std::cout << std::endl;
+
+	return(0);
 }
