@@ -8,44 +8,109 @@ See also c09ex00/ex01 for piscine library
 1. Libc functions (based on man pages)
 
 memset		- https://www.tutorialspoint.com/c_standard_library/c_function_memset.htm
+copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument str.
+
 bzero		- https://www.qnx.com/developers/docs/7.1/#com.qnx.doc.neutrino.lib_ref/topic/b/bzero.html
+fills the first n bytes of the object pointed to by dst with zero (NUL) bytes.
+
 memcpy		- https://www.tutorialspoint.com/c_standard_library/c_function_memcpy.htm
+copies n characters from memory area src to memory area dest
+
 memccpy	- example used as test main: https://en.cppreference.com/w/c/string/byte/memccpy
 		- implementation: https://stackoverflow.com/questions/54679080/how-does-this-implementation-of-the-c-function-memccpy-not-segfault-on-the-fol
+Copies bytes from src to dest, stopping after either 'count' bytes are copied or the byte (unsigned char)c is found (and copied).
+
 memmove	- https://www.tutorialspoint.com/c_standard_library/c_function_memmove.htm
+copies n characters from str2 to str1, but for overlapping memory blocks, memmove() is a safer approach than memcpy().
+
 memchr		- https://www.tutorialspoint.com/c_standard_library/c_function_memchr.htm
 		- implementation: https://programmer.ink/think/rewrite-some-functions-of-c-language-string.c.html
+searches for the first occurrence of the character c (an unsigned char) in the first n bytes of the string pointed to, by the argument str.
+
 memcmp 	- https://www.tutorialspoint.com/c_standard_library/c_function_memcmp.htm
+compares the first n bytes of memory area str1 and memory area str2
+
 strlen		- c01ex06 ft_strlen
+return the length of a string
+
 strlcpy	- c01ex10 ft_strlcpy
 		- example used as test main: https://c-for-dummies.com/blog/?p=3886
+size-bounded string copying
+copies up to size - 1 characters from the NUL-terminated string src to dst, NUL-terminating the result.
+
 strlcat	- c03ex05 ft_strlcat
 		- example used as test main: https://c-for-dummies.com/blog/?p=3896
+size-bounded string concatenation
+appends the NUL-terminated string src to the end of dst. It will append at most size - strlen(dst) - 1 bytes, NUL-terminating the result.
+
 strchr		- https://www.tutorialspoint.com/c_standard_library/c_function_strchr.htm
+searches for the first occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
+
 strrchr	- https://www.tutorialspoint.com/c_standard_library/c_function_strrchr.htm
+searches for the last occurrence of the character c (an unsigned char) in the string pointed to, by the argument str.
+
 strnstr	- as basis: c03ex03 ft_strstr
+locate the first occurrence	of the null-terminated string little in the null-terminated string big.
+
 strncmp	- as basis: c03ex01 ft_strncmp
 		- https://www.tutorialspoint.com/c_standard_library/c_function_strncmp.htm
+compares at most the first n bytes of str1 and str2
+
 atoi		- c04ex03 ft_atoiisalpha	- c02ex02 ft_str_is_alpha 
+converts the string argument str to an integer (type int)
+
 isdigit	- c02ex03 ft_str_is_numeric
+check if the passed character is a digit or not
+
 isalnum	- as basis: combination of previous two
+check if the passed character is a alphanumeric or not
+
 isascii	- example used as test main: https://www.ibm.com/docs/en/i/7.3?topic=functions-isascii-test-character-representable-as-ascii-value
+check if the passed character is an ascii character or not
+
 isprint	- c02ex06 ft_str_is_printable
+check if the passed character is a printable character or not
+
 toupper	- c02ex07 ft_strupcase
+convert a lowercase character to upper case
+
 tolower	- c02ex08 ft_strlowcase
+convert an uppercase character to lower case
+
 calloc		- (using malloc)
+Allocates a block of memory for an array of num elements, each of them size bytes long, and initializes all its bits to zero.
+
 strdup		- c07ex00 (using malloc)
+duplicate a string
 
 2. Additional functions
 
 ft_substr	-
-ft_strjoin	- c07ex03
-ft_strtrim	-
-ft_split	- c07ex05 and c09ex02
-ft_itoa	-
-ft_strmapi	-
-ft_putchar_fd	- c00ex00 ft_putchar
-ft_putstr_fd 	- c01ex05 ft_putstr
-ft_putendl_fd
-ft_putnbr_fd 	- c00ex07 ft_putnbr
+Allocates and returns a substring from the string ’s’ at index ’start’ and of max size ’len’.
 
+ft_strjoin	- c07ex03
+Allocates and returns a new string, which is the result of the concatenation of ’s1’ and ’s2’.
+
+ft_strtrim	-
+Allocates and returns a copy of ’s1’ with the characters specified in ’set’ removed from the beginning and the end of the string.
+
+ft_split	- c07ex05 and c09ex02
+Allocates and returns an array of strings obtained by splitting ’s’ using the character ’c’ as a delimiter. The array must be ended by a NULL pointer.
+
+ft_itoa	-
+Allocates and returns a string representing the integer received as an argument.
+
+ft_strmapi	-
+Applies the function ’f’ to each character of the string ’s’ to create a new string resulting from successive applications of ’f’.
+
+ft_putchar_fd	- c00ex00 ft_putchar
+Outputs the character ’c’ to the given file descriptor.
+
+ft_putstr_fd 	- c01ex05 ft_putstr
+Outputs the string ’s’ to the given file descriptor.
+
+ft_putendl_fd
+Outputs the string ’s’ to the given file descriptor, followed by a newline.
+
+ft_putnbr_fd 	- c00ex07 ft_putnbr
+Outputs the integer ’n’ to the given file descriptor.
