@@ -21,7 +21,7 @@ Copy n bytes from memory area src to memory area dest. The memory areas may over
 Scan the initial n bytes of the memory area pointed to by s for the first instance of c.
 
 [__memcmp__](https://man7.org/linux/man-pages/man3/memcmp.3.html) `int memcmp(const void *s1, const void *s2, size_t n);`  
-!Compare memory areas _s1_ and _s2_, returning 0 if they are equal, negative if _s1_ < _s2_ and positive if _s1_ > _s2_
+Compare memory areas _s1_ and _s2_, returning 0 if they are equal, negative if _s1_ < _s2_ and positive if _s1_ > _s2_
 
 [__strlen__](https://man7.org/linux/man-pages/man3/strlen.3.html) `size_t strlen(const char *s);`  
 Return the length of the string pointed to by s, excluding the terminating null byte (`\0`).
@@ -57,7 +57,7 @@ Test whether character _c_ is alphanumeric
 Test whether character _c_ is a 7-bit US-ASCII character code
 
 [__isprint__](https://man7.org/linux/man-pages/man3/isprint.3p.html) `int isprint(int c);`  
-!Test whether character _c_ is printable
+Test whether character _c_ is a printable character
 
 [__toupper__](https://man7.org/linux/man-pages/man3/toupper.3.html) `int toupper(int c);`  
 Convert a lowercase letter to uppercase, returning _c_ in case of non-conversion
