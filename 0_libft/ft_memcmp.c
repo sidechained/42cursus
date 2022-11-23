@@ -6,9 +6,11 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:07:47 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:29:00 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 20:58:20 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -22,7 +24,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (i < n)
 	{
 		if (c_s1[i] != c_s2[i])
-			return (c_s2[i] - c_s1[i]);
+			return (c_s1[i] - c_s2[i]);
 		i++;
 	}
 	return (0);

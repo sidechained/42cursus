@@ -6,11 +6,11 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:07:58 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:29:00 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 09:51:05 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {

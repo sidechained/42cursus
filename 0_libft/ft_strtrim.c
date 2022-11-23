@@ -6,11 +6,11 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:29:06 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 09:47:04 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 int	trim_from_start(char const *s1, char const *set, int s1_i, int start)
 {

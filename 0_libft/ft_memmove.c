@@ -6,9 +6,11 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 22:20:34 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:29:01 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 09:48:00 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

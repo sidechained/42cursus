@@ -6,12 +6,11 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 22:51:30 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:40:01 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 09:47:35 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 char	**alloc_array_of_splits(char const *s, char c)
 {

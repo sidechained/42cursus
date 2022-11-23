@@ -6,13 +6,18 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:29:53 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:31:20 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 20:38:17 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <string.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdbool.h>
 
 // typedef struct	s_list
 // {

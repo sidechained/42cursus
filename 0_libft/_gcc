@@ -1,0 +1,35 @@
+gcc -Wall -Werror -Wextra ft_memset.c ft_memset-main.c -o ft_memset && ./ft_memset
+gcc -Wall -Werror -Wextra ft_bzero.c ft_bzero-main.c -o ft_bzero && ./ft_bzero
+gcc -Wall -Werror -Wextra ft_memcpy.c ft_memcpy-main.c -o ft_memcpy && ./ft_memcpy
+*gcc -Wall -Werror -Wextra ft_memccpy.c ft_memccpy-main.c -o ft_memccpy && ./ft_memccpy
+gcc -Wall -Werror -Wextra ft_memmove.c ft_memmove-main.c -o ft_memmove && ./ft_memmove
+gcc -Wall -Werror -Wextra ft_memchr.c ft_memchr-main.c -o ft_memchr && ./ft_memchr
+gcc -Wall -Werror -Wextra ft_memcmp.c ft_memcmp-main.c -o ft_memcmp && ./ft_memcmp
+gcc -Wall -Werror -Wextra ft_strlen.c ft_strlen-main.c -o ft_strlen && ./ft_strlen
+gcc -Wall -Werror -Wextra ft_strlcpy.c ft_strlcpy-main.c -o ft_strlcpy && ./ft_strlcpy
+gcc -Wall -Werror -Wextra ft_strlcat.c ft_strlcat-main.c -o ft_strlcat && ./ft_strlcat
+*gcc -Wall -Werror -Wextra ft_strchr.c ft_strchr-main.c -o ft_strchr && ./ft_strchr
+gcc -Wall -Werror -Wextra ft_strrchr.c ft_strrchr-main.c -o ft_strrchr && ./ft_strrchr
+gcc -Wall -Werror -Wextra ft_strnstr.c ft_strnstr-main.c -o ft_strnstr && ./ft_strnstr
+gcc -Wall -Werror -Wextra ft_strncmp.c ft_strncmp-main.c -o ft_strncmp && ./ft_strncmp
+gcc -Wall -Werror -Wextra ft_atoi.c ft_atoi-main.c -o ft_atoi && ./ft_atoi
+gcc -Wall -Werror -Wextra ft_isdigit.c ft_isdigit-main.c -o ft_isdigit && ./ft_isdigit
+gcc -Wall -Werror -Wextra ft_isalnum.c ft_isalnum-main.c -o ft_isalnum && ./ft_isalnum
+gcc -Wall -Werror -Wextra ft_isascii.c ft_isascii-main.c -o ft_isascii && ./ft_isascii
+gcc -Wall -Werror -Wextra ft_isprint.c ft_isprint-main.c -o ft_isprint && ./ft_isprint
+gcc -Wall -Werror -Wextra ft_toupper.c ft_toupper-main.c -o ft_toupper && ./ft_toupper
+gcc -Wall -Werror -Wextra ft_tolower.c ft_tolower-main.c -o ft_tolower && ./ft_tolower
+gcc -Wall -Werror -Wextra ft_calloc.c ft_calloc-main.c -o ft_calloc && ./ft_calloc
+gcc -Wall -Werror -Wextra ft_strdup.c ft_strdup-main.c -o ft_strdup && ./ft_strdup
+
+//TODO
+gcc -Wall -Werror -Wextra ft_substr.c ft_substr-main.c -o ft_substr && ./ft_substr
+*gcc -Wall -Werror -Wextra ft_strjoin.c ft_strjoin-main.c -o ft_strjoin && ./ft_strjoin
+*gcc -Wall -Werror -Wextra ft_strtrim.c ft_strtrim-main.c -o ft_strtrim && ./ft_strtrim
+gcc -Wall -Werror -Wextra ft_split.c ft_split-main.c -o ft_split && ./ft_split
+gcc -Wall -Werror -Wextra ft_itoa.c ft_itoa-main.c -o ft_itoa && ./ft_itoa
+gcc -Wall -Werror -Wextra ft_strmapi.c ft_strmapi-main.c -o ft_strmapi && ./ft_strmapi
+gcc -Wall -Werror -Wextra ft_putchar_fd.c ft_putchar_fd-main.c -o ft_putchar_fd && ./ft_putchar_fd
+gcc -Wall -Werror -Wextra ft_putstr_fd.c ft_putstr_fd-main.c -o ft_putstr_fd && ./ft_putstr_fd
+gcc -Wall -Werror -Wextra ft_putendl_fd.c ft_putendl_fd-main.c -o ft_putendl_fd && ./ft_putendl_fd
+gcc -Wall -Werror -Wextra ft_putnbr_fd.c ft_putnbr_fd-main.c -o ft_putnbr_fd && ./ft_putnbr_fd

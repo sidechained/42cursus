@@ -6,11 +6,11 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:34:00 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:28:59 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 09:51:02 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 int	get_length_of_str_as_int(int n)
 {

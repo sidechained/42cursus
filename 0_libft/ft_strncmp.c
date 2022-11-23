@@ -6,11 +6,13 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/08/20 23:29:10 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/22 09:46:20 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO: check for equality and other edge cases (s2 empty, shorter than s1 etc)
+
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
