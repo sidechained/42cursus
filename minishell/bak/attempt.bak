@@ -1,0 +1,144 @@
+// NOTES
+// eventually will have to use strnstr not strstr
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include "ft_substr.c"
+
+
+// #define UNDEFINED 0
+
+// struct Element {
+//   char* str;
+//   int type;
+//   bool in_single_quotes;
+// };
+
+// int main() {
+//   struct Element raw_statement[1];
+//   struct Element* splits;
+//   raw_statement[0].str = "existing_array > array_to_insert > combined_array";
+//   raw_statement[0].type = UNDEFINED;
+//   raw_statement[0].in_single_quotes = 0;
+//   splits = splitter(raw_statement, ">");
+//   return 0;
+// }
+
+
+// start with an array containing existing_array element (the full statement "test > this")
+// split it to create an array of combined_array elements ("test", ">", "this")
+// create a new array with these combined_array elements in place of the original existing_array
+
+void combine_arrays(char** combined_array, int combined_array_size, char** existing_array, char** array_to_insert, int array_to_insert_size, int index_to_insert_at)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	// printf("%i\n", array_to_insert_size);
+	while(i < combined_array_size)
+	{
+		if (i == index_to_insert_at)
+		{
+			while(j < array_to_insert_size)
+			{
+				combined_array[i] = array_to_insert[j];
+				// printf("%i, %s\n", i, combined_array[i]);
+				i++;
+				j++;
+			}
+			k++;
+		}
+		else
+		{
+			combined_array[i] = existing_array[k];
+			i++;
+			k++;
+		}
+	}
+}
+
+int main()
+{
+	char* existing_array[3] = {"first ", "test > this", " last"};
+	char* array_to_insert[3] = {"test ", ">", " this"};
+	int existing_array_size = sizeof(existing_array) / sizeof(char*);
+	int array_to_insert_size = sizeof(array_to_insert) / sizeof(char*);
+	int combined_array_size = existing_array_size + array_to_insert_size - 1;
+	char* combined_array[combined_array_size];
+	combine_arrays(combined_array, combined_array_size, existing_array, array_to_insert, array_to_insert_size, 1);
+	// print the result
+	int i = 0;
+	while(i < combined_array_size)
+	{
+		printf("%s", combined_array[i]);
+		i++;
+	}
+	return 0;
+}
+
+// // code to split string based on operators [WORKS]
+// // can be used to split on < > << >> |
+// // can handle multichar operators (i.e. >>) and multiple occurances of operators
+// int main()
+// {
+// 	// char* statement = "existing_array >> array_to_insert >> combined_array >> four";
+// 	// char* toFind = ">>";
+// 	char* statement = "existing_array | array_to_insert | combined_array | four";
+// 	char* toFind = "|";
+
+// 	char* ret;
+// 	// 1. count number of separators	
+// 	int num_separators_found = 0;
+// 	ret = statement;
+// 	while(ret)
+// 	{
+// 		ret = strstr(ret, toFind);
+// 		if (ret)
+// 		{
+// 			ret = ret + strlen(toFind);
+// 			num_separators_found++;
+// 		}
+// 	}
+// 	// 2. collect positions of separators in array
+// 	unsigned long positions_of_separators[num_separators_found];
+// 	int i = 0;
+// 	ret = statement;
+// 	while(i < num_separators_found)
+// 	{
+// 		ret = strstr(ret, toFind);
+// 		positions_of_separators[i] = strlen(statement) - strlen(ret);
+// 		ret = ret + strlen(toFind);
+// 		//printf("%lu\n", positions_of_separators[i]);
+// 		i++;
+// 	}
+// 	// 3. build array of splits
+// 	char* splits[num_separators_found * 2 + 1];
+// 	// first split:
+// 	splits[0] = ft_substr(statement, 0, positions_of_separators[0]);
+// 	// middle splits:
+// 	i = 0;
+// 	int startPos;
+// 	int length;
+// 	while(i < num_separators_found - 1)
+// 	{
+// 		splits[i*2+1] = toFind;
+// 		startPos = positions_of_separators[i] + strlen(toFind);
+// 		length = positions_of_separators[i+1] - startPos;
+// 		splits[i*2+2] = ft_substr(statement, startPos, length);
+// 		i++;
+// 	}
+// 	// last split:
+// 	splits[i*2+1] = toFind;
+// 	startPos = positions_of_separators[i] + strlen(toFind);
+// 	length = strlen(statement) - startPos;
+// 	splits[i*2+2] = ft_substr(statement, startPos, length);
+// 	// 4. print to check
+// 	i = 0;
+// 	while(i < num_separators_found * 2 + 1)
+// 	{
+// 		printf("%s\n", splits[i]);
+// 		i++;
+// 	}
+// 	return 0;
+// }

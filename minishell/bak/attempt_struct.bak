@@ -1,0 +1,150 @@
+// https://stackoverflow.com/questions/11656532/returning-an-array-using-c
+// don't forget to free arrays that were malloc'd
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include "ft_substr.c"
+
+#define UNDEFINED 0
+#define INITIAL_NUM_ELEMENTS 1
+
+struct element
+{
+ 	char* str;
+ 	int type;
+};
+
+int count_delimiters(char* string_to_split, char* delimiter)
+{
+	char* ret;
+	int num_delimiters_found = 0;
+	ret = string_to_split;
+	while(ret)
+	{
+		ret = strstr(ret, delimiter);
+		if (ret)
+		{
+			ret = ret + strlen(delimiter);
+			num_delimiters_found++;
+		}
+	}
+	return num_delimiters_found;
+}
+
+unsigned long *collect_positions_of_delimiters(int num_delimiters_found, char* string_to_split, char* delimiter)
+{
+	unsigned long *positions_of_delimiters = malloc(num_delimiters_found * sizeof(unsigned long));
+	char* ret;
+	int i = 0;
+	ret = string_to_split;
+	while(i < num_delimiters_found)
+	{
+		ret = strstr(ret, delimiter);
+		positions_of_delimiters[i] = strlen(string_to_split) - strlen(ret);
+		ret = ret + strlen(delimiter);
+		//printf("%lu\n", positions_of_delimiters[i]);
+		i++;
+	}
+	return positions_of_delimiters;
+}
+
+char** build_array_of_splits(int num_delimiters_found, unsigned long* positions_of_delimiters, char* string_to_split, char* delimiter)
+{
+	char** splits = malloc((num_delimiters_found * 2 + 1) * sizeof(char*));
+	// first split:
+	splits[0] = ft_substr(string_to_split, 0, positions_of_delimiters[0]);
+	// middle splits:
+	int i = 0;
+	int startPos;
+	int length;
+	while(i < num_delimiters_found - 1)
+	{
+		splits[i*2+1] = delimiter;
+		startPos = positions_of_delimiters[i] + strlen(delimiter);
+		length = positions_of_delimiters[i+1] - startPos;
+		splits[i*2+2] = ft_substr(string_to_split, startPos, length);
+		i++;
+	}
+	// last split:
+	splits[i*2+1] = delimiter;
+	startPos = positions_of_delimiters[i] + strlen(delimiter);
+	length = strlen(string_to_split) - startPos;
+	splits[i*2+2] = ft_substr(string_to_split, startPos, length);
+	return splits;
+}
+
+char **split_string(char* string_to_split, char* delimiter)
+{
+	int num_delimiters_found = count_delimiters(string_to_split, delimiter);
+	unsigned long *positions_of_delimiters = collect_positions_of_delimiters(num_delimiters_found, string_to_split, delimiter);
+	char **splits = build_array_of_splits(num_delimiters_found, positions_of_delimiters, string_to_split, delimiter);
+	return splits;
+}
+
+struct element *combine_arrays(struct element* existing_elements, int existing_elements_size, char** strings_to_insert, int strings_to_insert_size, int index_to_insert_at)
+{	
+	int combined_elements_size = existing_elements_size + strings_to_insert_size - 1;
+	struct element* combined_elements = malloc(combined_elements_size * sizeof(struct element*));
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	while(i < combined_elements_size)
+	{
+		if (i == index_to_insert_at)
+		{
+			while(j < strings_to_insert_size)
+			{
+				combined_elements[i].str = strings_to_insert[j];
+				i++;
+				j++;
+			}
+			k++;
+		}
+		else
+		{
+			combined_elements[i] = existing_elements[k];
+			i++;
+			k++;
+		}
+	}
+	return combined_elements;
+}
+
+void split_undefined_elements(struct element *elements, int elements_size) // passing elements by reference
+{
+	char **split_strs;	
+	int split_strs_size;
+	struct element* combined_elements;
+	int i = 0;
+	while(i < INITIAL_NUM_ELEMENTS)
+	{
+		if (elements[i].type == UNDEFINED)
+		{
+			split_strs = split_string(elements[i].str, "|");
+			//split_strs_size = sizeof(split_strs) / sizeof(split_strs[0]);
+			split_strs_size = 5;
+			combined_elements = combine_arrays(elements, elements_size, split_strs, split_strs_size, i);
+
+			// print check
+			int i = 0;
+			while(combined_elements[i].str != NULL)
+			{
+				printf("%i %s\n", i, combined_elements[i].str);
+				i++;
+			}					
+
+		}
+		i++;
+	}	
+}
+
+int main()
+{
+	struct element elements[INITIAL_NUM_ELEMENTS];
+	int elements_size = sizeof(elements) / sizeof(elements[0]);
+	elements[0].str = "one | two | three";
+	elements[0].type = UNDEFINED;
+	split_undefined_elements(elements, elements_size);
+	return 0;
+}
