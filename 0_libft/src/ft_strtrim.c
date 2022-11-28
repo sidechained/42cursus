@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/11/22 09:47:04 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/28 09:31:39 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	trim_from_end(char const *s1, char const *set, int s1_i, int start)
 				end--;
 				s1_i--;
 				found = 1;
-				return (end);
+				return (end + 1);
 			}
 			set_i++;
 		}
 		if (found == 0)
-			return (end);
+			return (end + 1);
 	}
-	return (end);
+	return (end + 1);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -82,7 +82,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (s1[s1_i] != '\0')
 		s1_i++;
 	s1_i--;
+	printf("%s %i %i\n", s1, s1_i, start);
 	end = trim_from_end(s1, set, s1_i, start);
+	printf("%i\n", end);
 	ret = malloc(end - start);
 	ret_i = 0;
 	s1_i = start;

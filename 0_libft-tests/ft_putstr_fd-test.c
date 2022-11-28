@@ -35,6 +35,6 @@ int	main()
 	test_ft_putstr_fd("/Users/grm/Code/42/cursus/0_libft/ft_putstr_fd-test.txt", "");
 	printf("TEST: Passing a string consisting only of whitespace...\n");
 	test_ft_putstr_fd("/Users/grm/Code/42/cursus/0_libft/ft_putstr_fd-test.txt", " \t\n \t\n");	
-	printf("TEST: Passing NULL - should this be handled or is segfault OK?!\n");
-	test_ft_putstr_fd("/Users/grm/Code/42/cursus/0_libft/ft_putstr_fd-test.txt", NULL);	
+	printf("TEST: Passing NULL - ft_putstr_fd returns NULL and nothing is written to file\n");
+	test_ft_putstr_fd("/Users/grm/Code/42/cursus/0_libft/ft_putstr_fd-test.txt", NULL);
 }

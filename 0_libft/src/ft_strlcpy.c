@@ -6,7 +6,7 @@
 /*   By: grm <grm@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:21:11 by gbooth            #+#    #+#             */
-/*   Updated: 2022/11/22 09:46:28 by grm              ###   ########.fr       */
+/*   Updated: 2022/11/28 09:53:20 by grm              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 		return (0);
 	while ((i < (size - 1)) && (src[i] != '\0'))
 	{
+		printf("here\n");
 		dest[i] = src[i];
 		i++;
 	}

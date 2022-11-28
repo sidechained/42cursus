@@ -23,7 +23,7 @@ void	test_ft_putnbr_fd(char *path, int n)
 	printf("re-reading file to check:\n");
 	fptr = open(path, O_RDONLY);
 	char *reread = (char *) calloc(100, sizeof(char));
-	read(fptr, reread, 10);
+	read(fptr, reread, 11);
 	printf("\"%s\"\n\n", reread);
 }
 
@@ -42,5 +42,4 @@ int	main()
 	// misses last digit
 	printf("TEST: passing a negative integer...\n");
 	test_ft_putnbr_fd("/Users/grm/Code/42/cursus/0_libft/ft_putnbr_fd-test.txt", -2147483648);
-	// misses last digit
 }
