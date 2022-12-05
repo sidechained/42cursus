@@ -8,12 +8,6 @@ Fill the first _n_ bytes of the memory area pointed to by _s_ with the constant 
 [__bzero__](https://man7.org/linux/man-pages/man3/bzero.3.html) `void bzero(void *s, size_t n);`  
 Write `\0`'s to the _n_ bytes of the memory starting at the location pointed to by _s_
 
-[__memcpy__](https://man7.org/linux/man-pages/man3/memcpy.3.html) `void *memcpy(void *restrict dest, const void *restrict src, size_t n);`  
-Copy _n_ bytes from memory area _src_ to memory area _dest_. The memory areas must not overlap
-
-[__memccpy__](https://man7.org/linux/man-pages/man3/memccpy.3.html) `void *memccpy(void *restrict dest, const void *restrict src, int c, size_t n);`  
-Copy no more than n bytes from memory area _src_ to memory area _dest_, stopping when the char _c_ is found
-
 [__memmove__](https://man7.org/linux/man-pages/man3/memmove.3.html) `void *memmove(void *dest, const void *src, size_t n);`  
 Copy n bytes from memory area src to memory area dest. The memory areas may overlap.
 
@@ -89,7 +83,10 @@ __ft_itoa__ `char *ft_itoa(int n);`
 Allocate and return an ascii string representing the integer _n_
 
 __ft_strmapi__ `char *ft_strmapi(char const *s, char (*f)(unsigned int, char));`  
-Successively apply the function _f_ to each character of the string _s_ to create a new string
+Successively apply the function _f_ to each character of the string _s_ [creating new string i.e. malloc]
+
+__ft_striteri__ `void ft_striteri(char *s, void (*f)(unsigned int, char*));`  
+Successively apply the function _f_ to each character of the string _s_ [pass chars by address, to modify 'in place']
 
 __ft_putchar_fd__ `void ft_putchar_fd(char c, int fd);`  
 Output the character _c_ to the given file descriptor.
