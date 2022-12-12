@@ -1,0 +1,41 @@
+commands for running tests
+* means does not work properly
+wrap these in a big bash script
+remove need to repeat ../0_libft-tests/ constantly
+
+cc -Wall -Werror -Wextra ft_memset.c ../0_libft-tests/ft_memset-test.c -o ft_memset && ./ft_memset
+cc -Wall -Werror -Wextra ft_bzero.c ../0_libft-tests/ft_bzero-test.c -o ft_bzero && ./ft_bzero
+cc -Wall -Werror -Wextra ft_memcpy.c ../0_libft-tests/ft_memcpy-test.c -o ft_memcpy && ./ft_memcpy
+cc -Wall -Werror -Wextra ft_memmove.c ../0_libft-tests/ft_memmove-test.c -o ft_memmove && ./ft_memmove
+cc -Wall -Werror -Wextra ft_memchr.c ../0_libft-tests/ft_memchr-test.c -o ft_memchr && ./ft_memchr
+cc -Wall -Werror -Wextra ft_memcmp.c ../0_libft-tests/ft_memcmp-test.c -o ft_memcmp && ./ft_memcmp
+cc -Wall -Werror -Wextra ft_strlen.c ../0_libft-tests/ft_strlen-test.c -o ft_strlen && ./ft_strlen
+cc -Wall -Werror -Wextra -lbsd ft_strlcpy.c ../0_libft-tests/ft_strlcpy-test.c -o ft_strlcpy && ./ft_strlcpy
+cc -Wall -Werror -Wextra -lbsd ft_strlcat.c ft_strlen.c ../0_libft-tests/ft_strlcat-test.c -o ft_strlcat && ./ft_strlcat
+cc -Wall -Werror -Wextra ft_strchr.c ../0_libft-tests/ft_strchr-test.c -o ft_strchr && ./ft_strchr
+cc -Wall -Werror -Wextra ft_strrchr.c ../0_libft-tests/ft_strrchr-test.c -o ft_strrchr && ./ft_strrchr
+*cc -Wall -Werror -Wextra ft_strnstr.c ../0_libft-tests/ft_strnstr-test.c -o ft_strnstr && ./ft_strnstr
+*cc -Wall -Werror -Wextra ft_strncmp.c ../0_libft-tests/ft_strncmp-test.c -o ft_strncmp && ./ft_strncmp
+cc -Wall -Werror -Wextra ft_atoi.c ft_isdigit.c ../0_libft-tests/ft_atoi-test.c -o ft_atoi && ./ft_atoi
+cc -Wall -Werror -Wextra ft_isalpha.c ../0_libft-tests/ft_isalpha-test.c -o ft_isalpha && ./ft_isalpha
+cc -Wall -Werror -Wextra ft_isdigit.c ../0_libft-tests/ft_isdigit-test.c -o ft_isdigit && ./ft_isdigit
+cc -Wall -Werror -Wextra ft_isalnum.c ft_isalpha.c ft_isdigit.c ../0_libft-tests/ft_isalnum-test.c -o ft_isalnum && ./ft_isalnum
+cc -Wall -Werror -Wextra ft_isascii.c ../0_libft-tests/ft_isascii-test.c -o ft_isascii && ./ft_isascii
+cc -Wall -Werror -Wextra ft_isprint.c ../0_libft-tests/ft_isprint-test.c -o ft_isprint && ./ft_isprint
+cc -Wall -Werror -Wextra ft_toupper.c ../0_libft-tests/ft_toupper-test.c -o ft_toupper && ./ft_toupper
+cc -Wall -Werror -Wextra ft_tolower.c ../0_libft-tests/ft_tolower-test.c -o ft_tolower && ./ft_tolower
+cc -Wall -Werror -Wextra ft_calloc.c ft_bzero.c ../0_libft-tests/ft_calloc-test.c -o ft_calloc && ./ft_calloc
+cc -Wall -Werror -Wextra ft_strdup.c ../0_libft-tests/ft_strdup-test.c -o ft_strdup && ./ft_strdup
+
+cc -Wall -Werror -Wextra ft_substr.c ft_strlen.c ../0_libft-tests/ft_substr-test.c -o ft_substr && ./ft_substr
+cc -Wall -Werror -Wextra ft_strjoin.c ../0_libft-tests/ft_strjoin-test.c -o ft_strjoin && ./ft_strjoin
+cc -Wall -Werror -Wextra ft_strtrim.c ft_strlen.c ft_substr.c ../0_libft-tests/ft_strtrim-test.c -o ft_strtrim && ./ft_strtrim
+cc -Wall -Werror -Wextra ft_split.c ft_strlen.c ft_strtrim.c ft_substr.c ../0_libft-tests/ft_split-test.c -o ft_split && ./ft_split
+cc -Wall -Werror -Wextra ft_itoa.c ft_strlcpy.c ../0_libft-tests/ft_itoa-test.c -o ft_itoa && ./ft_itoa
+cc -Wall -Werror -Wextra ft_strmapi.c ft_strlen.c ../0_libft-tests/ft_strmapi-test.c -o ft_strmapi && ./ft_strmapi
+*cc -Wall -Werror -Wextra ft_striteri.c ../0_libft-tests/ft_striteri-test.c -o ft_striteri && ./ft_striteri
+*cc -Wall -Werror -Wextra ft_putchar_fd.c ../0_libft-tests/ft_putchar_fd-test.c -o ft_putchar_fd && ./ft_putchar_fd
+*cc -Wall -Werror -Wextra ft_putstr_fd.c ../0_libft-tests/ft_putstr_fd-test.c -o ft_putstr_fd && ./ft_putstr_fd
+*cc -Wall -Werror -Wextra ft_putendl_fd.c ../0_libft-tests/ft_putendl_fd-test.c -o ft_putendl_fd && ./ft_putendl_fd
+*cc -Wall -Werror -Wextra ft_putnbr_fd.c ft_putchar_fd.c ../0_libft-tests/ft_putnbr_fd-test.c -o ft_putnbr_fd && ./ft_putnbr_fd
+* = errors on re-reading file

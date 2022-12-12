@@ -1,15 +1,16 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void  test_ft_memset(bool testmode, void *s, int c, size_t n)
 {
 	void *t;
-	printf("Replacing first %zu bytes of \"%s\" with '%c'\n", n, s, c);
-	printf("BEFORE:%s\n", s);
+	printf("Replacing first %zu bytes of \"%s\" with '%c'\n", n, (char *)s, c);
+	printf("BEFORE:%s\n", (char *)s);
 	if (testmode)
 		t = memset(s, c, n);
 	else
 		t = ft_memset(s, c, n);
-	printf("AFTER: %s\n\n", t);
+	printf("AFTER: %s\n\n", (char *)t);
 }
 
 void  tests_ft_memset(bool testmode)

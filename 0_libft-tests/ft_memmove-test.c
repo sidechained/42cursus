@@ -1,14 +1,15 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void   test_ft_memmove(bool testmode, void *dest, const void *src, size_t n)
 {
-   printf("Copying %zu chars of source string \"%s\"\n", n, src);
-   printf("BEFORE: dest = \"%s\"\n", dest);
+   printf("Copying %zu chars of source string \"%s\"\n", n, (char *)src);
+   printf("BEFORE: dest = \"%s\"\n", (char *)dest);
    if(testmode)
       memmove(dest, src, n);
    else
       ft_memmove(dest, src, n);
-   printf("AFTER:  dest = \"%s\"\n", dest);
+   printf("AFTER:  dest = \"%s\"\n", (char *)dest);
    printf("\n");
 }
 

@@ -1,4 +1,5 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void	test_ft_strlen(bool testmode, const char *s)
 {

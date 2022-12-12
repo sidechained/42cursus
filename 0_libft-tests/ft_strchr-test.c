@@ -1,6 +1,5 @@
-#include "../0_libft/inc/libft.h"
-// #include <stdio.h>
-// #include <string.h>
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void	test_ft_strchr(bool testmode, const char *s, int c)
 {

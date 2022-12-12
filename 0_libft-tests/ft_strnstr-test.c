@@ -1,4 +1,6 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <bsd/string.h>
+#include <stdio.h>
 
 void	test_ft_strnstr(bool testmode, char *largestring, char *smallstring, int size)
 {

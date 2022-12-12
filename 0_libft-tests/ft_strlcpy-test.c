@@ -1,4 +1,6 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <bsd/string.h>
+#include <stdio.h>
 
 void	test_ft_strlcpy(bool testmode, char *string, int size)
 {
@@ -18,9 +20,9 @@ void	test_ft_strlcpy(bool testmode, char *string, int size)
 
 void	tests_ft_strlcpy(bool testmode)
 {
-	// test_ft_strlcpy(testmode, "Forty Two Thousand", 19);
-    // test_ft_strlcpy(testmode, "Forty Two Thousand", 10);
-    // test_ft_strlcpy(testmode, "Forty Two Thousand", 1);
+	test_ft_strlcpy(testmode, "Forty Two Thousand", 19);
+    test_ft_strlcpy(testmode, "Forty Two Thousand", 10);
+    test_ft_strlcpy(testmode, "Forty Two Thousand", 1);
     test_ft_strlcpy(testmode, "Forty Two Thousand", 0);	
     test_ft_strlcpy(testmode, "", 5);    
 }

@@ -1,6 +1,5 @@
-#include "../0_libft/inc/libft.h"
-
-// FAILS
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void	test_ft_strjoin(char const *s1, char const *s2)
 {

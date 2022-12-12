@@ -1,5 +1,6 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
 #include <fcntl.h>
+#include <stdio.h>
 
 void	test_ft_putchar_fd(char *path, char c)
 {

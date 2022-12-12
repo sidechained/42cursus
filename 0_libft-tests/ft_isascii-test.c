@@ -1,5 +1,6 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
 #include <ctype.h>
+#include <stdio.h>
 
 void  test_ft_isascii(bool testmode, int ch)
 {
@@ -9,6 +10,7 @@ void  test_ft_isascii(bool testmode, int ch)
 		isasc = isascii(ch);
 	else
 		isasc = ft_isascii(ch);
+	printf("%i\n", isasc);
 	if (isasc)
 		printf("The character is '%c'\n", ch);
 	else
@@ -21,6 +23,8 @@ void  tests_ft_isascii(int testmode)
 	int ch;
 	for (ch = 0x7c; ch <= 0x82; ch++)
 		test_ft_isascii(testmode, ch);
+	printf("-1 test\n");
+	test_ft_isascii(testmode, -1);
 }
 
 int   main(int argc, char **argv)

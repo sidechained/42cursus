@@ -1,6 +1,5 @@
-#include "../0_libft/inc/libft.h"
-
-// FAIL
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void	test_ft_itoa(int n)
 {
@@ -15,8 +14,12 @@ int	main()
 	test_ft_itoa(9876);
 	printf("TEST: Zero...\n");	
 	test_ft_itoa(0);
+	printf("TEST: One...\n");	
+	test_ft_itoa(1);	
 	printf("TEST: Negative integer...\n");	
 	test_ft_itoa(-9876);
+	printf("TEST: Smallest negative integer...\n");	
+	test_ft_itoa(-1);
 	printf("TEST: Positive integer at limit [beyond limit gives warning]...\n");	
 	test_ft_itoa(2147483647);
 	printf("TEST: Negative integer at limit...\n");	

@@ -1,5 +1,6 @@
-#include "../0_libft/inc/libft.h"
-// NOT TOTALLY HAPPY WITH THIS
+#include "../0_libft/libft.h"
+#include <bsd/string.h>
+#include <stdio.h>
 
 void	test_ft_strlcat(bool testmode, char *first, char *last, int size)
 {
@@ -27,6 +28,7 @@ void	tests_ft_strlcat(bool testmode)
 	test_ft_strlcat(testmode, "This is ", "a potentially long string", 15);
 	test_ft_strlcat(testmode, "Second string is...", "much longer than the first", 50);
 	test_ft_strlcat(testmode, "Second string is...", "much longer than the first", 2);
+	test_ft_strlcat(testmode, "rrrrrrrrrrrrrrr", "lorem ipsum dolor sit amet", 5);
 }
 
 int	main(int argc, char **argv)

@@ -1,4 +1,6 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <bsd/string.h>
+#include <stdio.h>
 
 void  test_ft_strncmp(bool testmode, char *str1, char *str2, size_t size)
 {

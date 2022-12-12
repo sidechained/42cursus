@@ -1,5 +1,6 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
 #include <ctype.h> // toupper
+#include <stdio.h>
 
 char test_toupper(unsigned int i, char c)
 {

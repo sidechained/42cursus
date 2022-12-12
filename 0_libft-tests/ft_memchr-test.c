@@ -1,4 +1,5 @@
-#include "../0_libft/inc/libft.h"
+#include "../0_libft/libft.h"
+#include <stdio.h>
 
 void   test_ft_memchr(bool testmode, const void *s, int c, size_t n)
 {
@@ -8,7 +9,7 @@ void   test_ft_memchr(bool testmode, const void *s, int c, size_t n)
       ret = memchr(s, c, n);
    else
       ret = ft_memchr(s, c, n);
-   printf("Searching for '%c' in %zu chars of \"%s\"\n", c, n, s);
+   printf("Searching for '%c' in %zu chars of \"%s\"\n", c, n, (char *)s);
    printf("Found: \"%s\"\n\n", ret);
 }
 
