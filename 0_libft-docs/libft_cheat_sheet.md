@@ -130,8 +130,7 @@ __ft_lstclear__ `void ft_lstclear(t_list **lst, void (*del)(void *));`
 Delete and free a given node and it's successors, using the function _del_ and free(3). Set pointer to _lst_ to NULL.
 
 __ft_lstiter__ `void ft_lstiter(t_list *lst, void (*f)(void *));`  
-Iterate over _lst_ and apply the function _f_ to the content of each node 'in place'
+Apply the function _f_ to the content of each node of _lst_ 'in place'.
 
 __ft_lstmap__ `t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));`  
-Iterate over _lst_ and apply the function _f_ on the content of each node, allocating a new list.
-The ’del’ function is used to delete the content of a node if needed.
+Apply the function _f_ to the content of each node of _lst_ (or delete it using function _del_, allocating a new list).
