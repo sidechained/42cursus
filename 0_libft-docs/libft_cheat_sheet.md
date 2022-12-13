@@ -109,7 +109,7 @@ Outputs the integer _n_ to the given file descriptor.
 #### Bonus Functions
 
 __ft_lstnew__ `t_list *ft_lstnew(void *content);`  
-Allocate and return a new node, where node->content=content and node->next=NULL.
+Allocate and return a new node, where node->content = _content_ and node->next = NULL.
 
 __ft_lstadd_front__	`void ft_lstadd_front(t_list **lst, t_list *new);`  
 Add a previously-created 'new' node to the beginning of a list of nodes.
@@ -127,10 +127,10 @@ __ft_lstdelone__ `void ft_lstdelone(t_list *lst, void (*del)(void *));`
 Delete and free a given node's content using the given function _del_, then free the node.
 
 __ft_lstclear__ `void ft_lstclear(t_list **lst, void (*del)(void *));`  
-Delete and free a given node and it's successors, using the function _del_ and free(3). Set pointer to _lst_ to NULL.
+Delete and free a given node and it's successors, using the function _del_ and free(3), setting pointer to _lst_ to NULL.
 
 __ft_lstiter__ `void ft_lstiter(t_list *lst, void (*f)(void *));`  
-Apply the function _f_ to the content of each node of _lst_ 'in place'.
+Apply the function _f_ to the content of each node of _lst_, modifying it 'in place'.
 
 __ft_lstmap__ `t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));`  
-Apply the function _f_ to the content of each node of _lst_ (or delete it using function _del_, allocating a new list).
+Apply the function _f_ to the content of each node of _lst_ (or delete it using the function _del_), allocating a new list.
