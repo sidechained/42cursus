@@ -108,30 +108,30 @@ Outputs the integer _n_ to the given file descriptor.
 
 #### Bonus Functions
 
-__ft_lstnew__ `t_list *ft_lstnew(void *content);`
+__ft_lstnew__ `t_list *ft_lstnew(void *content);`  
 Allocate and return a new node, where node->content=content and node->next=NULL.
 
-__ft_lstadd_front__	`void ft_lstadd_front(t_list **lst, t_list *new);`
+__ft_lstadd_front__	`void ft_lstadd_front(t_list **lst, t_list *new);`  
 Add a previously-created 'new' node to the beginning of a list of nodes.
 
-__ft_lstsize__ `int ft_lstsize(t_list *lst);`
+__ft_lstsize__ `int ft_lstsize(t_list *lst);`  
 Count the number of nodes in a list.
 
-__ft_lstlast__ `t_list *ft_lstlast(t_list *lst);`
+__ft_lstlast__ `t_list *ft_lstlast(t_list *lst);`  
 Return the last node of a list.
 
-__ft_lstadd_back__ `void ft_lstadd_back(t_list **lst,t_list *new);`
+__ft_lstadd_back__ `void ft_lstadd_back(t_list **lst,t_list *new);`  
 Add a previously-created 'new' node to the end of a list of nodes.
 
-__ft_lstdelone__ `void ft_lstdelone(t_list *lst, void (*del)(void *));`
+__ft_lstdelone__ `void ft_lstdelone(t_list *lst, void (*del)(void *));`  
 Delete and free a given node's content using the given function _del_, then free the node.
 
-__ft_lstclear__ `void ft_lstclear(t_list **lst, void (*del)(void *));`
+__ft_lstclear__ `void ft_lstclear(t_list **lst, void (*del)(void *));`  
 Delete and free a given node and it's successors, using the function _del_ and free(3). Set pointer to _lst_ to NULL.
 
-__ft_lstiter__ `void ft_lstiter(t_list *lst, void (*f)(void *));`
+__ft_lstiter__ `void ft_lstiter(t_list *lst, void (*f)(void *));`  
 Iterate over _lst_ and apply the function _f_ to the content of each node 'in place'
 
-__ft_lstmap__ `t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));`
+__ft_lstmap__ `t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));`  
 Iterate over _lst_ and apply the function _f_ on the content of each node, allocating a new list.
 The ’del’ function is used to delete the content of a node if needed.
