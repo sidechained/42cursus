@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/13 15:40:00 by gbooth           ###   ########.fr       */
+/*   Created: 2022/08/20 21:07:50 by gbooth            #+#    #+#             */
+/*   Updated: 2022/12/13 15:14:16 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t			i;
-	unsigned char	*s1_;
-	unsigned char	*s2_;
+	t_list	*new_node;
+	t_list	*first_node;
 
-	s1_ = (unsigned char *)s1;
-	s2_ = (unsigned char *)s2;
-	i = 0;
-	while (i < n && (!(s1_[i] == '\0' && s2_[i] == '\0')))
+	first_node = NULL;
+	while (lst)
 	{
-		if (s1_[i] - s2_[i] != 0)
-			return (s1_[i] - s2_[i]);
-		i++;
+		new_node = ft_lstnew(f(lst->content));
+		if (!new_node)
+		{
+			ft_lstclear(&first_node, del);
+			return (NULL);
+		}		
+		ft_lstadd_back(&first_node, new_node);
+		lst = lst->next;
 	}
-	return (0);
+	return (first_node);
 }

@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:34:00 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/07 10:35:33 by gbooth           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:15:27 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ char	*ft_itoa(int n)
 	if (n == INT_MIN)
 	{
 		int_min_str = "-2147483648";
-		a = malloc(sizeof(char) * strlen(int_min_str) + 1);
+		a = malloc(sizeof(char) * ft_strlen(int_min_str) + 1);
 		if (!a)
 			return (NULL);
-		ft_strlcpy(a, int_min_str, strlen(int_min_str) + 1);
+		ft_strlcpy(a, int_min_str, ft_strlen(int_min_str) + 1);
 		return (a);
 	}
 	l = get_length_of_str_as_int(n);

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/13 15:40:00 by gbooth           ###   ########.fr       */
+/*   Created: 2022/08/20 21:07:50 by gbooth            #+#    #+#             */
+/*   Updated: 2022/12/13 15:16:33 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t			i;
-	unsigned char	*s1_;
-	unsigned char	*s2_;
+	t_list	*lst_;
 
-	s1_ = (unsigned char *)s1;
-	s2_ = (unsigned char *)s2;
-	i = 0;
-	while (i < n && (!(s1_[i] == '\0' && s2_[i] == '\0')))
+	if (lst)
 	{
-		if (s1_[i] - s2_[i] != 0)
-			return (s1_[i] - s2_[i]);
-		i++;
+		while (*lst)
+		{
+			lst_ = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = lst_;
+		}
 	}
-	return (0);
 }

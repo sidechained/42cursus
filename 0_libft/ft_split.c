@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/09 13:27:40 by gbooth           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:48:04 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -34,9 +34,9 @@ static char	**allocate_array_of_strings(char const *s, char c, char **a)
 char	**ft_split(char const *s, char c)
 {
 	char	**a;
-	int		i;
-	int		ai;
-	int		start;
+	size_t	i;
+	size_t	ai;
+	size_t	start;
 
 	a = NULL;
 	a = allocate_array_of_strings(s, c, a);
@@ -52,7 +52,8 @@ char	**ft_split(char const *s, char c)
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 		{
 			a[ai] = ft_substr(s, start, i - start + 1);
-			ai++;
+			if (!a[ai++])
+				return (NULL);
 		}
 		i++;
 	}

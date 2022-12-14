@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/09 21:27:10 by gbooth           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:25:08 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ char	*malloc_empty_string(void)
 {
 	char			*ret;
 
-	ret = NULL;
 	ret = malloc(sizeof(char));
+	if (!ret)
+		return (NULL);
 	ret[0] = '\0';
 	return (ret);
 }

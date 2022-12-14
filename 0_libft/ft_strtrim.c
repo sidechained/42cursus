@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/09 14:28:33 by gbooth           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:12:19 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	i;
 
 	start = determine_start(s1, set);
-	if (start == strlen(s1))
+	if (start == ft_strlen(s1))
 		len = 0;
 	else
 	{

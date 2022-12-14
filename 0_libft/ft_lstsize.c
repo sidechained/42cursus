@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 23:20:05 by gbooth            #+#    #+#             */
-/*   Updated: 2022/12/13 15:40:00 by gbooth           ###   ########.fr       */
+/*   Created: 2022/08/20 21:07:50 by gbooth            #+#    #+#             */
+/*   Updated: 2022/12/13 15:14:07 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static int	ft_count_lstsize(t_list *list, int c)
 {
-	size_t			i;
-	unsigned char	*s1_;
-	unsigned char	*s2_;
+	if (list->next)
+		return (ft_count_lstsize(list->next, c + 1));
+	else
+		return (c + 1);
+}
 
-	s1_ = (unsigned char *)s1;
-	s2_ = (unsigned char *)s2;
-	i = 0;
-	while (i < n && (!(s1_[i] == '\0' && s2_[i] == '\0')))
-	{
-		if (s1_[i] - s2_[i] != 0)
-			return (s1_[i] - s2_[i]);
-		i++;
-	}
+int	ft_lstsize(t_list *lst)
+{
+	if (lst)
+		return (ft_count_lstsize(lst, 0));
 	return (0);
 }
