@@ -1,5 +1,3 @@
-#include "conversions_strings.h"
-
 void	ft_convert_c(va_list ap, int left_space_pad_len, int right_space_pad_len)
 {
 	char c;

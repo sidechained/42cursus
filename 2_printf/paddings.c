@@ -1,5 +1,3 @@
-#include "paddings.h"
-
 int		pad_left_spaces(int left_space_pad_len, int item_len)
 {
 	int num_left_spaces_to_pad;

@@ -1,8 +1,8 @@
-#include "ft_printf.h"
+#include "libftprintf.h"
 
+//extract digits, convert to int and return:
 int get_digits(const char *format_str, int *pos)
 {
-	//extract digits, convert to int and return:
 	char *digits_str;
 	int digits_int;
 	int digit_len;

@@ -1,22 +1,12 @@
-NAME = libft.a
-SRC_PATH = ./srcs/
-HEADER_PATH = ./incs/
-BUILD_PATH = ./build/
-FLAGS = 
-SRCS = $(SRC_PATH)ft_printf.c
-SRCS+ = $(SRC_PATH)conversions_others.c
-SRCS+ = $(SRC_PATH)conversions_strings.c
-SRCS+ = $(SRC_PATH)paddings.c
-SRCS+ = $(SRC_PATH)puts.c
-SRCS+ = $(SRC_PATH)puts_base.c
-OBJS = $(BUILD_PATH)conversions_others.o
-OBJS++ = $(BUILD_PATH)conversions_strings.o
-OBJS++ = $(BUILD_PATH)paddings.o
-OBJS++ = $(BUILD_PATH)puts.o
-OBJS++ = $(BUILD_PATH)puts_base.o
+NAME = libftprintf.a
+HEADER = libftprintf.h
+FLAGS = -Wall -Wextra -Werror
+SRCS = ft_printf.c puts.c puts_base.c paddings.c conversions_others.c conversions_strings.c
+OBJS = $(SRCS:.c=.o)
+
 
 $(NAME):
-	cc -Wall -Wextra -Werror -I $(HEADER_PATH) -c $(SRCS) -o $(OBJS)
+	cc $(FLAGS) -include $(HEADER) -c $(SRCS)
 	ar rc $(NAME) $(OBJS)
 
 all:
@@ -27,5 +17,12 @@ clean:
 
 fclean: clean
 	/bin/rm -f $(NAME)
+	rm tests
 
 re: fclean all
+
+test:
+	cc -o tests tests.c libftprintf.a
+	./tests
+
+# cc -o tests tests.c libftprintf.a

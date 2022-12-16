@@ -1,5 +1,3 @@
-#include "puts_base.h"
-
 int	ft_get_base_length(char *base)
 {
 	int	l;
