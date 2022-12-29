@@ -1,21 +1,12 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdbool.h> // eventually remove
+#include <unistd.h> // read
+#include <string.h> // strcmp (remove)
+#include <stdlib.h>
+#include <limits.h>
 
-# include <fcntl.h>
-# include <stddef.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE BUFSIZ
-# endif
-
-// # if BUFFER_SIZE > 9223372036854775806
-// #  undef BUFFER_SIZE
-// #  define BUFFER_SIZE 0
-// # endif
-
-char	*get_next_line(int fd);
-
-#endif
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*malloc_empty_string(void);
+char	*ft_substr(char const *s, uint start, size_t len);

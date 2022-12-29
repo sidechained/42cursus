@@ -1,0 +1,86 @@
+// [![](https://mermaid.ink/img/pako:eNplkcFuwjAMhl_FyhleoNKGBgxp5-3WcjCNs1prkyhxhhDl3eeOItCWkyP__6_P9tm0wZKpzGfC2MHHtvGg76VmzwKH4hwlOLJ0QEOUE2RJ7D_3y-XzVbiuE6EFD22HKYNLYQDHPS0AYyRvQcKccvdsahZKKAThW9P_trf1ETN4OvbsCVwomoIC0nGGGDILB7-6y8cT5fG1jsolkMtBCSG4G3qJULxwf7OraLK-1XP_6b8FndI96OcAHWZy7mZILUcfxt0v7DSo7qHtyK72V8FuEkxo64e_GjZmYQZKA7LVrZ-nZmOko4EaU2lpMX01pvEX1WGR8H7yrakkFVqYEq1ubcuoxxpM5bDPdPkB1haXzw?type=png)](https://mermaid.live/edit#pako:eNplkcFuwjAMhl_FyhleoNKGBgxp5-3WcjCNs1prkyhxhhDl3eeOItCWkyP__6_P9tm0wZKpzGfC2MHHtvGg76VmzwKH4hwlOLJ0QEOUE2RJ7D_3y-XzVbiuE6EFD22HKYNLYQDHPS0AYyRvQcKccvdsahZKKAThW9P_trf1ETN4OvbsCVwomoIC0nGGGDILB7-6y8cT5fG1jsolkMtBCSG4G3qJULxwf7OraLK-1XP_6b8FndI96OcAHWZy7mZILUcfxt0v7DSo7qHtyK72V8FuEkxo64e_GjZmYQZKA7LVrZ-nZmOko4EaU2lpMX01pvEX1WGR8H7yrakkFVqYEq1ubcuoxxpM5bDPdPkB1haXzw)
+// https://mermaid.live/edit#pako:eNplkcFuwjAMhl_FyhleoNKGBgxp5-3WcjCNs1prkyhxhhDl3eeOItCWkyP__6_P9tm0wZKpzGfC2MHHtvGg76VmzwKH4hwlOLJ0QEOUE2RJ7D_3y-XzVbiuE6EFD22HKYNLYQDHPS0AYyRvQcKccvdsahZKKAThW9P_trf1ETN4OvbsCVwomoIC0nGGGDILB7-6y8cT5fG1jsolkMtBCSG4G3qJULxwf7OraLK-1XP_6b8FndI96OcAHWZy7mZILUcfxt0v7DSo7qHtyK72V8FuEkxo64e_GjZmYQZKA7LVrZ-nZmOko4EaU2lpMX01pvEX1WGR8H7yrakkFVqYEq1ubcuoxxpM5bDPdPkB1haXzw
+// cannot use libft
+// cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 <files>.c
+// We consider that get_next_line() has an undefined behavior if the file pointed to by the file descriptor changed since the last call whereas read() didn’t reach the end of file.
+// We also consider that get_next_line() has an undefined behavior when reading a binary file. However, you can implement a logical way to handle this behavior if you want to.
+
+// cc -Wall -Wextra -Werror get_next_line.c libft/ft_substr.c libft/ft_strlen.c libft/ft_strjoin.c && ./a.out
+
+#include <stdbool.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+// #include <stdlib.h>
+#include "libft/libft.h"
+
+#include <stdio.h>
+
+// #ifndef BUFFER_SIZE
+// # define BUFFER_SIZE 2
+// #endif
+
+char	*get_next_line(int fd, bool first_call)
+{
+	static char	*buffer;
+	char		chars_from_file[2];
+	int			num_bytes_read;
+
+	if (first_call)
+		buffer = "";
+
+	if (strchr(buffer, '\n') == NULL) // TODO: change to FT
+	{
+		num_bytes_read = read(fd, chars_from_file, 2);
+		if (num_bytes_read < 1)
+		{
+			if (num_bytes_read == -1)
+				printf("read error!");
+			if (num_bytes_read == 0)
+			{
+				if (buffer != "")
+					return (buffer);
+				return(NULL)
+			}
+		}
+		buffer = ft_strjoin(buffer, chars_from_file);
+	}
+	
+	int i = 0;
+	char *next_line;
+	while(buffer[i])
+	{
+		if (buffer[i] == '\n')
+		{
+			next_line = ft_substr(buffer, 0, i);
+			buffer = ft_substr(buffer, i+1, ft_strlen(buffer));
+			return(next_line);
+		}
+		i++;
+	}
+	return ("");
+}
+
+int	main()
+{
+	char		*next_line;
+	int			fd;
+	bool		first_call;
+
+	fd = open("simplerTest.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error opening file");
+		return (0);
+	}
+	first_call = true;
+	while (1)
+	{
+		next_line = get_next_line(fd, first_call);
+		first_call = false;
+		if (next_line == NULL)
+			break;
+	}
+	//printf("\n--done--\n");
+	return (0);
+}
