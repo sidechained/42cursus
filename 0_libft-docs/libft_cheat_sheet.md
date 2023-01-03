@@ -73,64 +73,64 @@ Allocate and return a pointer to a new string which is a duplicate of the string
 
 #### Additional Functions
 
-[__ft_substr__] `char *ft_substr(char const *s, unsigned int start, size_t len);`  
+__ft_substr__ `char *ft_substr(char const *s, unsigned int start, size_t len);`  
 Allocate and return a substring from the string ’s’ at index ’start’ and of max size ’len’
 
-[__ft_strjoin__] `char *ft_strjoin(char const *s1, char const *s2);`  
+__ft_strjoin__ `char *ft_strjoin(char const *s1, char const *s2);`  
 Allocate and return a new string, which is the result of the concatenation of _s1_ and _s2_
 
-[__ft_strtrim__] `char *ft_strtrim(char const *s1, char const *set);`  
+__ft_strtrim__ `char *ft_strtrim(char const *s1, char const *set);`  
 Allocate and return a copy of _s1_ with the characters specified in _set_ removed from the start and end
 
-[__ft_split__] `char **ft_split(char const *s, char c);`  
+__ft_split__ `char **ft_split(char const *s, char c);`  
 Allocate and return a NUL-terminated array of strings by splitting _s_ using the character _c_ as a delimiter
 
-[__ft_itoa__] `char *ft_itoa(int n);`  
+__ft_itoa__ `char *ft_itoa(int n);`  
 Allocate and return an ascii string representing the integer _n_
 
-[__ft_strmapi__] `char *ft_strmapi(char const *s, char (*f)(unsigned int, char));`  
+__ft_strmapi__ `char *ft_strmapi(char const *s, char (*f)(unsigned int, char));`  
 Successively apply the function _f_ to each character of the string _s_ [creating new string i.e. malloc]
 
-[__ft_striteri__] `void ft_striteri(char *s, void (*f)(unsigned int, char*));`  
+__ft_striteri__ `void ft_striteri(char *s, void (*f)(unsigned int, char*));`  
 Successively apply the function _f_ to each character of the string _s_ [pass chars by address, to modify 'in place']
 
-[__ft_putchar_fd__] `void ft_putchar_fd(char c, int fd);`  
+__ft_putchar_fd__ `void ft_putchar_fd(char c, int fd);`  
 Output the character _c_ to the given file descriptor.
 
-[__ft_putstr_fd__] `void ft_putstr_fd(char *s, int fd);`  
+__ft_putstr_fd__ `void ft_putstr_fd(char *s, int fd);`  
 Output the string _s_ to the given file descriptor.
 
-[__ft_putendl_fd__] `void ft_putendl_fd(char *s, int fd);`  
+__ft_putendl_fd__ `void ft_putendl_fd(char *s, int fd);`  
 Outputs the string _s_ to the given file descriptor, followed by a newline.
 
-[__ft_putnbr_fd__] `void ft_putnbr_fd(int n, int fd);`  
+__ft_putnbr_fd__ `void ft_putnbr_fd(int n, int fd);`  
 Outputs the integer _n_ to the given file descriptor.
 
 #### Bonus Functions
 
-[__ft_lstnew__] `t_list *ft_lstnew(void *content);`  
+__ft_lstnew__ `t_list *ft_lstnew(void *content);`  
 Allocate and return a new node, where node->content = _content_ and node->next = NULL.
 
-[__ft_lstadd_front__]	`void ft_lstadd_front(t_list **lst, t_list *new);`  
+__ft_lstadd_front__	`void ft_lstadd_front(t_list **lst, t_list *new);`  
 Add a previously-created 'new' node to the beginning of a list of nodes.
 
-[__ft_lstsize__] `int ft_lstsize(t_list *lst);`  
+__ft_lstsize__ `int ft_lstsize(t_list *lst);`  
 Count the number of nodes in a list.
 
-[__ft_lstlast__] `t_list *ft_lstlast(t_list *lst);`  
+__ft_lstlast__ `t_list *ft_lstlast(t_list *lst);`  
 Return the last node of a list.
 
-[__ft_lstadd_back__] `void ft_lstadd_back(t_list **lst,t_list *new);`  
+__ft_lstadd_back__ `void ft_lstadd_back(t_list **lst,t_list *new);`  
 Add a previously-created 'new' node to the end of a list of nodes.
 
-[__ft_lstdelone__] `void ft_lstdelone(t_list *lst, void (*del)(void *));`  
+__ft_lstdelone__ `void ft_lstdelone(t_list *lst, void (*del)(void *));`  
 Delete and free a given node's content using the given function _del_, then free the node.
 
-[__ft_lstclear__] `void ft_lstclear(t_list **lst, void (*del)(void *));`  
+__ft_lstclear__ `void ft_lstclear(t_list **lst, void (*del)(void *));`  
 Delete and free a given node and it's successors, using the function _del_ and free(3), setting pointer to _lst_ to NULL.
 
-[__ft_lstiter__] `void ft_lstiter(t_list *lst, void (*f)(void *));`  
+__ft_lstiter__ `void ft_lstiter(t_list *lst, void (*f)(void *));`  
 Apply the function _f_ to the content of each node of _lst_, modifying it 'in place'.
 
-[__ft_lstmap__] `t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));`  
+__ft_lstmap__ `t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));`  
 Apply the function _f_ to the content of each node of _lst_ (or delete it using the function _del_), allocating a new list.
