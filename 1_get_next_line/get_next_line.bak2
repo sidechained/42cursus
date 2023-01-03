@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	char		*empty_str;
 
 	empty_str = "";
-	if (!buffer)
+	if (first_call)
 		buffer = "";
 	if (ft_strchr(buffer, '\n') == NULL)
 	{

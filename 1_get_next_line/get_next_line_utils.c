@@ -29,26 +29,26 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s)
-{
-	char	*dupstr;
-	int		i;
+// char	*ft_strdup(const char *s)
+// {
+// 	char	*dupstr;
+// 	int		i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	dupstr = malloc(sizeof (char) * i + 1);
-	if (!dupstr)
-		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		dupstr[i] = s[i];
-		i++;
-	}
-	dupstr[i] = '\0';
-	return (dupstr);
-}
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 		i++;
+// 	dupstr = malloc(sizeof (char) * i + 1);
+// 	if (!dupstr)
+// 		return (NULL);
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 	{
+// 		dupstr[i] = s[i];
+// 		i++;
+// 	}
+// 	dupstr[i] = '\0';
+// 	return (dupstr);
+// }
 
 // ft_strjoin
 static char	*join_strs(char const *s1, char const *s2, uint l1, uint l2)

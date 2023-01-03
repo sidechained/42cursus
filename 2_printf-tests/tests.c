@@ -19,6 +19,14 @@ void	test_print(const char *format_str, ...)
 
 int main()
 {
+	// percentage tests
+	// test_print("%");
+	// test_print("%%");
+	// test_print("%%%");
+	// test_print("%%%%");
+	// test_print("%%%%%");
+	// test_print(" %% % %% % %%% %%%% %%%%%");
+
 	// character tests:
 	// test_print("%c", 'a');
 	// test_print("z%cz", 'a');
@@ -27,7 +35,8 @@ int main()
 	// test_print("%c", 112);
 	// test_print("%c", 270);	
 	// test_print("%c", 1224832843);	
-	// test_print("%c %c %c", 1224832, 1224832843, 23293219329);	
+	// test_print("%c %c %c", 1224832, 1224832843, 23293219329);
+	// test_print("%c", ''); // warning: empty character constant
 
 	// string tests:
 	// test_print("%s", "aa");	
@@ -39,6 +48,7 @@ int main()
 	// test_print("%s %s %s", NULL, NULL, NULL);
 	// test_print("%s %s %s", NULL, "one", NULL);
 	// test_print("%s %s %s", NULL, -200, NULL); // causes printf segfault (also in ft_print, but mine functions prints (null) first))
+	// test_print("%s", "");	
 
 	// digit/integer tests:
 	// test_print("%d", 0);
@@ -52,6 +62,18 @@ int main()
 	// test_print("%p", &test);
 	// test_print("%p %p", &test, &test);
 	// test_print("zz %p yy %p xx", &test, &this);
+	// char *nest = NULL;
+	// test_print("%p", &nest);
+
+	test_print(" %p ", -1);
+	test_print(" %p ", 1);
+	test_print(" %p ", 15);
+	test_print(" %p ", 16);
+	test_print(" %p ", 17);
+	test_print(" %p %p ", LONG_MIN, LONG_MAX);
+	test_print(" %p %p ", INT_MIN, INT_MAX);
+	test_print(" %p %p ", ULONG_MAX, -ULONG_MAX);
+	test_print(" %p %p ", 0, 0);
 
 	// unsigned decimal tests
 	// test_print("%u", 0);
@@ -73,11 +95,12 @@ int main()
 	// test_print("%c%s%d%i%p%u%x%X", NULL, "bb", 123, 456, &mixed, 789, 151515, 101010);
 	// test_print("%c%s%d%i%p%u%x%X", NULL, "bb", NULL, 456, &mixed, NULL, 151515, NULL);
 
-	// NULL tests
+	// NULL and empty string tests
 	// test_print("%c", NULL);
 	// test_print(NULL, 'c');
 	// test_print(NULL, NULL);
 	// test_print("%c %c %c", 'a', NULL, 'c');
+	// test_print("", 'a');
 
 	// no args don't match number of %'s in format str
 	// test_print("%c%c%c");
