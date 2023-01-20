@@ -14,7 +14,8 @@ cc -Wall -Werror -Wextra -lbsd ft_strlcpy.c ../0_libft-tests/ft_strlcpy-test.c -
 cc -Wall -Werror -Wextra -lbsd ft_strlcat.c ft_strlen.c ../0_libft-tests/ft_strlcat-test.c -o ft_strlcat && ./ft_strlcat
 cc -Wall -Werror -Wextra ft_strchr.c ../0_libft-tests/ft_strchr-test.c -o ft_strchr && ./ft_strchr
 cc -Wall -Werror -Wextra ft_strrchr.c ../0_libft-tests/ft_strrchr-test.c -o ft_strrchr && ./ft_strrchr
-*cc -Wall -Werror -Wextra ft_strnstr.c ../0_libft-tests/ft_strnstr-test.c -o ft_strnstr && ./ft_strnstr
+cc -Wall -Werror -Wextra -lbsd ft_strnstr.c ft_strlcpy.c ../0_libft-tests/ft_strnstr-test.c -o ft_strnstr && ./ft_strnstr
+
 *cc -Wall -Werror -Wextra ft_strncmp.c ../0_libft-tests/ft_strncmp-test.c -o ft_strncmp && ./ft_strncmp
 cc -Wall -Werror -Wextra ft_atoi.c ft_isdigit.c ../0_libft-tests/ft_atoi-test.c -o ft_atoi && ./ft_atoi
 cc -Wall -Werror -Wextra ft_isalpha.c ../0_libft-tests/ft_isalpha-test.c -o ft_isalpha && ./ft_isalpha

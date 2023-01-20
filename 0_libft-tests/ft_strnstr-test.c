@@ -5,7 +5,7 @@
 void	test_ft_strnstr(bool testmode, char *largestring, char *smallstring, int size)
 {
 	char truncated_largestring[size];
-	strlcpy(truncated_largestring, largestring, size+1);
+	ft_strlcpy(truncated_largestring, largestring, size+1);
 	char *ptr;
 	printf("Trying to find \"%s\" in %i characters of \"%s\" [\"%s\"]\n", smallstring, size, largestring, truncated_largestring);
 	if (testmode)

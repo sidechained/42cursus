@@ -1,1 +1,0 @@
-[KO] basic_tests: Read with a size different than BUFFER_SIZE | bonus_tests: Read with a size different than BUFFER_SIZE
