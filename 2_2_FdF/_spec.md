@@ -1,8 +1,27 @@
+# Elements of the Task
+
+## Mandatory
+
+- parsing the coordinate file and bringing it into a matrix of axis, ordinate, altitude - what data structure?
+- struct point, struct 
+
+- convert 3d integer coordinates from file into scaled 2d coordinates (floats) https://git.42l.fr/Fabien/fdf
+
+- draw lines between coordinates using Bresenham's line algorithm: https://www.thecrazyprogrammer.com/2017/01/bresenhams-line-drawing-algorithm-c-c.html
+
+- window management: change windows, minimize smoothly, ESC closes window, cross icon closes window
+
+- using mlx images - make image, put pixels to it, put image to window, scale to window size in realtime
+
+##  
+
+# Spec
+
 
  linking various points (x, y, z) thanks to line segments (edges).
 - must use the MiniLibX, makefile
 
-# Rendering
+## Rendering
 - The coordinates of the landscape are stored in a .fdf file passed as a parameter to your program
 
 Each number represents a point in space:
@@ -12,7 +31,7 @@ Each number represents a point in space:
 
 Use libft get_next_line(), ft_split() to read data from the file in a quick and simple way
 
-# Graphic Management 
+## Graphic Management 
 - display image in a window
 • The management of your window must remain smooth (changing to another window, minimizing, and so forth).
 • Pressing ESC must close the window and quit the program in a clean way.
@@ -107,3 +126,8 @@ https://github.com/ailopez-o/42Barcelona-FdF
 https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/rasterization-stage.html
 https://git.42l.fr/Fabien/fdf
+
+
+# Adding get_next_line as git submodule
+
+$ git clone 
