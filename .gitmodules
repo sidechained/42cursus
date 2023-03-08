@@ -7,3 +7,9 @@
 [submodule "2_2_FdF/get_next_line"]
 	path = 2_2_FdF/get_next_line
 	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-45f49f38-efe9-4fff-979d-7430e3d5cfba-4607068-gbooth
+[submodule "2_2_FdF/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth"]
+	path = 2_2_FdF/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth
+[submodule "2_2_FdF/libft"]
+	path = 2_2_FdF/libft
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth
