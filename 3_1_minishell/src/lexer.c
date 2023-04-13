@@ -1,3 +1,10 @@
+// performs a number of steps that together lex the given string
+// identify parts in single quotes, double quotes, redirection operators, pipe operators
+// expand env vars, remove whitespace from undetermined, remove any empty elements
+// Reclassify element following redirection operators, removing operator
+// Identify the first of a list of UNDETERMINED elements as a command
+// Identify UNDETERMINED elements following commands as ARGUMENT's
+
 // gcc -Wall -Werror -Wextra lexer.c -o lexer && ./lexer
 // call line line or statment?
 // call element what?

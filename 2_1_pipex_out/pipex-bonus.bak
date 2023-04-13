@@ -1,0 +1,240 @@
+// PROBLEM: 2nd dup2 statement in execute_cmd1 + execute_cmd2 fails! WHY?!
+// cmd1 is child process, cmd2 is parent process
+// good ref: https://github.com/andrei-sergeich/pipex/tree/main/srcs_man
+
+// no heredoc:
+// cc -Wall -Werror -Wextra -Ilibft -Iget_next_line pipex-bonus.c libft/ft_strncmp.c libft/ft_split.c libft/ft_strjoin.c libft/ft_substr.c libft/ft_strlen.c libft/ft_strdup.c get_next_line/get_next_line.c -o pipex && ./pipex infile cat "wc -l" outfile
+
+// heredoc ("test" is limiter):
+// cc -Wall -Werror -Wextra -Ilibft -Iget_next_line pipex-bonus.c libft/ft_strncmp.c libft/ft_split.c libft/ft_strjoin.c libft/ft_substr.c libft/ft_strlen.c libft/ft_strdup.c get_next_line/get_next_line.c -o pipex && ./pipex here_doc test cat END "wc -l" outfile
+// compare with
+// echo << END | wc -l >> outfile
+
+// perror
+// exit?
+// yes but then the execve will return an error and perror will type what kind of error is that
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/stat.h> // open
+#include <fcntl.h>	  // open
+#include <stdlib.h>	  // malloc
+#include <string.h>	  // ft_strstr
+#include <assert.h>	  // str_split
+#include <sys/types.h>	// waitpid
+#include <sys/wait.h>	// waitpid
+#include "libft.h"
+#include "get_next_line.h"
+
+#define STDIN_FD 0
+#define STDOUT_FD 1
+#define ERR_CMD "Command not found!"
+#define ERR_WRITE "Write Error!"
+#define ERR_PIPE "Pipe Error!"
+#define ERR_READ "Read Error"
+
+typedef struct s_pipex
+{
+	bool	heredoc;
+	int		io[2];
+	char	*limiter;
+	int		in_fd;
+	char	*infilename;
+	char	*cmd1;
+	char	*cmd2;
+	char	*outfilename;
+	char	**env;
+} t_pipex;
+
+// void	free_child(t_pipex *pipex)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (pipex->cmd_args[i])
+// 	{
+// 		free(pipex->cmd_args[i]);
+// 		i++;
+// 	}
+// 	free(pipex->cmd_args);
+// 	free(pipex->cmd);
+// }
+
+// void	free_parent()
+// {
+// 	int	i;
+// 	close(infile);
+// 	close(outfile);
+// 	i = 0;
+// 	while (pipex->cmd_paths[i])
+// 	{
+// 		free(pipex->cmd_paths[i]);
+// 		i++;
+// 	}
+// 	free(pipex->cmd_paths);
+// }
+
+	// while (ft_strncmp("PATH=", *env, 5))
+	// 	env++;
+	// paths = NULL;
+	// paths = ft_split(*env + 5, ':');
+	// // exit cleanly if command not found in path
+	// if (!paths)
+	// {
+	// 	// free_child();
+	// 	perror(ERR_CMD);
+	// 	exit(1);
+	// }
+
+void	execute_cmd(char *cmd, char **env)
+{
+	char **paths;
+	char *path;
+	char *path_cmd;
+	int i = 0;
+
+	while (paths[i])
+	{
+		path = ft_strjoin(paths[i], "/");
+		path_cmd = ft_strjoin(path, cmd);
+		free(path);
+		if (access(path_cmd, 0) == 0)
+			execve(path, &split_cmd[1], env);
+		free(path_cmd);
+		i++;
+	}
+	// how to free these paths when execution is successful? do we even need to?
+}
+
+void	execute_cmd1(t_pipex pipex)
+{
+	// printf("cmd1:%s\n", pipex.cmd1);
+	close(pipex.io[0]);
+	dup2(pipex.in_fd, STDIN_FD);
+	dup2(pipex.io[1], STDOUT_FD); // any print command executed here will output to pipe, NOT standard input!
+	execute_cmd(pipex.cmd1, pipex.env);
+}
+
+void	execute_cmd2(t_pipex pipex)
+{
+	int out_fd;
+
+	close(pipex.io[1]);
+	dup2(pipex.io[0], STDIN_FD);
+	if (pipex.heredoc == true)
+		out_fd = open(pipex.outfilename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else
+		out_fd = open(pipex.outfilename, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (out_fd == -1)
+	{
+		perror(ERR_WRITE);
+		exit (1);
+	}
+	dup2(out_fd, STDOUT_FD);  // any print command executed here will output to outfile, NOT standard input!
+	execute_cmd(pipex.cmd2, pipex.env);
+}
+
+int	heredoc(char *limiter)
+{
+	int	heredoc_fd;
+	char *next_line;
+
+	heredoc_fd = open(".heredoc_tmp",  O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (heredoc_fd < 0)
+		printf("Error!\n"); // ft_printf!
+	while(1)
+	{
+		printf("pipe heredoc>\n");
+		next_line = get_next_line(STDIN_FD);
+		// if (next_line == NULL)
+		// 	exit(1);
+		next_line[ft_strlen(next_line) - 1] = '\0';
+		if (ft_strncmp(next_line, limiter, ft_strlen(next_line)) == 0)
+			break;
+		write(heredoc_fd, next_line, ft_strlen(next_line));
+		write(heredoc_fd, "\n", 1);
+		free(next_line);
+	}
+	free(next_line);
+	return(heredoc_fd);
+}
+
+void	ft_pipex(t_pipex pipex)
+{
+	int		pipe_result;
+	int		cmd1_pid;
+	int		cmd2_pid;
+
+	pipe_result = pipe(pipex.io); // will make a pipe using the next two file descriptors (3, 4)
+	if (pipe_result == -1)
+	{
+		printf(ERR_PIPE);
+		return;
+	}
+	cmd1_pid = fork();
+	if (cmd1_pid == 0)
+	{
+		// printf("cmd1\n");
+		if(pipex.heredoc == true)
+			pipex.in_fd = heredoc(pipex.limiter);
+		else
+		{
+			pipex.in_fd = open(pipex.infilename, O_RDONLY);
+			if (pipex.in_fd == -1)
+			{
+				perror(ERR_READ);
+				return ;
+			}
+		}
+		execute_cmd1(pipex);
+	}
+	if (cmd1_pid == -1)
+		printf("cmd1 fork error\n");
+	cmd2_pid = fork();
+	if (cmd2_pid == 0)
+	{
+		// printf("cmd2\n");
+		execute_cmd2(pipex);
+	}
+	if (cmd2_pid == -1)
+		printf("cmd2 fork error\n");
+	// back in the parent process:
+	close(pipex.io[0]);
+	close(pipex.io[1]);
+	waitpid(cmd1_pid, NULL, 0);
+	waitpid(cmd2_pid, NULL, 0);
+	if (pipex.heredoc)
+		unlink(".heredoc_tmp");
+	//close(heredoc_fd);
+	printf("THEEND!\n");
+	// free_parent();
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_pipex pipex;
+
+	if (argc == 5)
+	{
+		pipex.heredoc = false;
+		pipex.infilename = argv[1];
+		pipex.cmd1 = argv[2];
+		pipex.cmd2 = argv[3];
+		pipex.outfilename = argv[4];		
+		pipex.env = envp;
+		ft_pipex(pipex);
+	}
+	else if (argc == 6 && ft_strncmp(argv[1], "here_doc", 8) == 0)
+	{
+	 	pipex.heredoc = true;
+		pipex.limiter = argv[2];
+		pipex.cmd1 = argv[3];
+		pipex.cmd2 = argv[4];
+		pipex.outfilename = argv[5];		
+		pipex.env = envp;
+		ft_pipex(pipex);
+	}
+	else
+		printf("ERROR: wrong number of arguments!");
+	return 0;
+}

@@ -1,3 +1,5 @@
+// figure out if commands are builtins or programs and run/execute them
+
 // gcc -Wall -Werror -Wextra commands.c builtins.c ../libft/ft_substr.c ../libft/str_split.c && ./a.out
 
 #include "commands.h"

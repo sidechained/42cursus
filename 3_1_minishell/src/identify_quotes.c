@@ -1,3 +1,5 @@
+// identify quotes
+
 // https://stackoverflow.com/questions/11656532/returning-an-array-using-c
 // don't forget to free arrays that were malloc'd
 // TODO: test with quotes at start, back-to-back quotes, quotes at end - there will def be problems with quotes at start and end!

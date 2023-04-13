@@ -1,3 +1,5 @@
+// split by operator
+
 // https://stackoverflow.com/questions/11656532/returning-an-array-using-c
 // don't forget to free arrays that were malloc'd
 

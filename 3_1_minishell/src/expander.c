@@ -1,3 +1,5 @@
+// expands arguments of form $ARG to their real values taken from the environment
+
 // expand $ or $?
 // get env from main
 // expand things that are already in env

@@ -1,3 +1,5 @@
+// this is now done better in readline_test.c
+
 // https://medium.com/@aantipov/what-happens-when-you-ctrl-c-in-the-terminal-36b093443e06
 // https://linuxhint.com/signal_handlers_c_programming_language/
 // https://www.gnu.org/software/bash/manual/bash.html#Signals

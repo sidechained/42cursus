@@ -62,8 +62,6 @@ In the Bridged networking mode of VirtualBox, a device driver called ‘net filt
 
 All the machines connected to your LAN can communicate with your virtual machine as if it is another machine on the Lan. This VM can access all services on the network in the same way as any other machine on the Lan.
 
-
-
 ## WHAT IS PHP?
 PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. 
 

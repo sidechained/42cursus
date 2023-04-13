@@ -1,0 +1,22 @@
+// PROBLEM: 2nd dup2 statement in execute_first_cmd + execute_last_cmd fails! WHY?!
+// cmd1 is child process, cmd2 is parent process
+// good ref: https://github.com/andrei-sergeich/pipex/tree/main/srcs_man
+
+// no heredoc:
+// cc -Wall -Werror -Wextra -Ilibft -Iget_next_line pipex-bonus.c libft/ft_strncmp.c libft/ft_split.c libft/ft_strjoin.c libft/ft_substr.c libft/ft_strlen.c libft/ft_strdup.c get_next_line/get_next_line.c -o pipex && ./pipex infile cat "wc -l" outfile
+
+// heredoc ("test" is limiter):
+// cc -Wall -Werror -Wextra -Ilibft -Iget_next_line pipex-bonus.c libft/ft_strncmp.c libft/ft_split.c libft/ft_strjoin.c libft/ft_substr.c libft/ft_strlen.c libft/ft_strdup.c get_next_line/get_next_line.c -o pipex && ./pipex here_doc test cat END "wc -l" outfile
+// compare with
+// echo << END | wc -l >> outfile
+
+// perror
+// exit?
+// yes but then the execve will return an error and perror will type what kind of error is that
+
+// for a chain of commands we
+// have a parent process
+// then fork for each command
+// when pid == 0
+
+ On success, the PID of the child process is returned in the parent, and 0 is returned in the child.  On failure, -1 is returned in the parent, no child process is created, and errno is set to indicate the error.

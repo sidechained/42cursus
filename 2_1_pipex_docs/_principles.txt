@@ -1,0 +1,66 @@
+
+file1 cmd1 | cmd2 | cmd3 (etc) > file2
+
+each command is executed in a child process
+
+interprocess communication works as follows
+
+# pipex principles
+
+in the case of three commands
+- the first command
+-- takes input from a given infile
+-- pipes outputs to the second command
+[]
+
+- the second command
+-- takes input from the output of the first command
+-- outputs to the third command
+[]
+
+- the last command
+-- takes input from the output of the second command
+-- outputs to a given outfile
+[]
+
+pipe:
+creates a pipe, a unidirectional data channel that can be used for interprocess communication.  The array pipefd is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe.  pipefd[1] refers to the write end of the pipe.  Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe. 
+
+dup2: int dup2(int oldfd, int newfd);
+Using dup2() the file descriptor newfd is adjusted so that it now refers to the same open file description as oldfd. After a successful return, the old and new file descriptors may be used interchangeably.
+
+we use it to swap our files with stdin and stdout
+
+fork:
+creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process.
+On success, the PID of the child process is returned in the parent, and 0 is returned in the child.  On failure, -1 is returned in the parent, no child process is created, and errno is set to indicate the error.
+
+waitpid:
+wait for a child process to stop or terminate
+
+exit:
+causes normal process termination and the least significant byte of status (i.e., status & 0xFF) is returned to the parent (see wait(2)).
+
+perror:
+produces a message on standard error describing the last error encountered during a call to a system or library function.
+
+## What we do...
+
+Open both the in and out files, ready to read or write to them
+Make a pipe for interprocess communication using the next two file descriptors (i.e. 3 and 4) - pipex.io
+Swap stdin for our input file
+Swap stdout for our output file
+Loop over commands, calling redir function on each one, which
+- duplicates the calling process, creating a child process
+- if pid is pid of child process (i.e. 0):
+	close the input end of the pipe
+	swap standard input FD for our input file FD
+	execute the current command
+- if pid is pid of parent process (i.e. a positive value):
+	close the output end of the pipe
+	swap input end of the pipe for standard input
+	wait for the child process to terminate
+
+pipe is as follows: CHILD [1] -> PARENT [0]
+
+https://www.youtube.com/watch?v=5fnVr-zH-SE

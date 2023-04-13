@@ -1,0 +1,9 @@
+// TODO: splitting of single argument "one two three"
+
+// ./pipex infile "echo 1 2 3" "echo 4 5 6" "echo 7 8 9" outfile
+// ./pipex infile "grep apples" "wc -w" outfile
+// ./pipex here_doc LIMITER "grep apples" "wc -w" outfile
+// ./pipex here_doc LIMITER "grep apples" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "wc -w" "echo abc" outfile
+
+lsof +D /path
+kill PID

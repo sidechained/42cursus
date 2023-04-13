@@ -1,3 +1,12 @@
+// implementation of the following builtins:
+// ◦ echo with option -n
+// ◦ cd with only a relative or absolute path
+// ◦ pwd with no options
+// ◦ export with no options
+// ◦ unset with no options
+// ◦ env with no options or arguments
+// ◦ exit with no options
+
 // TODO: convert strcmp to strlcmp to adhere to libft
 // NOTE: can assume $'s will have be expanded in previous stage and whitespace removed from start and end
 // Q: handle paths with tildes in 'cd' (considered relative?)
@@ -5,8 +14,6 @@
 // TODO: find a way to make envp useable by next command (likely minishell will have a struct with an envp attribute)
 // NOTE: in env: '_' entry different when running in terminal to running here ('_=/usr/bin/env vs' '_=/Users/grm/Desktop/minishell/src/./a.out')
 // TODO: in exit: get exit status of last executed command (doesn't make sense in this context)
-
-#include "builtins.h"
 
 char	*ft_substr(char const *s, unsigned int start, unsigned int len);
 
