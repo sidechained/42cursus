@@ -13,3 +13,21 @@
 [submodule "2_2_FdF/libft"]
 	path = 2_2_FdF/libft
 	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth
+[submodule "0_1_libft"]
+	path = 0_1_libft
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth
+[submodule "1_1_printf"]
+	path = 1_1_printf
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-faf2b30d-65a2-41de-b771-49406b47e453-4607066-gbooth
+[submodule "1_2_get_next_line"]
+	path = 1_2_get_next_line
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-45f49f38-efe9-4fff-979d-7430e3d5cfba-4607068-gbooth
+[submodule "1_3_born2beroot"]
+	path = 1_3_born2beroot
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-2d04d2e4-c00e-48fc-9d1c-fb1e27154010-4609600-gbooth
+[submodule "2_1_pipex"]
+	path = 2_1_pipex
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-715c6aa6-c4a4-4a1c-a8a2-c1bc29be3fad-4663376-gbooth
+[submodule "2_3_push_swap"]
+	path = 2_3_push_swap
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-31a535c6-6375-48e3-a425-e5cec1da20c3-4663378-gbooth

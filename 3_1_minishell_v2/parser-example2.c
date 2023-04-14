@@ -151,8 +151,8 @@ t_token *manually_tokenise()
 	ft_tokenadd_back(&tokens, ft_newtoken("ls", T_WORD));
 	ft_tokenadd_back(&tokens, ft_newtoken("|", T_PIPE));
 	ft_tokenadd_back(&tokens, ft_newtoken("wc", T_WORD));
-	ft_tokenadd_back(&tokens, ft_newtoken("|", T_PIPE));
-	ft_tokenadd_back(&tokens, ft_newtoken("wc", T_WORD));
+	// ft_tokenadd_back(&tokens, ft_newtoken("|", T_PIPE));
+	// ft_tokenadd_back(&tokens, ft_newtoken("wc", T_WORD));
 	ft_tokenadd_back(&tokens, ft_newtoken(NULL, T_END));
 	return (tokens);
 }
