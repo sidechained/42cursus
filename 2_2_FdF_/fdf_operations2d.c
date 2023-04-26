@@ -50,7 +50,7 @@ void	calc_zoom_level_and_window_size(t_matrix2d *matrix2d)
 
 	proposed_win_width = DEFAULT_SPACING * (matrix2d->nrows - 1);
 	proposed_win_height = DEFAULT_SPACING * (matrix2d->ncols - 1);
-	printf("ww: %i %i : %i %i\n", proposed_win_width, proposed_win_height, MAX_WIN_WIDTH, MAX_WIN_HEIGHT);
+	// printf("ww: %i %i : %i %i\n", proposed_win_width, proposed_win_height, MAX_WIN_WIDTH, MAX_WIN_HEIGHT);
 	if (proposed_win_width > MAX_WIN_WIDTH)
 	{
 		matrix2d->win_width = MAX_WIN_WIDTH;

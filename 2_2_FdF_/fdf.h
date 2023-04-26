@@ -10,6 +10,12 @@
 #define MAX_WIN_WIDTH 600
 #define MAX_WIN_HEIGHT 600
 
+#define MAX_ROTATION_ANGLE 6.28319
+#define ISO_STEP 0.5
+#define ROT_STEP 0.25
+#define ZOOM_STEP 0.5
+#define TRANS_STEP 5
+
 typedef struct s_t_point3d
 {
 	unsigned int	axis;
@@ -30,15 +36,27 @@ typedef struct s_point2d
 	unsigned int	y;
 } t_point2d;
 
+typedef struct  s_line {
+	int dx;
+	int sx;
+	int dy;
+	int sy;
+	int err;
+	int e2;
+} t_line;
+
 typedef struct s_matrix2d
 {
 	t_point2d		**points;
+	t_line			*line;
 	unsigned int	nrows;
 	unsigned int	ncols;	
 	unsigned int	win_width;
 	unsigned int	win_height;
 	float			iso_angle;
+	float			rot_angle;
 	float			zoom_level;
+	t_point2d		*trans;
 } t_matrix2d;
 
 typedef struct  s_imgdata {
@@ -58,7 +76,8 @@ typedef struct  s_data {
 } t_data;
 
 // fdf_draw.c
-int			render(t_data *data);
+void		render(t_data *data);
+int			key_hook(int keycode, t_data *data);
 
 // fdf_operations2d.c
 void		print_2d_matrix(t_matrix2d *matrix2d);
@@ -72,4 +91,4 @@ void		convert_matrix(t_matrix3d *matrix3d, t_matrix2d *matrix2d);
 
 // fdf_read.c
 int			get_dimensions(char *filename, t_matrix3d *matrix3d);
-int			read_coords_from_file(char *filename, t_matrix3d *matrix3d);
+int			read_coords_from_file(int fd, t_matrix3d *matrix3d);

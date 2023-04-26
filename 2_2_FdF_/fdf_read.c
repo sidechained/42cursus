@@ -36,20 +36,13 @@ int	get_dimensions(char *filename, t_matrix3d *matrix3d)
 }
 
 // receiving fdf coordinates from a file and placing in a struct matrix of 3d points
-int	read_coords_from_file(char *filename, t_matrix3d *matrix3d)
+int	read_coords_from_file(int fd, t_matrix3d *matrix3d)
 {
 	char		*next_line;
-	int			fd;
 	char 		**split_line;
 	int			irow;
 	int 		icol;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error opening file");
-		return (-1);
-	}
 	icol = 0;
 	while (1)
 	{
