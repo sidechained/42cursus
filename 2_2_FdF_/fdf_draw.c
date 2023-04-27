@@ -26,9 +26,10 @@ void	plot_line(t_imgdata *imgdata, t_point2d cp, t_point2d np, t_matrix2d *matri
 	l->err = l->dx + l->dy;
 	while (1)
 	{
+		printf("%i %i %i %i\n", cp.x, cp.y, np.x, np.y);
 		if (cp.x < matrix2d->win_width && cp.y < matrix2d->win_height)
 			my_mlx_pixel_put(imgdata, cp.x, cp.y, 0x00FFFFFF);
-		if (cp.x==np.x && cp.y==np.y)
+		if (cp.x == np.x && cp.y == np.y)
 			break;
 		l->e2 = 2*l->err;
 		if (l->e2 >= l->dy)

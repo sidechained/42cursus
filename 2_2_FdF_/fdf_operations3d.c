@@ -82,7 +82,6 @@ void	convert_matrix(t_matrix3d *matrix3d, t_matrix2d *matrix2d)
 		while(irow < matrix3d->nrows)
 		{
 			// NOTE: origin is top left
-
 			// isometric projection:
 			x = (float)matrix3d->points[irow][icol].axis + cos(matrix2d->iso_angle) * (float)matrix3d->points[irow][icol].altitude - cos(matrix2d->iso_angle) * (float)(matrix3d->points[irow][icol].ordinate);
 			y = -((float)matrix3d->points[irow][icol].ordinate) * sin(matrix2d->iso_angle) - (float)matrix3d->points[irow][icol].altitude * sin(matrix2d->iso_angle);

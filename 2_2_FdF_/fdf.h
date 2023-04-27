@@ -14,7 +14,7 @@
 #define ISO_STEP 0.5
 #define ROT_STEP 0.25
 #define ZOOM_STEP 0.5
-#define TRANS_STEP 5
+#define TRANS_STEP 1
 
 typedef struct s_t_point3d
 {

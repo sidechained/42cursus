@@ -1,6 +1,6 @@
 // cc -Wall -Werror -Wextra -Ilibft -Iget_next_line -ggdb3 fdf.c fdf_draw.c fdf_operations2d.c fdf_operations3d.c fdf_read.c get_next_line/get_next_line.c libft/ft_strlen.c libft/ft_substr.c libft/ft_strjoin.c libft/ft_strdup.c libft/ft_split.c libft/ft_atoi.c libft/ft_isdigit.c -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o fdf && ./fdf 3x3.fdf
 
-// TODO: add another form of projection
+// TODO: add another form of projection (conic, parallel)
 // TODO: handle altitudes correctly
 // TODO: map altitude to color
 // TODO: malloc and free
