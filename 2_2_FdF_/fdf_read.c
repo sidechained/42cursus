@@ -20,15 +20,19 @@ int	get_dimensions(char *filename, t_matrix3d *matrix3d)
 		if(next_line == NULL)
 			break;
 		split_line = ft_split(next_line, ' ');
+		free(next_line);
 		matrix3d->nrows = 0;
 		while(split_line[matrix3d->nrows])
+		{
+			free(split_line[matrix3d->nrows]);
 			matrix3d->nrows++;
+		}
 		// TODO: reimplement this check that all lines have equal num of elements
 		// printf("nnn: %i %i\n", *nrows, prev_nrows);
 		// if (*nrows > 0 && *nrows != prev_nrows)
 		// 	return (-1);
 		// prev_nrows = *nrows;
-		free(next_line);
+		free(split_line);
 		matrix3d->ncols++;
 	}
 	close(fd);
@@ -50,15 +54,17 @@ int	read_coords_from_file(int fd, t_matrix3d *matrix3d)
 		if(next_line == NULL)
 			break;
 		split_line = ft_split(next_line, ' ');
+		free(next_line);
 		irow = 0;
 		while(split_line[irow])
 		{
 			matrix3d->points[irow][icol].axis = irow;
 			matrix3d->points[irow][icol].ordinate = icol;
-			matrix3d->points[irow][icol].altitude = ft_atoi(split_line[irow]);		
+			matrix3d->points[irow][icol].altitude = ft_atoi(split_line[irow]);
+			free(split_line[irow]);
 			irow++;
 		}
-		free(next_line);
+		free(split_line);
 		icol++;
 	}
 	close(fd);

@@ -9,31 +9,33 @@
 #define DEFAULT_SPACING 80
 #define MAX_WIN_WIDTH 600
 #define MAX_WIN_HEIGHT 600
-
+#define INIT_ISO_ANGLE 0.7853981634 // 45 degrees
+#define INIT_ROT_ANGLE 0.7853981634
 #define MAX_ROTATION_ANGLE 6.28319
 #define ISO_STEP 0.5
 #define ROT_STEP 0.25
-#define ZOOM_STEP 0.5
+#define ZOOM_STEP 3
 #define TRANS_STEP 1
 
 typedef struct s_t_point3d
 {
-	unsigned int	axis;
-	unsigned int	ordinate;
-	int 			altitude;
+	int	axis;
+	int	ordinate;
+	int altitude;
 } t_point3d;
 
 typedef struct s_matrix3d
 {
-	t_point3d		**points;
-	unsigned int	nrows;
-	unsigned int	ncols;
+	t_point3d	**points;
+	t_point3d	*values;	
+	int			nrows;
+	int			ncols;
 } t_matrix3d;
 
 typedef struct s_point2d
 {
-	unsigned int	x;
-	unsigned int	y;
+	int	x;
+	int	y;
 } t_point2d;
 
 typedef struct  s_line {
@@ -48,11 +50,12 @@ typedef struct  s_line {
 typedef struct s_matrix2d
 {
 	t_point2d		**points;
+	t_point3d		*values;	
 	t_line			*line;
-	unsigned int	nrows;
-	unsigned int	ncols;	
-	unsigned int	win_width;
-	unsigned int	win_height;
+	int				nrows;
+	int				ncols;	
+	int				win_width;
+	int				win_height;
 	float			iso_angle;
 	float			rot_angle;
 	float			zoom_level;
@@ -92,3 +95,6 @@ void		convert_matrix(t_matrix3d *matrix3d, t_matrix2d *matrix2d);
 // fdf_read.c
 int			get_dimensions(char *filename, t_matrix3d *matrix3d);
 int			read_coords_from_file(int fd, t_matrix3d *matrix3d);
+
+// fdf.c
+int			close_window(t_data *data);

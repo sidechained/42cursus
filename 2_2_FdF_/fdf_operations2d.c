@@ -1,19 +1,26 @@
 #include "fdf.h"
 
+
+
 t_matrix2d	*create_2d_matrix(int nrows, int ncols)
 {
-	int i;
+	t_matrix2d	*matrix2d;
+	t_point2d	*values;
+	t_point2d	**points;
+	int 		i;
 
-	t_matrix2d *matrix2d = malloc(sizeof(t_matrix2d));
+	matrix2d = malloc(sizeof(t_matrix2d));
+	values = malloc(nrows * ncols * sizeof(t_point2d));
+	points = malloc(nrows * sizeof(t_point2d*));
+	if (!matrix2d || !values || !points)
+		return (NULL);
 	matrix2d->nrows = nrows;
 	matrix2d->ncols = ncols;
-	t_point2d* values = malloc(nrows * ncols * sizeof(t_point2d)); // enough memory for all the values
-	t_point2d** points = malloc(nrows * sizeof(t_point2d*)); // these are pointers to ints (existing ones?)
 	i = 0;
 	while(i < nrows)
 	{
-	points[i] = values + i*ncols; // increment the values pointer 
-	i++;
+		points[i] = values + i * ncols;
+		i++;
 	}
 	matrix2d->points = points;
 	calc_zoom_level_and_window_size(matrix2d);
@@ -22,8 +29,8 @@ t_matrix2d	*create_2d_matrix(int nrows, int ncols)
 
 void	print_2d_matrix(t_matrix2d *matrix2d)
 {
-	unsigned int irow;
-	unsigned int icol;
+	int irow;
+	int icol;
 
 	irow = 0;
 	icol = 0;
@@ -43,8 +50,8 @@ void	print_2d_matrix(t_matrix2d *matrix2d)
 
 void	calc_zoom_level_and_window_size(t_matrix2d *matrix2d)
 {
-	unsigned int proposed_win_width;
-	unsigned int proposed_win_height;
+	int proposed_win_width;
+	int proposed_win_height;
 	float w;
 	float h;
 

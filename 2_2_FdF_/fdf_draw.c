@@ -5,7 +5,7 @@ void	my_mlx_pixel_put(t_imgdata *imgdata, int x, int y, int color)
 	char    *dst;
 
 	dst = imgdata->addr + (y * imgdata->line_length + x * (imgdata->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(int*)dst = color;
 }
 
 void	plot_line(t_imgdata *imgdata, t_point2d cp, t_point2d np, t_matrix2d *matrix2d)
@@ -26,9 +26,8 @@ void	plot_line(t_imgdata *imgdata, t_point2d cp, t_point2d np, t_matrix2d *matri
 	l->err = l->dx + l->dy;
 	while (1)
 	{
-		printf("%i %i %i %i\n", cp.x, cp.y, np.x, np.y);
-		if (cp.x < matrix2d->win_width && cp.y < matrix2d->win_height)
-			my_mlx_pixel_put(imgdata, cp.x, cp.y, 0x00FFFFFF);
+		if (cp.x > 0 && cp.y > 0 && cp.x < matrix2d->win_width && cp.y < matrix2d->win_height)
+			my_mlx_pixel_put(imgdata, cp.x, cp.y, 0x00FFFFFF * rand());
 		if (cp.x == np.x && cp.y == np.y)
 			break;
 		l->e2 = 2*l->err;
@@ -47,8 +46,8 @@ void	plot_line(t_imgdata *imgdata, t_point2d cp, t_point2d np, t_matrix2d *matri
 
 void	plot_pixels(t_matrix2d *matrix2d, t_imgdata *imgdata)
 {
-	unsigned int	irow;
-	unsigned int	icol;
+	int	irow;
+	int	icol;
 
 	irow = 0;
 	icol = 0;
@@ -87,6 +86,7 @@ void	render(t_data *data)
 void	increase_iso_angle(t_data *data)
 {
 	data->matrix2d->iso_angle = data->matrix2d->iso_angle + ISO_STEP;
+	render(data);
 }
 
 void	decrease_iso_angle(t_data *data)
@@ -101,7 +101,6 @@ float	keep_rot_in_range(float angle)
 		angle = angle - MAX_ROTATION_ANGLE;
 	if (angle < 0)
 		angle = angle + MAX_ROTATION_ANGLE;
-	// printf("a: %f\n", angle);
 	return (angle);
 }
 
@@ -122,12 +121,16 @@ void	decrease_rot_angle(t_data *data)
 void	increase_zoom_level(t_data *data)
 {
 	data->matrix2d->zoom_level = data->matrix2d->zoom_level + ZOOM_STEP;
+	// data->matrix2d->trans->x = data->matrix2d->trans->x - ZOOM_STEP / 5;
+	// data->matrix2d->trans->y = data->matrix2d->trans->y - ZOOM_STEP / 5;	
 	render(data);
 }
 
 void	decrease_zoom_level(t_data *data)
 {
 	data->matrix2d->zoom_level = data->matrix2d->zoom_level - ZOOM_STEP;
+	// data->matrix2d->trans->x = data->matrix2d->trans->x + ZOOM_STEP / 5;	
+	// data->matrix2d->trans->y = data->matrix2d->trans->y + ZOOM_STEP / 5;	
 	render(data);
 }
 
@@ -159,10 +162,7 @@ int		key_hook(int keycode, t_data *data)
 {
 	// printf("%i\n", keycode);
 	if (keycode == 65307) // ESC
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		mlx_loop_end(data->mlx); // exit the loop
-	}
+		close_window(data);
 	// iso_angle
 	if (keycode == 113) // 'Q'
 		decrease_iso_angle(data);

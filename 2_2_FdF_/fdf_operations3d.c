@@ -2,11 +2,11 @@
 
 t_matrix3d	*create_3d_matrix(char *filename)
 {
-	int				fd;
 	t_matrix3d		*matrix3d;
-	unsigned int	i;
 	t_point3d		*values;
 	t_point3d		**points;
+	int				fd;
+	int				i;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -15,19 +15,23 @@ t_matrix3d	*create_3d_matrix(char *filename)
 		return (NULL);
 	}
 	matrix3d = malloc(sizeof(t_matrix3d));
+	if (matrix3d == NULL)
+		return (NULL);
 	if (get_dimensions(filename, matrix3d) == -1)
 	{
 		printf("Error retrieving matrix dimensions!\n");
-		free(matrix3d);
 		return (NULL);
 	}
 	values = malloc(matrix3d->nrows * matrix3d->ncols * sizeof(t_point3d));
+	if (values == NULL)
+		return (NULL);
 	points = malloc(matrix3d->nrows * sizeof(t_point3d*));
-
+	if (points == NULL)
+		return (NULL);
 	i = 0;
 	while(i < matrix3d->nrows)
 	{
-		points[i] = values + i * matrix3d->ncols; // increment the values pointer 
+		points[i] = values + i * matrix3d->ncols;
 		i++;
 	}
 	matrix3d->points = points;
@@ -37,8 +41,8 @@ t_matrix3d	*create_3d_matrix(char *filename)
 
 void	print_3d_matrix(t_matrix3d *matrix3d)
 {
-	unsigned int	irow;
-	unsigned int	icol;
+	int	irow;
+	int	icol;
 
 	irow = 0;
 	icol = 0;
@@ -70,8 +74,8 @@ void rotate(float *x, float *y, float angle)
 
 void	convert_matrix(t_matrix3d *matrix3d, t_matrix2d *matrix2d)
 {
-	unsigned int	irow;
-	unsigned int	icol;
+	int	irow;
+	int	icol;
 	float			x;
 	float			y;
 
