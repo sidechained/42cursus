@@ -18,6 +18,7 @@ typedef struct s_token
 {
 	int				type;
 	char			*content;
+	struct s_token	*prev;	
 	struct s_token	*next;
 }					t_token;
 
@@ -46,6 +47,7 @@ void	ft_tokenadd_back(t_token **lst, t_token *new)
 		current = current->next;
 	}
 	current->next = new;
+	current->next->prev = current; // enable ability to look back	
 }
 
 t_token	*ft_newtoken(void *content)
@@ -54,7 +56,7 @@ t_token	*ft_newtoken(void *content)
 
 	re = (t_token *)malloc(sizeof(t_token));
 	if (!re)
-		return (0);
+		return (NULL);
 	re->content = content;
 	re->type = (int)catego_toketype(content);
 	re->next = 0;
