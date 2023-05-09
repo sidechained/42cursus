@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 20:31:00 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 21:16:39 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -98,7 +98,7 @@ void	plot_matrix(t_data *data)
 	{
 		while (irow < data->nrows)
 		{
-			if (data->projection_mode == 0)
+			if (data->projection_mode == 0 || data->projection_mode == 2)
 			{
 				tp = transform_point(data, &data->matrix[irow][icol]);
 				my_mlx_pixel_put(data, &tp, 0x00FFFFFF);

@@ -6,20 +6,22 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 21:23:40 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 21:01:15 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FDF_H
 # define FDF_H
 
-# include <stdio.h>
+# include <stdio.h> // remove
 # include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include "get_next_line.h"
+
 # include "libft.h"
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 # define ISO_ANGLE_STEP 0.001
 # define ROT_ANGLE_STEP 0.001
@@ -29,9 +31,10 @@
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 600
 # define MAX_ROTATION_ANGLE 6.28319
-# define ERR_NO_FILENAME "You must supply a filename!\n"
-# define ERR_OPENING_FILE "Error opening file!\n"
-# define ERR_MATRIX_DIMS "Error retrieving matrix dimensions!\n"
+# define ERR_NO_FILENAME "Error: No filename given"
+# define ERR_OPENING_FILE "Error: Map file can not be opened\n"
+# define ERR_NON_DIGIT_IN_FILE "Error: Map file contains items other than digits\n"
+# define ERR_IRREGULAR_ROWS "Error: Not all map rows have the same number of elements\n"
 
 # define TXT_L1 "1 3 : -/+ zoom altitude"
 # define TXT_L2 "Q E : -/+ isometric angle"
@@ -108,7 +111,7 @@ t_point_int	transform_point(t_data *data, t_point *p);
 void		rotate(t_point *p, float angle);
 void		z_scale(t_point *p, float z_scale);
 void		isometric(t_point *p, float angle);
-void		conic(t_point *p, float iso_angle, float scale, float z_scale);
+void		conic(t_point *p, t_data *data);
 void		scale(t_point *p, float scale);
 void		center(t_point *p, unsigned int nrows, unsigned int ncols, \
 	float scale);

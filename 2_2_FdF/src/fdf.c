@@ -6,34 +6,34 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 21:21:36 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 21:45:22 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
 
-void	free_matrix(t_point **matrix, unsigned int ncols)
+void	free_matrix(t_point **matrix, unsigned int nrows)
 {
-	unsigned int	i;
+	unsigned int i;
 
 	i = 0;
-	while (i < ncols)
+	while (i < nrows)
 	{
 		free(matrix[i]);
 		i++;
 	}
-	free(matrix);
+	// free(matrix);
 }
 
 int	close_window(t_data *data)
 {
 	mlx_loop_end(data->mlx);
-	free_matrix(data->matrix, data->ncols);
+	free_matrix(data->matrix, data->nrows);
 	return (0);
 }
 
 void	init_params_keys(t_data *data)
 {
-	data->projection_mode = 2;
+	data->projection_mode = 0;
 	data->iso_angle = 4.71238898;
 	data->rot_angle = 0.7853981634 * 2;
 	data->translation.x = 0;
@@ -57,13 +57,13 @@ void	init_params_keys(t_data *data)
 t_point	**malloc_matrix(unsigned int nrows, unsigned int ncols)
 {
 	t_point			**matrix;
-	unsigned int	i;
+	unsigned int 	i;
 
-	matrix = (t_point **)malloc(nrows * sizeof(t_point *));
+	matrix = (t_point **)malloc(sizeof(t_point *) * nrows);
 	i = 0;
-	while (i < ncols)
+	while(i < nrows)
 	{
-		matrix[i] = (t_point *)malloc(ncols * sizeof(t_point));
+		matrix[i] = malloc(sizeof(t_point) * ncols);
 		i++;
 	}
 	return (matrix);
@@ -75,15 +75,21 @@ int	main(int nargs, char **argv)
 
 	if (nargs < 2)
 	{
-		printf("%s", ERR_NO_FILENAME);
+		ft_printf(ERR_NO_FILENAME);
 		return (0);
+	}
+	if (nargs == 2 || nargs == 3)
+	{
+		data->win_width = 600;
+		data->win_height = 600;
+	}
+	if (nargs == 4)
+	{
+		data->win_width = ft_atoi(argv[3]);
+		data->win_height = ft_atoi(argv[4]);
 	}
 	if (get_dimensions(argv[1], &data.nrows, &data.ncols) == -1)
-	{
-		printf(ERR_MATRIX_DIMS);
 		return (0);
-	}
-	printf("%u %u\n", data.nrows, data.ncols);
 	init_params_keys(&data);
 	data.matrix = malloc_matrix(data.nrows, data.ncols);
 	read_coords_from_file(argv[1], data.matrix);

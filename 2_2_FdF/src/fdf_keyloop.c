@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf_keyloop.c                                      :+:      :+:    :+:   */
@@ -6,7 +7,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 20:23:15 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 20:59:47 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -16,7 +17,7 @@ void	on_key_press1(int keycode, t_data *data)
 	if (keycode == 65307)
 		close_window(data);
 	if (keycode == 115)
-		data->projection_mode = (data->projection_mode + 1) % 4;
+		data->projection_mode = (data->projection_mode + 1) % 5;
 	if (keycode == 49)
 		data->keypress_1 = true;
 	if (keycode == 51)

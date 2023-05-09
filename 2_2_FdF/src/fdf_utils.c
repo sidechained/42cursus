@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 19:48:31 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 08:40:04 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -19,10 +19,7 @@ int	check_if_integer(unsigned int irow, char *str)
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 0 && irow != 0 && str[i] != '-')
-		{
-			printf("file contains items other than digits!\n");
 			return (-1);
-		}
 		i++;
 	}
 	return (0);
@@ -66,10 +63,10 @@ void	print_matrix(t_point **matrix, unsigned int nrows, unsigned int ncols)
 	{
 		while (irow < nrows)
 		{
-			printf("[%i][%i]:\n", irow, icol);
-			printf(" x: %f\n", matrix[irow][icol].x);
-			printf(" y: %f\n", matrix[irow][icol].y);
-			printf(" z: %f\n", matrix[irow][icol].z);
+			ft_printf("[%i][%i]:\n", irow, icol);
+			ft_printf(" x: %f\n", matrix[irow][icol].x);
+			ft_printf(" y: %f\n", matrix[irow][icol].y);
+			ft_printf(" z: %f\n", matrix[irow][icol].z);
 			irow++;
 		}
 		irow = 0;

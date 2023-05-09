@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 21:20:50 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 21:42:45 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -31,10 +31,11 @@ void	plot_menu(t_data *data)
 	int	y_off;
 	int	c;
 
-	x = 5;
-	y = 15;
+
 	x_off = 500;
 	y_off = 13;
+	x = 20;
+	y = WIN_HEIGHT - y_off * 5;
 	c = 0x00EAEA;
 	mlx_string_put(data->mlx, data->win, x, y + y_off * 0, c, TXT_L1);
 	mlx_string_put(data->mlx, data->win, x, y + y_off * 1, c, TXT_L2);
@@ -53,17 +54,19 @@ t_point_int	transform_point(t_data *data, t_point *p)
 	pp.x = p->x;
 	pp.y = p->y;
 	pp.z = p->z;
-	if (data->projection_mode == 2)
+	if (data->projection_mode == 2 || data->projection_mode == 3)
 	{
 		z_scale(&pp, data->z_scale);
 		isometric(&pp, data->iso_angle);
 	}
-	if (data->projection_mode == 3)
-		conic(&pp, data->iso_angle, data->scale, data->z_scale);
+	if (data->projection_mode == 4)
+		conic(&pp, data);
 	rotate(&pp, data->rot_angle);
 	scale(&pp, data->scale);
-	center(&pp, data->nrows, data->ncols, data->scale);
-	translate(&pp, &data->translation);
+	if (data->projection_mode != 4)
+		center(&pp, data->nrows, data->ncols, data->scale);
+	if (data->projection_mode != 4)
+		translate(&pp, &data->translation);
 	return (convert_to_int(&pp));
 }
 

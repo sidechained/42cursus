@@ -6,10 +6,9 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 21:14:38 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 20:31:40 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "fdf.h"
 // open a file, get its next line
 // split by ' ', iterate over split elements incrementing nrows
@@ -25,7 +24,7 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		printf(ERR_OPENING_FILE);
+		ft_printf(ERR_OPENING_FILE);
 		return (-1);
 	}
 	prev_nrows = 0;
@@ -43,12 +42,18 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 		while (split_line[*nrows])
 		{
 			if (check_if_integer(*nrows, split_line[*nrows]) == -1)
+			{
+				ft_printf(ERR_NON_DIGIT_IN_FILE);
 				return (-1);
+			}
 			free(split_line[*nrows]);
 			(*nrows)++;
 		}
 		if (prev_nrows != 0 && *nrows != prev_nrows)
+		{
+			ft_printf(ERR_IRREGULAR_ROWS);
 			return (-1);
+		}
 		prev_nrows = *nrows;
 		free(split_line);
 		(*ncols)++;
@@ -59,13 +64,14 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 
 // receiving fdf coordinates from a file
 // and placing in a struct matrix of 3d points
+// get line (row), split into elements
 int	read_coords_from_file(char *filename, t_point **matrix)
 {
-	int			fd;
-	char		*next_line;
-	char		**split_line;
-	int			icol;
-	int			irow;
+	int				fd;
+	char			*next_line;
+	char			**split_line;
+	unsigned int	icol;
+	unsigned int	irow;
 
 	fd = open(filename, O_RDONLY);
 	irow = 0;
@@ -81,6 +87,7 @@ int	read_coords_from_file(char *filename, t_point **matrix)
 		icol = 0;
 		while (split_line[icol])
 		{
+
 			matrix[irow][icol].x = icol;
 			matrix[irow][icol].y = irow;
 			matrix[irow][icol].z = ft_atoi(split_line[icol]);

@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/08 19:40:58 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 21:40:20 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -18,7 +18,7 @@ void	isometric(t_point *p, float angle)
 }
 
 // cx, cy, cz, f = Center of projection x, y, z coordinate, focal length
-void	conic(t_point *p, float iso_angle, float scale, float z_scale)
+void	conic(t_point *p, t_data *data)
 {
 	double	cx;
 	double	cy;
@@ -26,12 +26,15 @@ void	conic(t_point *p, float iso_angle, float scale, float z_scale)
 	double	f;
 	float	d;
 
-	cx = iso_angle;
-	cy = iso_angle * 2;
-	cz = z_scale * 5;
-	f = scale / 20;
+	cx = data->translation.x;
+	cy = data->translation.y;
+	cz = data->z_scale * 20;
+	f = data->scale;
+
 	d = sqrt((p->x - cx) * (p->x - cx) + (p->y - cy) * \
 		(p->y - cy) + (p->z - cz) * (p->z - cz));
+	d = d * 1.5;
 	p->x = f * (p->x - cx) / (d + cz - p->z);
 	p->y = f * (p->y - cy) / (d + cz - p->z);
+
 }

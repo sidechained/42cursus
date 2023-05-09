@@ -34,3 +34,6 @@
 [submodule "2_2_FdF_/libft"]
 	path = 2_2_FdF_/libft
 	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-4c5fc7b9-d581-4394-a448-75634b093b57-4594178-gbooth
+[submodule "2_2_FdF/printf"]
+	path = 2_2_FdF/printf
+	url = git@vogsphere.42berlin.de:vogsphere/intra-uuid-faf2b30d-65a2-41de-b771-49406b47e453-4607066-gbooth
