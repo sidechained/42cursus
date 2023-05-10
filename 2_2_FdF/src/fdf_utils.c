@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/09 08:40:04 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/09 21:47:56 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -30,12 +30,12 @@ void	scale_to_window(t_data *data)
 	float	w;
 	float	h;
 
-	if (data->scale * (data->nrows - 1) > WIN_WIDTH)
-		w = WIN_WIDTH / (data->nrows - 1) * 0.75;
+	if (data->scale * (data->nrows - 1) > data->win_width)
+		w = data->win_width / (data->nrows - 1) * 0.75;
 	else
 		w = data->scale;
-	if (data->scale * (data->ncols - 1) > WIN_HEIGHT)
-		h = WIN_HEIGHT / (data->ncols - 1) * 0.75;
+	if (data->scale * (data->ncols - 1) > data->win_height)
+		h = data->win_height / (data->ncols - 1) * 0.75;
 	else
 		h = data->scale;
 	if (w < h)

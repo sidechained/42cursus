@@ -17,7 +17,7 @@ void	on_key_press1(int keycode, t_data *data)
 	if (keycode == 65307)
 		close_window(data);
 	if (keycode == 115)
-		data->projection_mode = (data->projection_mode + 1) % 5;
+		data->projection_mode = (data->projection_mode + 1) % 6;
 	if (keycode == 49)
 		data->keypress_1 = true;
 	if (keycode == 51)

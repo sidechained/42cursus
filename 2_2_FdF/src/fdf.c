@@ -6,28 +6,22 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/09 21:45:22 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:34:30 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
 
-void	free_matrix(t_point **matrix, unsigned int nrows)
+int	close_window(t_data *data)
 {
 	unsigned int i;
 
 	i = 0;
-	while (i < nrows)
+	while (i < data->nrows)
 	{
-		free(matrix[i]);
+		free(data->matrix[i]);
 		i++;
 	}
-	// free(matrix);
-}
-
-int	close_window(t_data *data)
-{
 	mlx_loop_end(data->mlx);
-	free_matrix(data->matrix, data->nrows);
 	return (0);
 }
 
@@ -69,14 +63,12 @@ t_point	**malloc_matrix(unsigned int nrows, unsigned int ncols)
 	return (matrix);
 }
 
-int	main(int nargs, char **argv)
+int	handle_arguments(int nargs, char **argv, t_data *data)
 {
-	t_data	data;
-
 	if (nargs < 2)
 	{
 		ft_printf(ERR_NO_FILENAME);
-		return (0);
+		return (-1);
 	}
 	if (nargs == 2 || nargs == 3)
 	{
@@ -85,17 +77,42 @@ int	main(int nargs, char **argv)
 	}
 	if (nargs == 4)
 	{
-		data->win_width = ft_atoi(argv[3]);
-		data->win_height = ft_atoi(argv[4]);
+		data->win_width = ft_atoi(argv[2]);
+		data->win_height = ft_atoi(argv[3]);
+		if (data->win_width > MAX_WIN_WIDTH)
+			data->win_width = MAX_WIN_WIDTH;
+		if (data->win_height > MAX_WIN_HEIGHT)
+			data->win_height = MAX_WIN_HEIGHT;
+		if (data->win_width < MIN_WIN_WIDTH)
+		{
+			ft_printf(WARN_MIN_WIDTH);
+			data->win_width = MIN_WIN_WIDTH;
+		}
+		if (data->win_height < MIN_WIN_HEIGHT)
+		{
+			ft_printf(WARN_MIN_HEIGHT);
+			data->win_height = MIN_WIN_HEIGHT;
+		}
 	}
+	return (0);
+}
+
+int	main(int nargs, char **argv)
+{
+	t_data	data;
+	t_line	l;
+
+	if (handle_arguments(nargs, argv, &data) == -1)
+		return (0);
 	if (get_dimensions(argv[1], &data.nrows, &data.ncols) == -1)
 		return (0);
 	init_params_keys(&data);
 	data.matrix = malloc_matrix(data.nrows, data.ncols);
-	read_coords_from_file(argv[1], data.matrix);
+	data.l = &l;
+	read_coords_from_file(argv[1], data.matrix, &data);
 	scale_to_window(&data);
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
+	data.win = mlx_new_window(data.mlx, data.win_width, data.win_height, "FDF");
 	mlx_hook(data.win, 2, 1L << 0, on_key_press, &data);
 	mlx_hook(data.win, 3, 1L << 1, on_key_release, &data);
 	mlx_hook(data.win, 17, 1L << 0, close_window, &data);

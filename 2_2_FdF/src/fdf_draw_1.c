@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/09 21:16:39 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:34:27 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -15,7 +15,7 @@ void	my_mlx_pixel_put(t_data *data, t_point_int *p, int color)
 {
 	char	*dst;
 
-	if (p->x > 0 && p->y > 0 && p->x < WIN_WIDTH && p->y < WIN_HEIGHT)
+	if (p->x > 0 && p->y > 0 && p->x < data->win_width && p->y < data->win_height)
 	{
 		dst = data->addr + \
 			(p->y * data->line_length + p->x * (data->bits_per_pixel / 8));
@@ -23,7 +23,21 @@ void	my_mlx_pixel_put(t_data *data, t_point_int *p, int color)
 	}
 }
 
-//0x00FFFFFF
+int map_z_to_colour(float value, float min_z, float max_z)
+{
+	float normalized_z;
+	int colour;
+
+	normalized_z = (value - min_z) / (min_z - max_z) * -1;
+	colour = (int)(normalized_z * 127);
+	if (colour < 0)
+		colour = 0;
+	else if (colour > 127)
+		colour = 127;
+	colour = colour + 127;
+	return (colour);
+}
+
 void	plot_line2(t_data *data, t_point *cp, \
 	t_point_int *cp_, t_point_int *np_)
 {
@@ -31,8 +45,7 @@ void	plot_line2(t_data *data, t_point *cp, \
 
 	while (1)
 	{	
-		(void)cp;
-		color = create_trgb(0, 255, 0, 0);
+		color = create_trgb(0, map_z_to_colour(cp->z, data->min_z, data->max_z), 0, 0);
 		my_mlx_pixel_put(data, cp_, color);
 		if (cp_->x == np_->x && cp_->y == np_->y)
 			break ;
@@ -98,7 +111,7 @@ void	plot_matrix(t_data *data)
 	{
 		while (irow < data->nrows)
 		{
-			if (data->projection_mode == 0 || data->projection_mode == 2)
+			if (data->projection_mode == POINTS_2D || data->projection_mode == POINTS_ISO || data->projection_mode == POINTS_CONIC)
 			{
 				tp = transform_point(data, &data->matrix[irow][icol]);
 				my_mlx_pixel_put(data, &tp, 0x00FFFFFF);

@@ -6,14 +6,36 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/09 20:31:40 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:34:10 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
-// open a file, get its next line
-// split by ' ', iterate over split elements incrementing nrows
-// if nrows differs from prev nrows (ever), return -1
-// split elements must be integers
+
+void find_min_max_z(t_point **matrix, t_data *data)
+{
+	float current_z;
+	unsigned int irow;
+	unsigned int icol;
+
+	data->min_z = matrix[0][0].z;
+	data->max_z = matrix[0][0].z;
+	irow = 0;
+	while (irow < data->nrows)
+	{	
+		icol = 0;
+		while (icol < data->ncols)
+		{
+			current_z = matrix[irow][icol].z;
+			if (current_z < data->min_z)
+				data->min_z = current_z;
+			if (current_z > data->max_z)
+				data->max_z = current_z;
+			icol++;
+		}
+		irow++;
+	}
+}
+
 int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 {
 	char			*next_line;
@@ -62,10 +84,7 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 	return (0);
 }
 
-// receiving fdf coordinates from a file
-// and placing in a struct matrix of 3d points
-// get line (row), split into elements
-int	read_coords_from_file(char *filename, t_point **matrix)
+int	read_coords_from_file(char *filename, t_point **matrix, t_data *data)
 {
 	int				fd;
 	char			*next_line;
@@ -97,6 +116,7 @@ int	read_coords_from_file(char *filename, t_point **matrix)
 		free(split_line);
 		irow++;
 	}
+	find_min_max_z(matrix, data);
 	close(fd);
 	return (0);
 }
