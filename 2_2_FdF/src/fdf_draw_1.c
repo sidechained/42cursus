@@ -6,27 +6,15 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 14:34:27 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 15:10:35 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, t_point_int *p, int color)
+int	map_z_to_colour(float value, float min_z, float max_z)
 {
-	char	*dst;
-
-	if (p->x > 0 && p->y > 0 && p->x < data->win_width && p->y < data->win_height)
-	{
-		dst = data->addr + \
-			(p->y * data->line_length + p->x * (data->bits_per_pixel / 8));
-		*(int *)dst = color;
-	}
-}
-
-int map_z_to_colour(float value, float min_z, float max_z)
-{
-	float normalized_z;
-	int colour;
+	float	normalized_z;
+	int		colour;
 
 	normalized_z = (value - min_z) / (min_z - max_z) * -1;
 	colour = (int)(normalized_z * 127);
@@ -45,7 +33,8 @@ void	plot_line2(t_data *data, t_point *cp, \
 
 	while (1)
 	{	
-		color = create_trgb(0, map_z_to_colour(cp->z, data->min_z, data->max_z), 0, 0);
+		color = create_trgb(0, map_z_to_colour(cp->z, data->min_z, \
+			data->max_z), 0, 0);
 		my_mlx_pixel_put(data, cp_, color);
 		if (cp_->x == np_->x && cp_->y == np_->y)
 			break ;
@@ -111,7 +100,8 @@ void	plot_matrix(t_data *data)
 	{
 		while (irow < data->nrows)
 		{
-			if (data->projection_mode == POINTS_2D || data->projection_mode == POINTS_ISO || data->projection_mode == POINTS_CONIC)
+			if (data->projection_mode == POINTS_2D || data->projection_mode == \
+				POINTS_ISO || data->projection_mode == POINTS_CONIC)
 			{
 				tp = transform_point(data, &data->matrix[irow][icol]);
 				my_mlx_pixel_put(data, &tp, 0x00FFFFFF);

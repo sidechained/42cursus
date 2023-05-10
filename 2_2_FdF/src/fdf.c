@@ -6,14 +6,14 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 14:34:30 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 15:34:32 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
 
 int	close_window(t_data *data)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < data->nrows)
@@ -51,11 +51,11 @@ void	init_params_keys(t_data *data)
 t_point	**malloc_matrix(unsigned int nrows, unsigned int ncols)
 {
 	t_point			**matrix;
-	unsigned int 	i;
+	unsigned int	i;
 
 	matrix = (t_point **)malloc(sizeof(t_point *) * nrows);
 	i = 0;
-	while(i < nrows)
+	while (i < nrows)
 	{
 		matrix[i] = malloc(sizeof(t_point) * ncols);
 		i++;
@@ -63,13 +63,8 @@ t_point	**malloc_matrix(unsigned int nrows, unsigned int ncols)
 	return (matrix);
 }
 
-int	handle_arguments(int nargs, char **argv, t_data *data)
+int	handle_winsize_arguments(int nargs, char **argv, t_data *data)
 {
-	if (nargs < 2)
-	{
-		ft_printf(ERR_NO_FILENAME);
-		return (-1);
-	}
 	if (nargs == 2 || nargs == 3)
 	{
 		data->win_width = 600;
@@ -102,7 +97,12 @@ int	main(int nargs, char **argv)
 	t_data	data;
 	t_line	l;
 
-	if (handle_arguments(nargs, argv, &data) == -1)
+	if (nargs < 2)
+	{
+		ft_printf(ERR_NO_FILENAME);
+		return (-1);
+	}
+	if (handle_winsize_arguments(nargs, argv, &data) == -1)
 		return (0);
 	if (get_dimensions(argv[1], &data.nrows, &data.ncols) == -1)
 		return (0);

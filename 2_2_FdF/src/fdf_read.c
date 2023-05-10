@@ -6,16 +6,16 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 14:34:10 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 15:34:35 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
 
-void find_min_max_z(t_point **matrix, t_data *data)
+void	find_min_max_z(t_point **matrix, t_data *data)
 {
-	float current_z;
-	unsigned int irow;
-	unsigned int icol;
+	float			current_z;
+	unsigned int	irow;
+	unsigned int	icol;
 
 	data->min_z = matrix[0][0].z;
 	data->max_z = matrix[0][0].z;
@@ -34,6 +34,31 @@ void find_min_max_z(t_point **matrix, t_data *data)
 		}
 		irow++;
 	}
+}
+
+int	get_dimensions2(char **split_line, unsigned int *nrows, \
+	unsigned int *ncols, unsigned int *prev_nrows)
+{
+	*nrows = 0;
+	while (split_line[*nrows])
+	{
+		if (check_if_integer(*nrows, split_line[*nrows]) == -1)
+		{
+			ft_printf(ERR_NON_DIGIT_IN_FILE);
+			return (-1);
+		}
+		free(split_line[*nrows]);
+		(*nrows)++;
+	}
+	if (*prev_nrows != 0 && *nrows != *prev_nrows)
+	{
+		ft_printf(ERR_IRREGULAR_ROWS);
+		return (-1);
+	}
+	*prev_nrows = *nrows;
+	free(split_line);
+	(*ncols)++;
+	return (0);
 }
 
 int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
@@ -60,27 +85,28 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 			next_line[ft_strlen(next_line) - 1] = '\0';
 		split_line = ft_split(next_line, ' ');
 		free(next_line);
-		*nrows = 0;
-		while (split_line[*nrows])
-		{
-			if (check_if_integer(*nrows, split_line[*nrows]) == -1)
-			{
-				ft_printf(ERR_NON_DIGIT_IN_FILE);
-				return (-1);
-			}
-			free(split_line[*nrows]);
-			(*nrows)++;
-		}
-		if (prev_nrows != 0 && *nrows != prev_nrows)
-		{
-			ft_printf(ERR_IRREGULAR_ROWS);
+		if (get_dimensions2(split_line, nrows, ncols, &prev_nrows) == -1)
 			return (-1);
-		}
-		prev_nrows = *nrows;
-		free(split_line);
-		(*ncols)++;
 	}
 	close(fd);
+	return (0);
+}
+
+int	read_coords_from_file2(char **split_line, t_point **matrix, \
+	unsigned int *irow)
+{
+	unsigned int	icol;
+
+	icol = 0;
+	while (split_line[icol])
+	{
+		matrix[*irow][icol].x = icol;
+		matrix[*irow][icol].y = *irow;
+		matrix[*irow][icol].z = ft_atoi(split_line[icol]);
+		free(split_line[icol]);
+		icol++;
+	}
+	free(split_line);
 	return (0);
 }
 
@@ -89,7 +115,6 @@ int	read_coords_from_file(char *filename, t_point **matrix, t_data *data)
 	int				fd;
 	char			*next_line;
 	char			**split_line;
-	unsigned int	icol;
 	unsigned int	irow;
 
 	fd = open(filename, O_RDONLY);
@@ -103,17 +128,7 @@ int	read_coords_from_file(char *filename, t_point **matrix, t_data *data)
 			next_line[ft_strlen(next_line) - 1] = '\0';
 		split_line = ft_split(next_line, ' ');
 		free(next_line);
-		icol = 0;
-		while (split_line[icol])
-		{
-
-			matrix[irow][icol].x = icol;
-			matrix[irow][icol].y = irow;
-			matrix[irow][icol].z = ft_atoi(split_line[icol]);
-			free(split_line[icol]);
-			icol++;
-		}
-		free(split_line);
+		read_coords_from_file2(split_line, matrix, &irow);
 		irow++;
 	}
 	find_min_max_z(matrix, data);

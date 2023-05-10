@@ -6,10 +6,23 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 14:34:20 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 15:10:03 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
+
+void	my_mlx_pixel_put(t_data *data, t_point_int *p, int color)
+{
+	char	*dst;
+
+	if (p->x > 0 && p->y > 0 && p->x < data->win_width && \
+		p->y < data->win_height)
+	{
+		dst = data->addr + \
+			(p->y * data->line_length + p->x * (data->bits_per_pixel / 8));
+		*(int *)dst = color;
+	}
+}
 
 void	render(t_data *data)
 {
@@ -53,18 +66,22 @@ t_point_int	transform_point(t_data *data, t_point *p)
 	pp.x = p->x;
 	pp.y = p->y;
 	pp.z = p->z;
-	if (data->projection_mode == POINTS_ISO || data->projection_mode == LINES_ISO)
+	if (data->projection_mode == POINTS_ISO || \
+		data->projection_mode == LINES_ISO)
 	{
 		z_scale(&pp, data->z_scale);
 		isometric(&pp, data->iso_angle);
 	}
-	if (data->projection_mode == POINTS_CONIC || data->projection_mode == LINES_CONIC)
+	if (data->projection_mode == POINTS_CONIC || \
+		data->projection_mode == LINES_CONIC)
 		conic(&pp, data);
 	rotate(&pp, data->rot_angle);
 	scale(&pp, data->scale);
-	if (data->projection_mode != POINTS_CONIC || data->projection_mode != LINES_CONIC)
+	if (data->projection_mode != POINTS_CONIC || \
+		data->projection_mode != LINES_CONIC)
 		center(&pp, data);
-	if (data->projection_mode != POINTS_CONIC || data->projection_mode != LINES_CONIC)
+	if (data->projection_mode != POINTS_CONIC || \
+		data->projection_mode != LINES_CONIC)
 		translate(&pp, &data->translation);
 	return (convert_to_int(&pp));
 }

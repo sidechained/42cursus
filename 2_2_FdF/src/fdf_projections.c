@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 14:35:32 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/10 15:04:32 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -29,11 +29,9 @@ void	conic(t_point *p, t_data *data)
 	cy = data->translation.y;
 	cz = data->z_scale * 20;
 	f = data->scale;
-
 	d = sqrt((p->x - cx) * (p->x - cx) + (p->y - cy) * \
 		(p->y - cy) + (p->z - cz) * (p->z - cz));
 	d = d * 1.5;
 	p->x = f * (p->x - cx) / (d + cz - p->z);
 	p->y = f * (p->y - cy) / (d + cz - p->z);
-
 }
