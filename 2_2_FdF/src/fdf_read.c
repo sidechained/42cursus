@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 15:34:35 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:02:51 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -36,37 +36,37 @@ void	find_min_max_z(t_point **matrix, t_data *data)
 	}
 }
 
-int	get_dimensions2(char **split_line, unsigned int *nrows, \
+int	get_dims2(char **split_line, unsigned int *nrows, \
 	unsigned int *ncols, unsigned int *prev_nrows)
 {
-	*nrows = 0;
 	while (split_line[*nrows])
 	{
 		if (check_if_integer(*nrows, split_line[*nrows]) == -1)
 		{
 			ft_printf(ERR_NON_DIGIT_IN_FILE);
+			free_split_line(nrows, split_line);
 			return (-1);
 		}
-		free(split_line[*nrows]);
 		(*nrows)++;
 	}
 	if (*prev_nrows != 0 && *nrows != *prev_nrows)
 	{
 		ft_printf(ERR_IRREGULAR_ROWS);
+		free_split_line(nrows, split_line);
 		return (-1);
 	}
 	*prev_nrows = *nrows;
-	free(split_line);
+	free_split_line(nrows, split_line);
 	(*ncols)++;
 	return (0);
 }
 
-int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
+int	get_dims(char *filename, unsigned int *ncols, \
+	unsigned int *nrows, unsigned int *prev_nrows)
 {
 	char			*next_line;
 	int				fd;
 	char			**split_line;
-	unsigned int	prev_nrows;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -74,8 +74,6 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 		ft_printf(ERR_OPENING_FILE);
 		return (-1);
 	}
-	prev_nrows = 0;
-	*ncols = 0;
 	while (1)
 	{
 		next_line = get_next_line(fd);
@@ -85,7 +83,7 @@ int	get_dimensions(char *filename, unsigned int *ncols, unsigned int *nrows)
 			next_line[ft_strlen(next_line) - 1] = '\0';
 		split_line = ft_split(next_line, ' ');
 		free(next_line);
-		if (get_dimensions2(split_line, nrows, ncols, &prev_nrows) == -1)
+		if (get_dims2(split_line, nrows, ncols, prev_nrows) == -1)
 			return (-1);
 	}
 	close(fd);

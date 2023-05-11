@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 15:19:49 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:11:02 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FDF_H
@@ -35,14 +35,13 @@
 # define MIN_WIN_HEIGHT 400
 # define ERR_NO_FILENAME "Error: No filename given"
 # define ERR_OPENING_FILE "Error: Map file can not be opened\n"
+# define ERR_MATRIX_TOO_SMALL "Error: Map should contain at least \
+2 rows and 2 columns\n"
+# define ERR_MATRIX_MEMORY_ALLOC "Error: Could not allocate memory for map\n"
 # define ERR_NON_DIGIT_IN_FILE "Error: Map file contains items \
 other than digits\n"
 # define ERR_IRREGULAR_ROWS "Error: Not all map rows have the \
 same number of elements\n"
-# define WARN_MIN_WIDTH "Warning: given window width too small, \
-width has been expanded to the allowed minimum\n"
-# define WARN_MIN_HEIGHT "Warning: given window height too small, \
-height has been expanded to the allowed minimum\n"
 
 # define POINTS_2D 0
 # define LINES_2D 1
@@ -94,6 +93,7 @@ typedef struct s_data {
 	int				endian;
 	unsigned int	nrows;
 	unsigned int	ncols;
+	unsigned int	prev_nrows;
 	t_point			**matrix;
 	t_line			*l;
 	int				projection_mode;
@@ -118,8 +118,9 @@ typedef struct s_data {
 	bool			keypress_down_arrow;	
 }	t_data;
 
-int			get_dimensions(char *filename, \
-	unsigned int *ncols, unsigned int *nrows);
+int			get_dims(char *filename, unsigned int *ncols, unsigned int *nrows, \
+	unsigned int *prev_nrows);
+void		free_split_line(unsigned int *nrows, char **split_line);
 int			read_coords_from_file(char *filename, t_point **matrix, \
 	t_data *data);
 void		scale_to_window(t_data *data);

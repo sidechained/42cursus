@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:35:18 by gbooth            #+#    #+#             */
-/*   Updated: 2023/05/10 15:04:32 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/05/11 12:04:32 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -34,4 +34,18 @@ void	conic(t_point *p, t_data *data)
 	d = d * 1.5;
 	p->x = f * (p->x - cx) / (d + cz - p->z);
 	p->y = f * (p->y - cy) / (d + cz - p->z);
+}
+
+// extra util function here that didn't fit in fdf_utils.c
+void	free_split_line(unsigned int *nrows, char **split_line)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < *nrows)
+	{
+		free(split_line[i]);
+		i++;
+	}
+	free(split_line);
 }
