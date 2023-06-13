@@ -6,62 +6,34 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 10:29:20 by gbooth            #+#    #+#             */
-/*   Updated: 2023/03/29 15:26:39 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/06/13 12:40:56 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (2048);
-	else
-		return (0);
-}
-
-static int	convert_ascii_to_integer(char *nptr)
+int	input_error_checking(int argc, char **argv)
 {
 	int	i;
-	int	result;
 
+	if (argc != 5 && argc != 6)
+	{
+		printf("Error: Wrong number of arguments\n");
+		return (1);
+	}
 	i = 0;
-	result = 0;
-	while (nptr[i] != '\0')
-	{	
-		if (!ft_isdigit(nptr[i]))
-			break ;
-		result = result * 10;
-		result = result + nptr[i] - '0';
+	while (i < argc - 1)
+	{
+		if (ft_atoi(argv[i + 1]) < 0)
+		{
+			printf("Error: Invalid argument(s)\n");
+			return (1);
+		}
 		i++;
 	}
-	return (result);
+	return (0);
 }
 
-int	ft_atoi(const char *nptr)
-{
-	char	*nptr_;
-	int		result;
-	bool	is_minus;
-
-	is_minus = false;
-	nptr_ = (char *)nptr;
-	while (*nptr_ == ' ' || *nptr_ == '\t' || *nptr_ == '\r'
-		|| *nptr_ == '\n' || *nptr_ == '\v' || *nptr_ == '\f')
-		nptr_++;
-	if (*nptr_ == '+' || *nptr_ == '-')
-	{
-		if (*nptr_ == '-')
-			is_minus = true;
-		nptr_++;
-	}
-	result = 0;
-	result = convert_ascii_to_integer(nptr_);
-	if (is_minus)
-		result = result * -1;
-	return (result);
-}
-
-long long	get_timestamp_ms(void)
+long long	ts(void)
 {
 	struct timeval	t;
 
@@ -69,19 +41,51 @@ long long	get_timestamp_ms(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-int	sleepytime(long long time, t_phil *phil)
+void	wait(long long time)
 {
 	long long	now;
 	long long	then;
 
-	then = get_timestamp_ms();
+	then = ts();
 	while (1)
 	{
-		now = get_timestamp_ms();
-		if (death_check(phil))
-			return (1);
+		now = ts();
 		if (now - then >= time)
-			return (0);
+			return ;
 		usleep(5);
 	}
+}
+
+void	create_diechk_threads(t_phil *phs)
+{
+	int				i;
+
+	i = 0;
+	while (i < phs->n_phs)
+	{	
+		pthread_create(&phs[i].diechk_tid, NULL, start_diechk, (void *)&phs[i]);
+		i++;
+	}
+}
+
+void	*start_diechk(void *void_phil)
+{
+	t_phil	*phil;
+	int		i;
+
+	phil = (t_phil *)void_phil;
+	while (phil->end_reached == false)
+	{
+		i = 0;
+		wait(5);
+		if ((ts() - phil->time_last_eaten > phil->time_to_die))
+		{
+			printf("[%lld]	%i died\n", ts() - phil->start, phil->i);
+			pthread_join(phil->diechk_tid, NULL);
+			phil->end_reached = true;
+			exit(0);
+		}
+		i++;
+	}
+	return (NULL);
 }
