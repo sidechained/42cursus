@@ -1,3 +1,7 @@
+valgrind --tool=helgrind
+
+valgrind possibly lost
+
 # Yes Die
 
 PASS 1 800 200 200
@@ -33,15 +37,5 @@ PASS 100 800 200 200
 no one should die
 PASS 105 800 200 200
 no one should die
-PASS 200 800 200 200
+PASS 200 800 200 200 // sometimes quits unexpectedly
 no one should die
-
-#
-
-there are three possible outcomes:
-1. a philo dies
-
-2. a philo has eaten a number of times
-
-3. endless loop
-- nothing needs to be freed
