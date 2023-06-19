@@ -6,7 +6,7 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 10:29:20 by gbooth            #+#    #+#             */
-/*   Updated: 2023/06/16 00:28:21 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/06/19 10:43:15 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -31,6 +31,7 @@ typedef struct s_philo
 	int				num_times_must_eat;
 	int				num_times_eaten;	
 	bool			alive;
+	bool			finished_eating;
 	long long		start;
 	long long		time_last_eaten;
 	pthread_mutex_t	*left_fork;
@@ -42,12 +43,12 @@ typedef struct s_this
 	int				num_philos;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_t		death_tid;
+	pthread_t		monitor_tid;
 }	t_this;
 
 int			input_error_checking(int argc, char **argv);
 long long	ts(void);
 void		wait(long long time);
-void		*death_check_thread(void *this);
+void		*monitoring_thread(void *this);
 
 #endif

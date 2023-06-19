@@ -6,22 +6,10 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 10:29:20 by gbooth            #+#    #+#             */
-/*   Updated: 2023/06/16 00:27:13 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/06/19 10:44:24 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
-
-// alt death check:
-// i = 0;
-// while (i < ((t_this *)this)->num_philos)
-// {
-// 	((t_this *)this)->philos[i].alive = false;
-// 	// pthread_mutex_unlock(((t_this *)this)->philos[i].left_fork);
-// 	// pthread_mutex_unlock(((t_this *)this)->philos[i].right_fork);
-// 		free(this->forks);
-// 	i++;
-// }
-// return (NULL);
 
 int	input_error_checking(int argc, char **argv)
 {
@@ -68,10 +56,37 @@ void	wait(long long time)
 	}
 }
 
-void	*death_check_thread(void *void_this)
+int	death_checker(t_this *this)
 {
-	int		i;
+	int	i;
+
+	i = 0;
+	while (i < this->num_philos)
+	{
+		if (ts() > this->philos[i].time_last_eaten
+			+ this->philos[i].time_to_die)
+		{
+			printf("[%lld]	%i died\n", ts() - this->philos[i].start,
+				this->philos[i].index);
+			if (this->num_philos == 1)
+				pthread_mutex_unlock(this->philos[i].left_fork);
+			i = 0;
+			while (i < this->num_philos)
+			{
+				this->philos[i].alive = false;
+				i++;
+			}
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	*monitoring_thread(void *void_this)
+{
 	t_this	*this;
+	int		i;
 
 	this = ((t_this *)void_this);
 	while (1)
@@ -80,17 +95,15 @@ void	*death_check_thread(void *void_this)
 		i = 0;
 		while (i < this->num_philos)
 		{
-			if (ts() > this->philos[i].time_last_eaten
-				+ this->philos[i].time_to_die)
+			if (this->philos[i].finished_eating)
 			{
-				printf("[%lld]	%i died\n", ts() - this->philos[i].start,
-					this->philos[i].index);
-				free(this->forks);
-				free(this->philos);
-				free(this);
-				exit(0);
+				printf("[%lld]	%i finished eating\n", ts()
+					- this->philos[i].start, this->philos[i].index);
+				return (NULL);
 			}
 			i++;
 		}
+		if (death_checker(this))
+			return (NULL);
 	}
 }
