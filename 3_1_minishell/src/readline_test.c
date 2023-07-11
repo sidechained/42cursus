@@ -35,7 +35,7 @@ int main()
 	{
 		signal(SIGINT, sigint_handler); // display new prompt on new line when CTRL + C pressed
 		signal(SIGQUIT, SIG_IGN); // override/ignore default behaviour of CTRL + '\'
-		line = readline("myshell% ");
+		line = readline("microshell% ");
 		if (line == NULL) // using this to detect CTRL D, which sends EOF (what if line is actually NULL?)
 			break ;
 		if (strcmp(line, "clear") == 0)

@@ -1,0 +1,17 @@
+SRCS = main.cpp PhoneBook.cpp Contact.cpp
+NAME = phonebook
+
+all: $(NAME)
+
+$(NAME):
+	c++ -Wall -Werror -Wextra $(SRCS) -o $(NAME)
+
+clean:
+	# no clean action required
+
+fclean:
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

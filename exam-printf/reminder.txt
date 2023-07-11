@@ -1,0 +1,14 @@
+put digit takes an int
+
+for %x
+va_arg uses unsigned int
+base length is 16
+we should recur if number >= base length
+write returns length, so we can use that to update our length
+we recur the division, write and print the modulo
+
+for %s
+they check if string args are NULL and if so print "(null)", but ft_printf gives a warning when we try to do this
+
+if (!string)
+	string = "(null)";

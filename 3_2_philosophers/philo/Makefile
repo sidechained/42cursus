@@ -5,6 +5,7 @@ SRC_DIR := src
 
 NAME := philo
 SRC += $(SRC_DIR)/philo.c
+SRC += $(SRC_DIR)/threads.c
 SRC += $(SRC_DIR)/utils.c
 SRC += $(LFT_DIR)/*.c
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -29,7 +30,5 @@ fclean: clean
 	@rm -f checker	
 
 re: fclean all
-
-re-bonus: fclean bonus
 
 .PHONY: all clean fclean re 
