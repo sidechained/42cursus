@@ -1,14 +1,14 @@
 #ifndef FRAGTRAP_HPP
 # define FRAGTRAP_HPP
 
-#include <iostream> // cout
-#include "ClapTrap.hpp"
+# include <iostream>
+# include "ClapTrap.hpp"
 
 class FragTrap: public ClapTrap {
 	public:
+		FragTrap();
 		FragTrap(std::string givenName);
-		~FragTrap(void);
-		void attack(std::string const &target);		
+		~FragTrap();
 		void highFivesGuys(void);
 };
 

@@ -1,16 +1,15 @@
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
-#include <iostream> // cout
+#include <iostream>
 #include "ClapTrap.hpp"
 
-class ScavTrap: public ClapTrap {
+class ScavTrap: virtual public ClapTrap {
 	public:
+		ScavTrap();
 		ScavTrap(std::string givenName);
-		~ScavTrap(void);
+		~ScavTrap();	
 		void guardGate();
-	protected:
-		void attack(std::string const &target);		
 };
 
 #endif

@@ -6,10 +6,10 @@
 /*   By: gbooth <gbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 10:29:20 by gbooth            #+#    #+#             */
-/*   Updated: 2023/07/01 20:59:30 by gbooth           ###   ########.fr       */
+/*   Updated: 2023/07/12 08:31:13 by gbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef PHILO_H
+
 # define PHILO_H
 
 # include <stdio.h>
@@ -31,7 +31,7 @@ typedef struct s_philo
 	long long		time_last_eaten;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	struct s_info	*info;	
+	struct s_info	*info;
 }	t_philo;
 
 typedef struct s_info

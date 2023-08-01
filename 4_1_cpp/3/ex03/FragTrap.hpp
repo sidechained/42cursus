@@ -1,16 +1,15 @@
 #ifndef FRAGTRAP_HPP
 # define FRAGTRAP_HPP
 
-#include <iostream> // cout
-#include "ClapTrap.hpp"
+# include <iostream>
+# include "ClapTrap.hpp"
 
-class FragTrap: public ClapTrap {
+class FragTrap: virtual public ClapTrap {
 	public:
+		FragTrap();
 		FragTrap(std::string givenName);
-		~FragTrap(void);
+		~FragTrap();
 		void highFivesGuys(void);
-	private:
-		void attack(std::string const &target);
 };
 
 #endif

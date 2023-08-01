@@ -1,88 +1,86 @@
 #include "ClapTrap.hpp"
 
+// default constructor to comply with orthodox canonical form
+ClapTrap::ClapTrap()
+	: name("nobody"), hitPoints(10), energyPoints(10), attackDamage(0)
+{	
+	std::cout << "CONSTRUCTING:	Joy to the world, " << name << " has been born with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string givenName)
-{
-	this->name = givenName;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;	
-	std::cout << "CONSTRUCTING:	Joy to the world, " << this->name << " has been born!" << std::endl;
+	: name(givenName), hitPoints(10), energyPoints(10), attackDamage(0)
+{	
+	std::cout << "CONSTRUCTING:	Joy to the world, " << name << " has been born with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "DESTRUCTING:	Here lies " << this->name << ", now dust but never forgotten..." << std::endl;
+	std::cout << "DESTRUCTING:	Here lies " << name << ", now dust but never forgotten..." << std::endl;
 }
 
-// copy constructor
+// could also make use of assignment operator overload by doing "*this = copy" in main body instead;
 ClapTrap::ClapTrap(const ClapTrap &copy)
+	: name(copy.name), hitPoints(copy.hitPoints), energyPoints(copy.energyPoints), attackDamage(copy.attackDamage)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
 }
 
 // assignation operator overload
 ClapTrap	&ClapTrap::operator=(const ClapTrap &copy)
 {
 	std::cout << "Assignation operator called" << std::endl;
-	this->name = copy.name;
-	this->hitPoints = copy.hitPoints;
-	this->energyPoints = copy.energyPoints;
-	this->attackDamage = copy.attackDamage;	
+	name = copy.name;
+	hitPoints = copy.hitPoints;
+	energyPoints = copy.energyPoints;
+	attackDamage = copy.attackDamage;
 	return (*this);	
 }
 
 void ClapTrap::attack(std::string const &target)
 {
-	this->attackDamage = std::rand() % 10;
-	std::cout << "ATTACKING:	" << name << " attacks " << target << ", causing " << attackDamage << " point(s) of damage!" << std::endl;
+	if (energyPoints <= 0)
+	{
+		std::cout << "ATTACKING:	" << name << " doesn't have enough energy points to make the attack!" << std::endl;
+		return ;
+	}
+	energyPoints--;
+	std::cout << "ATTACKING:	" << name << " attacks " << target << " and now has " << energyPoints << " energy points remaining." << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "TAKING DAMAGE:	Of amount " << amount << ". ";
-	if (this->hitPoints < amount)
+	if (hitPoints <= 0)
 	{
-		this->hitPoints = 0;
-		std::cout << "Oh dear, " << this->name << " has " << this->hitPoints << " hit point(s) remaining and has died an untimely death." << std::endl;
+		std::cout << "TAKING DAMAGE:	" << name << " is already dead...let them R.I.P!" << std::endl;
+		return ;
+	}
+	std::cout << "TAKING DAMAGE:	" << name << " takes an attack damage of " << amount << ". ";
+	if (hitPoints < amount)
+	{
+		hitPoints = 0;
+		std::cout << "Oh dear they have " << hitPoints << " hit point(s) remaining and die." << std::endl;
 	}
 	else
 	{
-		this->hitPoints = this->hitPoints - amount;
-		std::cout << "Luckily, " << this->name << " has " << this->hitPoints << " hit point(s) remaining." << std::endl;
+		hitPoints = hitPoints - amount;
+		std::cout << "Luckily they have " << hitPoints << " hit point(s) remaining." << std::endl;
 	}
-
-}
-
-unsigned int ClapTrap::getAttackDamage()
-{
-	return(this->attackDamage);
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->hitPoints == 0)
+	if (hitPoints == 0)
 	{
-		std::cout << "REPAIRING:	" << this->name << " cannot be repaired. " << this->name << " is dead!!!" << std::endl;	
+		std::cout << "REPAIRING:	" << name << " cannot be repaired. " << name << " is dead!!!" << std::endl;
+		return ;
 	}
-	else {
-		std::cout << "REPAIRING:	Of amount " << amount << ". ";
-		if ((this->energyPoints - amount) < 0)
-		{
-			std::cout << "Sorry, you don't have enough energy points for that amount of repair." << std::endl;
-		}
-		else if ((this->hitPoints + amount) > 10)
-		{
-			this->energyPoints = this->hitPoints + amount - 10;
-			this->hitPoints = 10;
-			std::cout << this->name << " has been fully repaired (" << this->hitPoints << ") and has " << this->energyPoints << " energy point(s) remaining." << std::endl;
-		}
-		else
-		{
-			this->energyPoints = this->energyPoints - amount;
-			this->hitPoints = this->hitPoints + amount;		
-			std::cout << this->name << " has used " << amount << " energy point(s), bringing their hit points up to " << this->hitPoints << "." << std::endl;
-		}
+	if (energyPoints < 1)
+	{
+		std::cout << "REPAIRING:	Sorry, you don't have enough energy points to do the repair." << std::endl;
+		return ;
 	}
+	energyPoints--;
+	hitPoints = hitPoints + amount;	
+	std::cout << "REPAIRING:	" << name << " has been repaired by " << amount << " hitpoints, to a new total of " << hitPoints << " hitpoints, and has " << energyPoints << " energy point(s) remaining." << std::endl;
 }
 

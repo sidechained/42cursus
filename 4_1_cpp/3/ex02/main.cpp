@@ -7,45 +7,62 @@
 #include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 
-int main(void)
+void test_default_constructor()
 {
-	std::cout << std::endl;
-	std::cout << "* * * NEW FRAGTRAP TESTS (only):                " << std::endl;	
+	std::cout << std::endl;	
+	std::cout << "-- Testing default constructor:" << std::endl;
+	FragTrap nobody;
+}
+
+void test_copy_constructor()
+{
 	std::cout << std::endl;	
 	std::cout << "-- Testing copy constructor:             " << std::endl;
 	FragTrap kimbap("Kimbap");
 	FragTrap kimbap2(kimbap);
 	kimbap2.attack("Kimbap");
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << std::endl;
+}
 
+void test_assignment_op()
+{
+	std::cout << std::endl;
 	std::cout << "-- Testing assignment operator overload: " << std::endl;	
 	FragTrap filou("Filou");
 	FragTrap bonas("Bonas");	
 	filou = bonas;
 	filou.attack("Bonas");
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << std::endl;
+}
 
+void test_functionality()
+{
+	std::cout << std::endl;	
 	std::cout << "-- Testing functionality:                " << std::endl;	
-	FragTrap mavis("Dave");
-	FragTrap olivia("Silvia");	
+	FragTrap mavis("Mavis");
+	FragTrap olivia("Olivia");	
+	mavis.highFivesGuys();
+	olivia.highFivesGuys();
 	mavis.attack("Silvia");
-	olivia.takeDamage(mavis.getAttackDamage());	
+	olivia.takeDamage(69);	
 	olivia.beRepaired(10);
 	olivia.attack("Dave");
-	mavis.takeDamage(olivia.getAttackDamage());
+	mavis.takeDamage(53);
 	olivia.attack("Dave");
-	mavis.takeDamage(olivia.getAttackDamage());
+	mavis.takeDamage(42);
 	mavis.beRepaired(2);	
 	mavis.attack("Silvia");
-	olivia.takeDamage(mavis.getAttackDamage());
+	olivia.takeDamage(23);
 	olivia.beRepaired(2);
 	olivia.attack("Dave");
-	mavis.takeDamage(mavis.getAttackDamage());
+	mavis.takeDamage(89);
 	mavis.highFivesGuys();
-	std::cout << "------------------------------------------" << std::endl;
-	std::cout << std::endl;
-	std::cout << "* * * DESTRUCTIONS:                " << std::endl;	
-	return (0);
+	mavis.takeDamage(89);
+}
+
+int main()
+{
+	test_default_constructor();
+	test_copy_constructor();
+	test_assignment_op();
+	test_functionality();
+	return 0;
 }
