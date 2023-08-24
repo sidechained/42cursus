@@ -37,25 +37,25 @@ void test_functionality()
 {
 	std::cout << std::endl;	
 	std::cout << "-- Testing functionality:                " << std::endl;	
-	FragTrap mavis("Mavis");
-	FragTrap olivia("Olivia");	
-	mavis.highFivesGuys();
-	olivia.highFivesGuys();
-	mavis.attack("Silvia");
-	olivia.takeDamage(69);	
-	olivia.beRepaired(10);
-	olivia.attack("Dave");
-	mavis.takeDamage(53);
-	olivia.attack("Dave");
-	mavis.takeDamage(42);
-	mavis.beRepaired(2);	
-	mavis.attack("Silvia");
-	olivia.takeDamage(23);
-	olivia.beRepaired(2);
-	olivia.attack("Dave");
-	mavis.takeDamage(89);
-	mavis.highFivesGuys();
-	mavis.takeDamage(89);
+	FragTrap bevis("Bevis");
+	FragTrap viola("Viola");	
+	bevis.highFivesGuys();
+	viola.highFivesGuys();
+	bevis.attack("Viola");
+	viola.takeDamage(69);	
+	viola.beRepaired(10);
+	viola.attack("Bevis");
+	bevis.takeDamage(53);
+	viola.attack("Bevis");
+	bevis.takeDamage(42);
+	bevis.beRepaired(2);	
+	bevis.attack("Viola");
+	viola.takeDamage(23);
+	viola.beRepaired(2);
+	viola.attack("Bevis");
+	bevis.takeDamage(89);
+	bevis.highFivesGuys();
+	bevis.takeDamage(89);
 }
 
 int main()

@@ -7,13 +7,13 @@
 #include <ctime> 
 #include "AForm.hpp"
 
-class RobotomyRequestAForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string _target;
 	public:
-		RobotomyRequestAForm(std::string target);
-		~RobotomyRequestAForm();
+		RobotomyRequestForm(std::string target);
+		~RobotomyRequestForm();
 		void execute(Bureaucrat const &executor) const;
 };
 

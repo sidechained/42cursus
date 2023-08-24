@@ -6,6 +6,9 @@
 
 class AMateria; // this has to be here otherwise "error: unknown type name 'AMateria'""
 
+// By making all the member functions pure virtual, the ICharacter class specifies the required behavior for any character implementation.
+// This creates a common interface that all character-related classes must adhere to. 
+// Subclasses of ICharacter must implement all of these functions, ensuring they provide specific behavior for each function.
 class ICharacter
 {
 	public:

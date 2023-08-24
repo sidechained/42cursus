@@ -3,13 +3,15 @@
 
 # include <iostream>
 
-# define BRAINSIZE 4
+# define BRAINSIZE 100
 
 class Brain
 {
 	public:
 		Brain();
 		~Brain();
+		Brain (const Brain &old_obj);
+		Brain &operator=(const Brain &t);		
 		void sayFirstIdea() const;
 	protected:
 		std::string ideas[BRAINSIZE];

@@ -18,13 +18,13 @@ class Form
 		Form(const std::string name, const int requiredGradeToSign, const int requiredGradeToExecute);
 		~Form();
 		Form(Form &orig);
-		Form&	operator=(Form &orig);
+		Form&		operator=(Form &orig);
 		std::string	getName() const;
-		bool	getIsSigned() const;
-		int	getRequiredGradeToSign() const;
-		int	getRequiredGradeToExecute() const;
-		void	checkGrade() const;
-		void	beSigned(Bureaucrat &bureaucrat);
+		bool		getIsSigned() const;
+		int			getRequiredGradeToSign() const;
+		int			getRequiredGradeToExecute() const;
+		void		checkGrade() const;
+		void		beSigned(Bureaucrat &bureaucrat);
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -33,7 +33,6 @@ class Form
 					return ("FORM ERROR: Grade too high...aborting!");
 				}
 		};
-
 		class GradeTooLowException : public std::exception
 		{
 			public:

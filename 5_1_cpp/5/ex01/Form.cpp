@@ -61,6 +61,6 @@ void	Form::beSigned(Bureaucrat &bureaucrat)
 	else
 	{
 		_isSigned = false;
-		throw Bureaucrat::GradeTooLowException();
+		throw Form::GradeTooLowException();
 	}
 }

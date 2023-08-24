@@ -1,4 +1,4 @@
-NAME			= animalBrain
+NAME			= animalbrain
 SRCS			= Animal.cpp Dog.cpp Cat.cpp Brain.cpp main.cpp
 OBJS			= $(SRCS:.cpp=.o)
 CXX				= c++

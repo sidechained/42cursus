@@ -7,8 +7,10 @@
 int main()
 {
 	// this should cause: "error: allocating an object of abstract class type 'Animal'"
-	// const Animal* animal = new Animal();
+	const Animal* animal = new Animal();
 	// comment out the above line, and the following code should still work:
 	const Cat* cat = new Cat();
+	std::cout << std::endl;
 	cat->makeSound();
+	delete cat;
 }

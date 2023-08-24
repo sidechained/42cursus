@@ -3,13 +3,13 @@
 ClapTrap::ClapTrap()
 	: name("nobody"), hitPoints(10), energyPoints(10), attackDamage(0)
 {	
-	std::cout << "CONSTRUCTING:	Joy to the world, " << name << " has been born with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
+	std::cout << "CLAPTRAP CONSTRUCTING:	Joy to the world, " << name << " has been born with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string givenName)
 	: name(givenName), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	std::cout << "CONSTRUCTING:	Joy to the world, " << name << " has been born with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
+	std::cout << "CLAPTRAP CONSTRUCTING:	Joy to the world, " << name << " has been born with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -39,11 +39,11 @@ void ClapTrap::attack(std::string const &target)
 {
 	if (energyPoints <= 0)
 	{
-		std::cout << "ATTACKING:	" << name << " doesn't have enough energy points to make the attack!" << std::endl;
+		std::cout << "CLAPTRAP ATTACKING:	" << name << " doesn't have enough energy points to make the attack!" << std::endl;
 		return ;
 	}
 	energyPoints--;
-	std::cout << "ATTACKING:	" << name << " attacks " << target << " and now has " << energyPoints << " energy points remaining." << std::endl;
+	std::cout << "CLAPTRAP ATTACKING:	" << name << " attacks " << target << " and now has " << energyPoints << " energy points remaining." << std::endl;
 }
 
 
@@ -51,10 +51,10 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (hitPoints <= 0)
 	{
-		std::cout << "TAKING DAMAGE:	" << name << " is already dead...let them R.I.P!" << std::endl;
+		std::cout << "CLAPTRAP TAKING DAMAGE:	" << name << " is already dead...let them R.I.P!" << std::endl;
 		return ;
 	}
-	std::cout << "TAKING DAMAGE:	" << name << " takes an attack damage of " << amount << ". ";
+	std::cout << "CLAPTRAP TAKING DAMAGE:	" << name << " takes an attack damage of " << amount << ". ";
 	if (hitPoints < amount)
 	{
 		hitPoints = 0;
@@ -71,17 +71,17 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (hitPoints == 0)
 	{
-		std::cout << "REPAIRING:	" << name << " cannot be repaired. " << name << " is dead!!!" << std::endl;
+		std::cout << "CLAPTRAP REPAIRING:	" << name << " cannot be repaired. " << name << " is dead!!!" << std::endl;
 		return ;
 	}
 	if (energyPoints < 1)
 	{
-		std::cout << "REPAIRING:	Sorry, you don't have enough energy points." << std::endl;
+		std::cout << "CLAPTRAP REPAIRING:	Sorry, you don't have enough energy points." << std::endl;
 		return ;
 	}
 	energyPoints--;
 	hitPoints = hitPoints + amount;	
-	std::cout << "REPAIRING:	" << name << " has been repaired by " << amount << " hitpoints, to a new total of " << hitPoints << " hitpoints, and has " << energyPoints << " energy point(s) remaining." << std::endl;
+	std::cout << "CLAPTRAP REPAIRING:	" << name << " has been repaired by " << amount << " hitpoints, to a new total of " << hitPoints << " hitpoints, and has " << energyPoints << " energy point(s) remaining." << std::endl;
 }
 
 

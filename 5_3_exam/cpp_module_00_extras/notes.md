@@ -1,0 +1,1 @@
+# ex00 - things to remember when writing again from scratch!

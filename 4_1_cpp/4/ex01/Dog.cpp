@@ -2,7 +2,7 @@
 
 Dog::Dog()
 {
-	std::cout << "Dog constructor called" << std::endl;
+	std::cout << "Dog constructor called...";
 	brain = new Brain();
 	type = "Dog";
 }
@@ -10,18 +10,19 @@ Dog::Dog()
 Dog::~Dog()
 {
 	delete brain;
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << "Dog destructor called...";
 }
 
 Dog::Dog (const Dog &objToCopy)
 {
-	std::cout << "Dog copy-constructor called" << std::endl;
-	*this = objToCopy;
+	std::cout << "Cat copy-constructor called...";
+	brain = new Brain(*objToCopy.brain);
+	type = objToCopy.type;
 }
 
 Dog	&Dog::operator=(const Dog &objToCopy)
 {
-	std::cout << "Dog assignment-operator called" << std::endl;
+	std::cout << "Dog assignment-operator called...";
 	brain = objToCopy.brain;
 	type = objToCopy.type;	
 	return (*this);	
@@ -29,5 +30,5 @@ Dog	&Dog::operator=(const Dog &objToCopy)
 
 void	Dog::makeSound() const
 {
-	std::cout << "Dog says Woof!" << std::endl;
+	std::cout << "Dog says Woof!";
 }

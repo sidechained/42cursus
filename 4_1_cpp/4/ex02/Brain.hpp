@@ -10,7 +10,9 @@ class Brain
 	public:
 		Brain();
 		~Brain();
-		void	sayFirstIdea() const;
+		Brain (const Brain &old_obj);
+		Brain &operator=(const Brain &t);		
+		void sayFirstIdea() const;
 	protected:
 		std::string ideas[BRAINSIZE];
 };

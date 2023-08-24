@@ -12,12 +12,14 @@ class MateriaSource : public IMateriaSource
 	public:
 		MateriaSource();
 		~MateriaSource();
+		MateriaSource(const MateriaSource &orig);
+		MateriaSource &operator=(const MateriaSource &orig);		
 		int	getNextEmptySlot();
 		void learnMateria(AMateria* materiaToLearn);
 		AMateria* createMateria(std::string const & type);
-	private:
+	protected:
 		AMateria* learnedMaterias[4];
-		int nextEmptySlot;
+		
 };
 
 #endif

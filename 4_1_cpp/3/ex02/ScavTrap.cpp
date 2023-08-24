@@ -6,7 +6,7 @@ ScavTrap::ScavTrap()
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
-	std::cout << "	SCAVTRAP CONSTRUCTING:	Oh rejoice fellow countrymen, " << name << " has entered into the world with " << hitPoints << " hit points and " << energyPoints << " energy points!" << std::endl;
+	std::cout << "	SCAVTRAP CONSTRUCTING:	Oh rejoice fellow countrymen, " << name << " has entered into the world with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string givenName)
@@ -15,7 +15,7 @@ ScavTrap::ScavTrap(std::string givenName)
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
-	std::cout << "	SCAVTRAP CONSTRUCTING:	Oh rejoice fellow countrymen, " << name << " has entered into the world with " << hitPoints << " hit points and " << energyPoints << " energy points!" << std::endl;
+	std::cout << "	SCAVTRAP CONSTRUCTING:	Oh rejoice fellow countrymen, " << name << " has entered into the world with " << hitPoints << " hit points and " << energyPoints << " energy points and " << attackDamage << " attack damage!" << std::endl;
 }
 
 // technically scavtrap should have copy constructor and assignment operator overload member functions but these are inherited from claptrap

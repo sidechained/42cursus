@@ -10,7 +10,6 @@ class WrongAnimal
 		~WrongAnimal();
 		void makeSound() const;
 		std::string	getType() const;
-
 	protected:
 		std::string type;
 };

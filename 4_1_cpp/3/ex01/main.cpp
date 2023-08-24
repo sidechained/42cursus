@@ -31,22 +31,22 @@ void test_functionality()
 {
 	std::cout << std::endl;	
 	std::cout << "-- Testing functionality:" << std::endl;	
-	ScavTrap mavis("Dave");
-	ScavTrap olivia("Silvia");	
-	mavis.attack("Silvia");
+	ScavTrap mavis("Mavis");
+	ScavTrap olivia("Olivia");	
+	mavis.attack("Olivia");
 	olivia.takeDamage(47);	
 	olivia.beRepaired(10);
-	olivia.attack("Dave");
+	olivia.attack("Mavis");
 	mavis.takeDamage(69);
 	mavis.guardGate();
-	olivia.attack("Dave");
+	olivia.attack("Mavis");
 	mavis.takeDamage(32);
 	mavis.beRepaired(2);	
-	mavis.attack("Silvia");
+	mavis.attack("Olivia");
 	olivia.takeDamage(49);
 	olivia.guardGate();
 	olivia.beRepaired(2);
-	olivia.attack("Dave");
+	olivia.attack("Mavis");
 	mavis.takeDamage(23);
 }
 

@@ -1,0 +1,58 @@
+// cc -Wall -Werror -Wextra microshell.c -o microshell
+
+# no args
+./microshell
+(no args should exit cleanly)
+
+# single commands:
+./microshell /bin/ls
+./microshell ls
+(should fail - though in some cases it has worked!)
+./microshell test
+(error: cannot execute test)
+
+# single commands (cd):
+./microshell cd
+(error: cd: bad arguments) 
+./microshell cd .. ..
+(error: cd: bad arguments)
+./microshell cd ..
+(exits cleanly, can't check without semicolon)
+./microshell cd /tmp
+(exits cleanly, can't check without semicolon)
+
+# single commands (cd) with semicolon:
+./microshell cd .. ";" /bin/ls
+(dir changes correctly to one above)
+./microshell cd /tmp ";" /bin/ls
+(dir changes correctly to temp)
+
+# semicolons:
+./microshell /bin/ls ";" /bin/echo 1 2 3 ";" /bin/ls ";" /bin/echo 4 5 6
+(output from all four commands displayed)
+
+# pipes:
+./microshell /bin/ls "|" /bin/wc
+(only output of wc displayed, counting /bin/ls)
+./microshell /bin/ls "|" /bin/grep micro "|" /bin/wc -l
+(only output of wc displayed, counting the three greped lines)
+./microshell /bin/ls "|" /bin/wc "|" /bin/grep 3
+(line from wc is displayed because it has a 3 in it)
+
+# pipes and semicolons:
+./microshell /bin/ls "|" /usr/bin/grep microshell ";" /bin/echo i love my microshell
+(test from subject, works as it should)
+
+# long:
+./microshell /bin/ls "|" /bin/wc "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3 "|" /bin/grep 3
+(wc line greped repeatedly and finally returns)
+
+# edge cases:
+./microshell ls "|" ls
+(works as it should, we get errors for both commands)
+./microshell ls ";" ls ";" ls
+(works as it should, we get errors for all three commands)
+./microshell /bin/ls "|" /bin/ls
+(works as it should, just printing one of the ls's)
+./microshell /bin/ls "|" cd .. "|" /bin/ls
+(cd has no effect here, but I don't think this is tested)

@@ -1,6 +1,57 @@
 #include "templates.hpp"
 #include <iostream>
 
+void swap_tests()
+{
+	std::cout << std::endl << "-Testing 'swap' template:" << std::endl;
+	int x = 5, y = 10;
+	std::cout << "Before: " << x << " " << y << std::endl;
+	swap(x, y);
+	std::cout << "After: " << x << " " << y << std::endl;
+
+	double a = 2.5, b = 4.7;
+	std::cout << "Before: " << a << " " << b << std::endl;
+	swap(a, b);
+	std::cout << "After: " << a << " " << b << std::endl;
+
+	std::string d = "dee", e = "eee";
+	std::cout << "Before: " << d << " " << e << std::endl;
+	swap(d, e);
+	std::cout << "After: " << d << " " << e << std::endl;	
+}
+
+void min_tests()
+{
+	std::cout << std::endl << "-Testing 'min' template:" << std::endl;
+	int x = 5, y = 10;
+	std::cout << "Min value of x (" << x << ") and y (" << y << ") is: " << min(x, y) << std::endl;
+
+	double a = 4.7, b = 2.5;
+	std::cout << "Min value of a (" << a << ") and b (" << b << ") is: " << min(a, b) << std::endl;
+
+	unsigned int f = 5, g = 5;
+	std::cout << "Min value of f (" << f << ") and g (" << g << ") is: " << min(f, g) << std::endl;
+
+	std::string h = "hhh", i = "iii";
+	std::cout << "Min value of h (" << h << ") and i (" << i << ") is: " << min(h, i) << std::endl;	
+}
+
+void max_tests()
+{
+	std::cout << std::endl << "-Testing 'max' template:" << std::endl;
+	int x = 5, y = 10;
+	std::cout << "Max value of x (" << x << ") and y (" << y << ") is: " << max(x, y) << std::endl;
+
+	double a = 4.7, b = 2.5;
+	std::cout << "Max value of a (" << a << ") and b (" << b << ") is: " << max(a, b) << std::endl;
+
+	unsigned int f = 5, g = 5;
+	std::cout << "Max value of f (" << f << ") and g (" << g << ") is: " << max(f, g) << std::endl;			
+
+	std::string h = "hhh", i = "iii";
+	std::cout << "Max value of h (" << h << ") and i (" << i << ") is: " << max(h, i) << std::endl;	
+}
+
 void subject_tests()
 {
 	int a = 2;
@@ -23,42 +74,9 @@ void subject_tests()
 
 int main()
 {
-	{
-		std::cout << std::endl << "-Testing 'swap' template:" << std::endl;
-		int x = 5, y = 10;
-		std::cout << "Before: " << x << " " << y << std::endl;
-		swap(x, y);  // Compiler generates swap<int>(x, y)
-		std::cout << "After: " << x << " " << y << std::endl;
-
-		double a = 2.5, b = 4.7;
-		std::cout << "Before: " << a << " " << b << std::endl;
-		swap(a, b);  // Compiler generates swap<double>(a, b)
-		std::cout << "After: " << a << " " << b << std::endl;
-	}
-	{
-		std::cout << std::endl << "-Testing 'min' template:" << std::endl;
-		int x = 5, y = 10;
-		std::cout << "Min value of x (" << x << ") and y (" << y << ") is: " << min(x, y) << std::endl;
-	
-		double a = 4.7, b = 2.5;
-		std::cout << "Min value of a (" << a << ") and b (" << b << ") is: " << min(a, b) << std::endl;
-
-		unsigned int f = 5, g = 5;
-		std::cout << "Min value of f (" << f << ") and g (" << g << ") is: " << min(f, g) << std::endl;		
-	}
-	{
-		std::cout << std::endl << "-Testing 'max' template:" << std::endl;
-		int x = 5, y = 10;
-		std::cout << "Max value of x (" << x << ") and y (" << y << ") is: " << max(x, y) << std::endl;
-	
-		double a = 4.7, b = 2.5;
-		std::cout << "Max value of a (" << a << ") and b (" << b << ") is: " << max(a, b) << std::endl;
-
-		unsigned int f = 5, g = 5;
-		std::cout << "Max value of f (" << f << ") and g (" << g << ") is: " << max(f, g) << std::endl;		
-	}
-	{
-		subject_tests();
-	}
+	swap_tests();
+	min_tests();
+	max_tests();
+	subject_tests();
 	return 0;
 }

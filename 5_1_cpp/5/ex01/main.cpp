@@ -7,7 +7,7 @@ std::ostream&	operator<<(std::ostream &stream, const Bureaucrat &bureaucrat)
 	stream << 
 	"Bureaucrat is called: " << bureaucrat.getName() << std::endl <<
 	"Bureaucrat has a grade of: " << bureaucrat.getGrade() << std::endl;
-	return(stream);
+	return stream;
 }
 
 std::ostream&	operator<<(std::ostream &stream, const Form &form)
@@ -15,64 +15,47 @@ std::ostream&	operator<<(std::ostream &stream, const Form &form)
 	stream << 
 	"Form is entitled: " << form.getName() << std::endl <<
 	"Form can be signed with a grade of: " << form.getRequiredGradeToSign() << std::endl <<
-	"Form can be executed with a grade of: " << form.getRequiredGradeToExecute() << std::endl <<
 	"Form is currently " << (form.getIsSigned() ? "" : "not ") << "signed" << std::endl;
-	return(stream);
+	return stream;
 }
 
 void bureaucratTest(int grade)
 {
-	std::cout << std::endl;
-	Bureaucrat* dave = NULL;
-	Form* form = NULL;
+	Bureaucrat* dave;
+	Form* form;
+	dave = new Bureaucrat("Dave", grade);
+	std::cout << *dave;
+	form = new Form("Citizenship Agreement", 4, 2);
+	std::cout << *form;
+	std::cout << "Test 1: Calling Form besigned method..." << std::endl;
 	try
 	{
-		dave = new Bureaucrat("Dave", grade);
-		std::cout << *dave;
-		form = new Form("Citizenship Agreement", 4, 2);
-		std::cout << *form;
-		dave->signForm(*form);
-		form->beSigned(*dave);
-		std::cout << "Form isSigned = " << form->getIsSigned() << std::endl;
-		delete dave;
-		delete form;
-		std::cout << std::endl;
+		form->beSigned(*dave); // why is Bureaucrat error thrown not form error?
 	}
 	catch(std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
-		delete dave;
-		delete form;
-		return ;
 	}
-}
-
-// how to detect if a form grade is out of bounds?
-void formTest(int grade)
-{
+	std::cout << "Result: Form isSigned = " << std::boolalpha << form->getIsSigned() << std::endl;
+	std::cout << "Test 2: Calling Bureaucrat signForm method..." << std::endl;	
+	try
+	{
+		dave->signForm(*form);
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	std::cout << std::endl;
-	Bureaucrat* dave = new Bureaucrat("Dave", 1);
-	std::cout << *dave;
-	Form* form = new Form("Citizenship Agreement", 2, 160);
-	std::cout << *form;
-	dave->signForm(*form);
-	form->beSigned(*dave);
-	std::cout << "Form isSigned = " << form->getIsSigned() << std::endl;	
-	delete form;
 	delete dave;
-	std::cout << std::endl;
+	delete form;
 }
 
 int main()
 {
-	std::cout << "-Testing Bureaucrat signForm function [when bureaucrat grade within range of signing requirement]:" << std::endl;
+	std::cout << "-Testing Bureaucrat signForm and Form beSigned functions" << std::endl << " [when bureaucrat grade better (<) than signing requirement]:" << std::endl;
 	bureaucratTest(3);	
-	std::cout << "-Testing signForm and beSigned functions [when bureaucrat grade worse/> than signing requirement]:" << std::endl;
+	std::cout << "-Testing Bureaucrat signForm and Form beSigned functions" << std::endl << " [when bureaucrat grade worse (>) than signing requirement]:" << std::endl;
 	bureaucratTest(5);
-	std::cout << "-Testing Bureaucrat signForm function [when bureaucrat grade better/< than signing requirement]:" << std::endl;
-	bureaucratTest(1);
-	// std::cout << "-Testing Bureaucrat signForm function [when bureaucrat grade better/< than signing requirement]:" << std::endl;
-	// std::cout << "-Testing Bureaucrat signForm function [when bureaucrat grade better/< than signing requirement]:" << std::endl;
-	// std::cout << "-Testing Bureaucrat signForm function [when bureaucrat grade better/< than signing requirement]:" << std::endl;
 }
 

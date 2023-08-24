@@ -1,15 +1,15 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationAForm::ShrubberyCreationAForm(std::string target):
-	AForm("ShrubberyCreationAForm", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target):
+	AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 }
 
-ShrubberyCreationAForm::~ShrubberyCreationAForm()
+ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-void ShrubberyCreationAForm::execute(Bureaucrat const &executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	checkIfExecutable(executor);
 	std::cout << _target << "_shrubbery file created in current directory." << std::endl;

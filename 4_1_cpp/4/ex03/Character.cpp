@@ -2,67 +2,66 @@
 
 Character::Character(std::string const &name)
 {
-	std::cout << "Character constructor called" << std::endl;
-	this->_name = name;
-	int i;
-	i = 0;
-	while(i <= 3)
-	{
+	// std::cout << "Character constructor called..." << std::endl;
+	_name = name;
+	for(int i = 0; i <= 3; i++)
 		inventory[i] = NULL;
-		i++;
-	}
 }
 
 Character::~Character()
 {
-	std::cout << "Character destructor called" << std::endl;
-	int i;
-	i = 0;
-	while(i <= 3)
+	// std::cout << "Character destructor called..." << std::endl;
+	for(int i = 0; i <= 3; i++)
 	{
 		if(inventory[i] != NULL)
 			delete inventory[i];
-		i++;
 	}	
 }
 
 Character::Character(const Character &orig)
 {
-	std::cout << "Character copy-constructor called" << std::endl;
+	// std::cout << "Character copy-constructor called..." << std::endl;
 	*this = orig;
 }
 
-// Character	&Character::operator=(const Character &orig)
-// {
-// 	std::cout << "Character assignment-operator called" << std::endl;
-// 	this->_name = orig._name;
-// 	//this->inventory = orig.inventory; // how to copy array? error says "not assignable"
-// 	this->nextEmptySlot = orig.nextEmptySlot;
-// 	return *this;
-// }
+Character	&Character::operator=(const Character &orig)
+{
+	std::cout << "Character assignment-operator called..." << std::endl;
+	_name = orig._name;
+	// deep copy the inventory array
+    for (int i = 0; i < 4; i++)
+    {
+        if (orig.inventory[i] != NULL)
+		{
+			delete inventory[i];
+            inventory[i] = orig.inventory[i]->clone();
+		}
+        else
+            inventory[i] = NULL;
+    }
+	return *this;
+}
 
 std::string const &Character::getName() const
 {
-	return(this->_name);
+	return _name;
 }
 
 int	Character::getNextEmptySlot()
 {
-	int i;
-	i = 0;
-	while(i <= 3)
+	for(int i = 0; i <= 3; i++)
 	{
 		if (inventory[i] == NULL)
 			return (i);
-		i++;
 	}
-	return(4);
+	return -1;
 }
 
 void Character::equip(AMateria* m)
 {
-	nextEmptySlot = getNextEmptySlot();
-	if (nextEmptySlot <= 3)
+	int nextEmptySlot = getNextEmptySlot();
+	// std::cout << "nes:" << nextEmptySlot << std::endl;
+	if (nextEmptySlot != -1)
 	{
 		inventory[nextEmptySlot] = m;
 		std::cout << "Materia " << m->getType() << " equipped at position " << nextEmptySlot << " in inventory" << std::endl;	
@@ -74,10 +73,10 @@ void Character::unequip(int idx)
 	if (idx >= 0 && idx <= 3)
 	{
 		if (inventory[idx] != NULL)
-			{
-				std::cout << "Materia " << inventory[idx]->getType() << " unequipped at position " << idx << " in inventory" << std::endl;	
-				inventory[idx] = NULL;
-			}
+		{
+			std::cout << "Materia " << inventory[idx]->getType() << " unequipped at position " << idx << " in inventory" << std::endl;
+			inventory[idx] = NULL;
+		}
 	}
 }
 

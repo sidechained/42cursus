@@ -22,10 +22,10 @@ Intern&	Intern::operator=(Intern &orig)
 	return(*this);
 }
 
-AForm* Intern::makeAForm(std::string formName, std::string target)
+AForm* Intern::makeForm(std::string formName, std::string target)
 {
 	std::string formNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	AForm* formTypes[3] = {new ShrubberyCreationAForm(target), new RobotomyRequestAForm(target), new PresidentialPardonAForm(target)};
+	AForm* formTypes[3] = {new ShrubberyCreationForm(target), new RobotomyRequestForm(target), new PresidentialPardonForm(target)};
 	AForm* formToReturn = NULL;
 	for (int i = 0; i < 3; i++)
 	{

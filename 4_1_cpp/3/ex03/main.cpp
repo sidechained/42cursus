@@ -1,59 +1,56 @@
-// TODO: fix floating point error (rand modulo)
-// TODO: force destroy objects (so that all destructions don't happen at end)...but tricky
-// TODO: DiamondTrap, FragTrap and ScavTrap should have their own copy constructors and operator overloads as these are not inherited - see here:
-// https://www.tutorialspoint.com/cplusplus/cpp_inheritance.htm
+// used the -Wno-shadow flag with Makefile to suppress warning messages from using the same 'name' variable in both ClapTrap and Diamondtrap. In general this is not recommended
+// Variable shadowing occurs when a new variable declared within a nested scope (such as a function or block) has the same name as a variable declared in an outer scope. This can lead to confusion and bugs, as the inner variable can "shadow" the outer one, making the outer variable inaccessible within the nested scope.
 
-// address: Do you know the -Wshadow and -Wno-shadow compiler flags?
+// Attributes for DiamondTrap instances should be:
+// Hit points (FragTrap) 100
+// Energy points (ScavTrap) 50
+// Attack damage (FragTrap) 30
+
+// solved: ClapTrap, ScavTrap, FragTrap and DiamondTrap all need their own independent variables for hit points, energy points and attack damage, otherwise they get overwritten during construction i.e. ScavTrap overwrites FragTrap
 
 #include "ClapTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 void test_copy_constructor()
 {
-	std::cout << std::endl;
-	std::cout << "* * * NEW FRAGTRAP TESTS (only):                " << std::endl;	
 	std::cout << std::endl;	
 	std::cout << "-- Testing copy constructor:             " << std::endl;
-	FragTrap kimbap("Kimbap");
-	FragTrap kimbap2(kimbap);
+	DiamondTrap kimbap("Kimbap");
+	DiamondTrap kimbap2(kimbap);
 	kimbap2.attack("Kimbap");
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << std::endl;
 }
 
 void test_assignment_op()
 {
+	std::cout << std::endl;
 	std::cout << "-- Testing assignment operator overload: " << std::endl;	
-	FragTrap filou("Filou");
-	FragTrap bonas("Bonas");	
+	DiamondTrap filou("Filou");
+	DiamondTrap bonas("Bonas");	
 	filou = bonas;
 	filou.attack("Bonas");
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << std::endl;
 }
 
 void test_functionality()
 {
-	std::cout << "-- Testing functionality:                " << std::endl;	
-	FragTrap mavis("Dave");
-	FragTrap olivia("Silvia");	
-	mavis.attack("Silvia");
-	olivia.takeDamage(20);	
-	olivia.beRepaired(10);
-	olivia.attack("Dave");
-	mavis.takeDamage(20);
-	olivia.attack("Dave");
-	mavis.takeDamage(20);
-	mavis.beRepaired(2);	
-	mavis.attack("Silvia");
-	olivia.takeDamage(20);
-	olivia.beRepaired(2);
-	olivia.attack("Dave");
-	mavis.takeDamage(20);
-	mavis.highFivesGuys();
-	std::cout << "------------------------------------------" << std::endl;
 	std::cout << std::endl;
-	std::cout << "* * * DESTRUCTIONS:                " << std::endl;	
+	std::cout << "-- Testing functionality:                " << std::endl;	
+	DiamondTrap vikram("Vikram");
+	DiamondTrap alivio("Alivio");
+	vikram.whoAmI();
+	alivio.whoAmI();
+	vikram.attack("Alivio");
+	alivio.takeDamage(30);	
+	alivio.beRepaired(10);
+	alivio.attack("Vikram");
+	vikram.takeDamage(30);
+	alivio.attack("Vikram");
+	vikram.takeDamage(30);
+	vikram.beRepaired(2);	
+	vikram.attack("Alivio");
+	alivio.takeDamage(30);
+	alivio.beRepaired(2);
+	alivio.attack("Vikram");
+	vikram.takeDamage(30);
 }
 
 int main()

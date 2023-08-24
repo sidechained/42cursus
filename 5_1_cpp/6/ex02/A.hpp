@@ -5,11 +5,6 @@
 
 class A : public Base
 {
-	public:
-		A();
-		~A();
-		A(A &orig);
-		A& operator=(A &orig);
 };
 
 #endif

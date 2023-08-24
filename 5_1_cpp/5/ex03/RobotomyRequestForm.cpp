@@ -1,16 +1,16 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestAForm::RobotomyRequestAForm(std::string target):
-	AForm("RobotomyRequestAForm", 75, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target):
+	AForm("RobotomyRequestForm", 75, 45), _target(target)
 {
 	std::srand(static_cast<unsigned int>(std::time(NULL)));
 }
 
-RobotomyRequestAForm::~RobotomyRequestAForm()
+RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-void RobotomyRequestAForm::execute(Bureaucrat const &executor) const
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	checkIfExecutable(executor);
 	std::cout << "DRRRR BRRRR GRRRR BAM BAM BAM CLANG" << std::endl;

@@ -2,45 +2,63 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "MateriaSource constructor called" << std::endl;
-		int i;
-	i = 0;
-	while(i <= 3)
-	{
+	// std::cout << "MateriaSource constructor called..." << std::endl;
+	for(int i = 0; i <= 3; i++)
 		learnedMaterias[i] = NULL;
-		i++;
-	}
 }
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "MateriaSource destructor called" << std::endl;
+	// std::cout << "MateriaSource destructor called..." << std::endl;
+	for(int i = 0; i <= 3; i++)
+		if (learnedMaterias[i] != NULL)
+			delete learnedMaterias[i];
+}
+
+MateriaSource::MateriaSource(const MateriaSource &orig)
+{
+	// std::cout << "AMateria copy-constructor called..." << std::endl;
+	*this = orig;
+}
+
+MateriaSource	&MateriaSource::operator=(const MateriaSource &orig)
+{
+	// std::cout << "AMateria assignment-operator called..." << std::endl;
+    if (this != &orig)
+    {
+        for (int i = 0; i <= 3; i++)
+        {
+            delete learnedMaterias[i]; // Deallocate any dynamically allocated Materia objects
+            learnedMaterias[i] = NULL;
+            if (orig.learnedMaterias[i] != NULL)
+                learnedMaterias[i] = orig.learnedMaterias[i]->clone(); // Assuming there's a clone() method in the Materia class
+        }
+    }
+	return *this;
 }
 
 int	MateriaSource::getNextEmptySlot()
 {
-	int i;
-	i = 0;
-	while(i <= 3)
+	for (int i = 0; i < 4; i++)
 	{
 		if (learnedMaterias[i] == NULL)
-			return (i);
-		i++;
+			return i;
 	}
-	return(4);
+	return -1;
 }
 
 // must copy the Materia passed as a parameter, and store it in memory to be cloned later
 // as for Character, the Source can know at most 4 Materia, which are not necessarily unique
 void MateriaSource::learnMateria(AMateria* materiaToLearn)
 {
-	std::cout << "MateriaSource learnMateria method called" << std::endl;
+	int nextEmptySlot;
+	// std::cout << "MateriaSource learnMateria method called..." << std::endl;
 	nextEmptySlot = getNextEmptySlot();
-	if (nextEmptySlot <= 3)
+	if (nextEmptySlot != -1)
 	{
 		learnedMaterias[nextEmptySlot] = materiaToLearn;
 		std::cout << "Materia " << materiaToLearn->getType() << " learned at position " << nextEmptySlot << std::endl;	
-	}	
+	}
 }
 
 // will return a new Materia
@@ -49,17 +67,14 @@ void MateriaSource::learnMateria(AMateria* materiaToLearn)
 // Returns 0 if the type is unknown
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	std::cout << "MateriaSource createMateria method called" << std::endl;
-	int i;
-	i = 0;
-	while(i <= 3)
+	// std::cout << "MateriaSource createMateria method called..." << std::endl;
+	for (int i = 0; i <= 3; i++)
 	{
 		if (learnedMaterias[i] != NULL)
 		{
 			if (learnedMaterias[i]->getType() == type)
 				return (learnedMaterias[i]->clone());
-		}	
-		i++;
+		}
 	}
-	return(0);
+	return 0;
 }

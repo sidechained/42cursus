@@ -5,13 +5,13 @@
 #include <fstream>
 #include "AForm.hpp"
 
-class PresidentialPardonAForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 	private:
 		std::string _target;
 	public:
-		PresidentialPardonAForm(std::string target);
-		~PresidentialPardonAForm();
+		PresidentialPardonForm(std::string target);
+		~PresidentialPardonForm();
 		void execute(Bureaucrat const &executor) const;
 };
 

@@ -12,7 +12,8 @@ class Dog : public Animal
 		Dog (const Dog &old_obj);
 		Dog &operator=(const Dog &t);
 		void	makeSound() const;
-		const Brain* brain; // or private?
+	private:
+		const Brain* brain;
 };
 
 #endif

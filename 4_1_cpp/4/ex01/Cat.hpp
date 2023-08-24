@@ -9,10 +9,12 @@ class Cat : public Animal
 	public:
 		Cat();
 		~Cat();
-		Cat (const Cat &old_obj);
-		Cat &operator=(const Cat &t);
-		void	makeSound() const;
-		const Brain* brain; // or private?
+		Cat (const Cat &objToCopy);
+		Cat &operator=(Cat &objToCopy);
+		void makeSound() const;
+		const Brain* getBrain() const;
+	private:
+    	const Brain* brain;
 };
 
 #endif

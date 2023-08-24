@@ -2,10 +2,7 @@
 
 Brain::Brain()
 {
-	int i;
-	i = 0;
-
-	while(i < BRAINSIZE)
+	for(int i = 0; i < BRAINSIZE; i++)
 	{
 		// create corresponding char from '!' to '~' in ascii table (93 chars)
 		// repeat three times to make the string
@@ -15,14 +12,28 @@ Brain::Brain()
 		ideas[i] += c;
 		ideas[i] += c;
 		ideas[i] += c;
-		i++;
 	}
-	std::cout << "Brain constructor called" << std::endl;
+	std::cout << "Brain constructor called...";
 }
 
 Brain::~Brain()
 {
-	std::cout << "Brain destructor called" << std::endl;
+	std::cout << "Brain destructor called...";
+}
+
+Brain::Brain (const Brain &objToCopy)
+{
+	std::cout << "Brain copy-constructor called...";
+	*this = objToCopy;
+}
+
+Brain	&Brain::operator=(const Brain &objToCopy)
+{
+	std::cout << "Brain assignment-operator called...";
+	for (int i = 0; i < 100; i++) {
+        ideas[i] = objToCopy.ideas[i];
+    }
+	return (*this);	
 }
 
 void	Brain::sayFirstIdea() const

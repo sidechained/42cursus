@@ -1,8 +1,3 @@
-// 5 classes: AMateria -> Ice/Cure, ICharacter, MateriaSource
-
-// TODO: Copy or assignation of a Character must be deep, of course.
-// TODO: The old Materia of a Character must be deleted - what do we mean by 'old materia'
-
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
@@ -31,21 +26,7 @@ void providedTests()
 	delete bob;
 	delete me;
 	delete src;
-}
-
-// testing clone method by cloning instance of Ice
-// Clone is now of type AMateria, not Ice, but type variable is still "ice"
-// TODO: if you clone an Ice Materia, you will get a new Ice Materia
-void cloneTest()
-{
-	std::cout << "--- Materia Clone Test" << std::endl;
-	Ice* test_ice = new Ice();
-	std::cout << test_ice->clone()->getType() << std::endl;
-}
-
-void copyTests()
-{
-	//TODO
+	std::cout << std::endl;
 }
 
 void inventoryTests()
@@ -64,7 +45,7 @@ void inventoryTests()
 	bob->equip(test_cure1);
 	bob->equip(test_ice2);
 	bob->equip(test_cure2);
-	std::cout << "-3. Bob uses the (4) materias in his inventory on Jim" << std::endl;	
+	std::cout << "-3. Bob uses the four materias in his inventory on Jim" << std::endl;	
 	bob->use(0, *jim);
 	bob->use(1, *jim);
 	bob->use(2, *jim);
@@ -87,8 +68,9 @@ void inventoryTests()
 	bob->use(3, *jim);
 	std::cout << "-7. Delete bob (and his inventory)" << std::endl;	
 	delete bob;
-	std::cout << "-8. Delete bob (has no inventory to delete)" << std::endl;		
+	std::cout << "-8. Delete jim (has no inventory to delete)" << std::endl;		
 	delete jim;
+	std::cout << std::endl;
 }
 
 void MateriaSourceTests()
@@ -102,19 +84,27 @@ void MateriaSourceTests()
 	std::cout << "3. MateriaSource learns the two new materias" << std::endl;	
 	materiaSource->learnMateria(test_ice1);
 	materiaSource->learnMateria(test_cure1);
-	std::cout << "4. Creates clones of the two new materias by pass their names as strings to createMateria()" << std::endl;		
-	std::cout << materiaSource->createMateria("ice")->getType() << std::endl;
-	std::cout << materiaSource->createMateria("cure")->getType() << std::endl;
-	std::cout << "5. Showing that an unknown materia name passed to createMateria() returns 0" << std::endl;		
-	std::cout << materiaSource->createMateria("flimflam") << std::endl;		
+	std::cout << "4. Create clones of the two new materias by passing their names as strings to createMateria()" << std::endl;
+	AMateria* cloned_ice1 = materiaSource->createMateria("ice");
+	AMateria* cloned_cure1 = materiaSource->createMateria("cure");
+	std::cout << "5. Delete the original ice and cure" << std::endl;
+	delete test_ice1; // this will expectedly cause leaks as materiaSource tries to delete it's materia's on destruction [comment out when clear about this test]
+	delete test_cure1; // this will expectedly cause leaks as materiaSource tries to delete it's materia's on destruction [comment out when clear about this test]
+	std::cout << "6. Get the type of the clones, they should still exist even though the originals have been deleted" << std::endl;
+	std::cout << cloned_ice1->getType() << std::endl;
+	std::cout << cloned_cure1->getType() << std::endl;	
+	std::cout << "7. Showing that an unknown materia name passed to createMateria() returns 0" << std::endl;		
+	std::cout << materiaSource->createMateria("flimflam") << std::endl;
+	delete cloned_ice1;
+	delete cloned_cure1;
+	// delete materiaSource; // uncomment this when commenting out the above two lines
+	std::cout << std::endl;
 }
 
 int main()
 {
 	providedTests();
-	// cloneTest();
-	// copyTests();
-	// inventoryTests();
-	// MateriaSourceTests();
-	return (0);
+	inventoryTests();
+	MateriaSourceTests();
+	return 0;
 }
