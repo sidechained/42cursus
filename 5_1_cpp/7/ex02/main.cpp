@@ -1,7 +1,5 @@
 #include "Array.hpp"
-
 #include <iostream>
-
 #define SIZE 5
 
 int main()

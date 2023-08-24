@@ -1,6 +1,11 @@
 #include "templates.hpp"
 #include <iostream>
 
+struct Person {
+	std::string name;
+	int age;
+};
+
 void swap_tests()
 {
 	std::cout << std::endl << "-Testing 'swap' template:" << std::endl;
@@ -72,11 +77,36 @@ void subject_tests()
 	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
 }
 
+void complex_test()
+{
+	Person person1;
+	person1.name = "Bob";
+	person1.age = 32;
+
+	Person person2;
+	person2.name = "Jill";
+	person2.age = 8;
+	
+	std::cout << std::endl << "-Testing 'swap' with complex type (Person struct):" << std::endl;
+	std::cout << "Before: " << std::endl;
+	std::cout << "	Person 1 name: " << person1.name << std::endl;
+	std::cout << "	Person 1 age: " << person1.age << std::endl;
+	std::cout << "	Person 2 name: " << person2.name << std::endl;
+	std::cout << "	Person 2 age: " << person2.age << std::endl;		
+	swap(person1, person2);
+	std::cout << "After: " << std::endl;
+	std::cout << "	Person 1 name: " << person1.name << std::endl;
+	std::cout << "	Person 1 age: " << person1.age << std::endl;
+	std::cout << "	Person 2 name: " << person2.name << std::endl;
+	std::cout << "	Person 2 age: " << person2.age << std::endl;
+}
+
 int main()
 {
 	swap_tests();
 	min_tests();
 	max_tests();
+	complex_test();
 	subject_tests();
 	return 0;
 }
