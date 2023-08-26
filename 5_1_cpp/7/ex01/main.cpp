@@ -46,7 +46,6 @@ int main()
 	personArray[1].age = 8;	
 	size_t personArraySize = sizeof(personArray) / sizeof(personArray[0]);
 	iter(personArray, personArraySize, printPerson);
-	std::cout << std::endl << std::endl;	
 
 	return 0;
 }
