@@ -2,6 +2,9 @@
 # define WARLOCK_HPP
 
 # include <iostream>
+
+# include "ASpell.hpp"
+# include "ATarget.hpp"
 # include "SpellBook.hpp"
 
 class Warlock
@@ -10,18 +13,19 @@ class Warlock
 		std::string name;
 		std::string title;
 		SpellBook book;
+		Warlock();
+		Warlock(Warlock &);
+		Warlock& operator=(Warlock &);		
 	public:
-		Warlock(std::string n, std::string t);
+		Warlock(std::string, std::string);
 		~Warlock();
-		Warlock(Warlock &obj);
-		Warlock &operator=(Warlock &obj);		
-		const std::string getName() const;
-		const std::string getTitle() const;
-		void setTitle(const std::string title_);
+		std::string getName() const;
+		std::string getTitle() const;
+		void setTitle(const std::string);
 		void introduce() const;
-		void learnSpell(ASpell *spell);
-		void forgetSpell(std::string spellName); // , and makes the Warlock forget it. If it's not a known spell, does nothing.
-		void launchSpell(std::string spellName, ATarget &t); // launches the spell on the selected target. If it's not a known spell, does nothing.
+		void learnSpell(ASpell *);
+		void forgetSpell(std::string);
+		void launchSpell(std::string, ATarget &);
 };
 
 #endif

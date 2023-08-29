@@ -1,5 +1,6 @@
 #include "SpellBook.hpp"
 
+
 SpellBook::SpellBook()
 {
 
@@ -7,28 +8,35 @@ SpellBook::SpellBook()
 
 SpellBook::~SpellBook()
 {
-
+    std::map<std::string, ASpell *>::iterator it_begin = this->book.begin();
+    std::map<std::string, ASpell *>::iterator it_end = this->book.end();
+    while (it_begin != it_end)
+    {
+        delete it_begin->second;
+        ++it_begin;
+    }
+    this->book.clear();
 }
 
-// COPIES a spell in the book
-void SpellBook::learnSpell(ASpell* spell)
+void SpellBook::learnSpell(ASpell* s)
 {
-   	if(spell)
-		book[spell->getName()] = spell; 
+	if(!(book.find(s->getName()) != book.end()))
+		book[s->getName()] = s.clone();
 }
 
-// deletes a spell from the book, except if it isn't there
-void SpellBook::forgetSpell(std::string const &spellName)
+void SpellBook::forgetSpell(std::string const &sn)
 {
-   	if(book.find(spellName) != book.end())
-		book.erase(book.find(spellName)); 
+	if(book.find(sn) != book.end())
+	{	
+		delete(book.find(sn);
+		book.erase(book.find(sn));
+	}
 }
 
-// receives a string corresponding to the name of a spell, creates it, and returns it.
-ASpell* SpellBook::createSpell(std::string const &spellName)
+ASpell* SpellBook::createSpell(std::string const &sn)
 {
-    ASpell* tmp = NULL;
-	if (book.find(spellName) != book.end())
-		tmp = book[spellName];
-	return (tmp);
+	ASpell *tmpSpell = NULL;
+	if(book.find(sn) != book.end())
+		tmpSpell = book[sn];
+	return (tmpSpell);
 }

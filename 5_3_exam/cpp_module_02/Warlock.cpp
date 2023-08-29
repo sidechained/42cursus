@@ -12,31 +12,19 @@ Warlock::~Warlock()
 	std::cout << name << ": My job here is done!" << std::endl;
 }
 
-Warlock::Warlock(Warlock &obj)
-{
-	*this = obj;
-}
-
-Warlock & Warlock::operator=(Warlock &obj)
-{
-	name = obj.name;
-	title = obj.title;
-	return *this;
-}
-
-const std::string Warlock::getName() const
+std::string Warlock::getName() const
 {
 	return name;
 }
 
-const std::string Warlock::getTitle() const
+std::string Warlock::getTitle() const
 {
 	return title;
 }
 
-void Warlock::setTitle(const std::string title_)
+void Warlock::setTitle(const std::string t)
 {
-	title = title_;
+	title = t;
 }
 
 void Warlock::introduce() const
@@ -44,18 +32,18 @@ void Warlock::introduce() const
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-void Warlock::learnSpell(ASpell *spell)
+void Warlock::learnSpell(ASpell *s)
 {
-	book.learnSpell(spell);
+	book.learnSpell(s);
 }
 
-void Warlock::forgetSpell(std::string spellName)
+void Warlock::forgetSpell(std::string sn)
 {
-	book.forgetSpell(spellName);
+	book.forgetSpell(sn);
 }
 
-void Warlock::launchSpell(std::string spellName, ATarget &t)
+void Warlock::launchSpell(std::string sn, ATarget &t)
 {
-	if (book.createSpell(spellName)) // if spell was created, launch it
-		book.createSpell(spellName)->launch(t);		
+	if(book.createSpell(sn))
+		book.createSpell(sn)->launch(t);
 }

@@ -7,8 +7,10 @@ class Polymorph : public ASpell
 {
 	public:
 		Polymorph();
+		Polymorph(Polymorph &);
+		Polymorph& operator=(Polymorph &);
 		~Polymorph();
-		ASpell *clone() const;
+		Polymorph* clone() const;
 };
 
 #endif

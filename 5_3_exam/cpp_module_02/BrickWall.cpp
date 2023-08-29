@@ -1,8 +1,19 @@
 #include "BrickWall.hpp"
 
-BrickWall::BrickWall() : ATarget("Inconspicuous Red-brick Wall")
+BrickWall::BrickWall()
 {
+	type = "Inconspicuous Red-brick Wall";
+}
 
+BrickWall::BrickWall(BrickWall &o)
+{
+	*this = o;
+}
+
+BrickWall& BrickWall::operator=(BrickWall &o)
+{
+	this->type = o.type;
+	return *this;
 }
 
 BrickWall::~BrickWall()
@@ -10,7 +21,7 @@ BrickWall::~BrickWall()
 
 }
 
-ATarget *BrickWall::clone() const
+BrickWall* BrickWall::clone() const
 {
-	return (new BrickWall());
+	return new BrickWall();
 }

@@ -7,8 +7,10 @@ class Fireball : public ASpell
 {
 	public:
 		Fireball();
+		Fireball(Fireball &);
+		Fireball& operator=(Fireball &);
 		~Fireball();
-		ASpell *clone() const;
+		Fireball* clone() const;
 };
 
 #endif

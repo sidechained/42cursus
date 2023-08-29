@@ -2,20 +2,21 @@
 # define TARGETGENERATOR_HPP
 
 # include <map>
-# include "ATarget.hpp"
+# include <string>
+# include "ASpell.hpp"
 
 class TargetGenerator
 {
 	private:
-		TargetGenerator(TargetGenerator &obj);
-		TargetGenerator& operator=(TargetGenerator &obj);
-		std::map < std::string, ATarget*> target;
+		TargetGenerator(TargetGenerator &);
+		TargetGenerator &operator=(TargetGenerator &);
+		std::map < std::string, ATarget * > tbook;
 	public:
 		TargetGenerator();
 		~TargetGenerator();
-		void learnTargetType(ATarget* t);
-		void forgetTargetType(std::string const &t);
-		ATarget* createTarget(std::string const &t);
+		void learnTargetType(ATarget*);
+		void forgetTargetType(std::string const &);
+		ATarget* createTarget(std::string const &);
 };
 
 #endif
