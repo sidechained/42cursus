@@ -1,9 +1,9 @@
-// polling, non-blocking webserver
+// a polling, non-blocking webserver that accepts GET requests and returns OK responses (or BAD REQUEST if request other than GET)
 
 // THE PROCESS / INSTRUCTIONS
 // compile and run: c++ -Wall -Werror -Wextra -std=c++98 pollingServer.cpp && ./a.out
 // in separate terminals, run the following command to send a GET request to the server
-// $ // 
+// $ curl -X GET http://localhost:<port_number>
 
 // - supports only GET requests
 // - the DELETE request is only provided as an example of a bad request
@@ -37,7 +37,7 @@
 
 #define MAX_CLIENTS 2
 #define MAX_BUFFER_SIZE 1024
-#define SERVER_PORT 8081
+#define SERVER_PORT 8080
 #define OK_RESPONSE_BODY_FILENAME "responses/OKResponse.html"
 #define BAD_REQUEST_RESPONSE_BODY_FILENAME "responses/BadRequestResponse.html"
 
