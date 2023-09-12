@@ -1,0 +1,81 @@
+IMPLEMENT AS YAML
+
+# port is mandatory, default server is optional (only one can be default)
+# server_name is optional (default is no name)
+# client_max_body_size is optional (default in NGINX is 1MB)
+
+location:
+# `accept_methods` specifies accepted HTTP methods and is optional (default is to accept GET POST DELETE)
+# `redir` specifies url to redirect to for a given url (default is no redirection)
+# `alias` specifies location to use instead of the given location (default is no alias)
+# `autoindex' turns directory listing on (default is off, overrides `index`)
+# 'index index.html' provides a default index page (default is off, overriden by autoindex)
+# `allowupload /uploads1` is optional (default is off)
+
+server {
+    listen 80 default_server;
+    server_name eighty.com;
+
+    # Default error pages
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    # Client body size limit
+    client_max_body_size 10M;
+
+    location /kapouet {
+        accept_methods GET;
+        redir /old-url /new-url;
+        alias /tmp;
+        autoindex;
+    }
+
+    location / {
+        index index1.html;
+    }
+}
+
+server {
+    listen 82;
+    server_name eighttwo.com;
+
+    # Default error pages
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    # Client body size limit
+    client_max_body_size 10M;
+
+    location /kapouet {
+        accept_methods POST DELETE;
+        redir /old-url /new-url;
+        alias /tmp;
+        autoindex;
+        allowupload /uploads;
+    }
+
+    location / {
+        index index2.html;
+    }
+}
+
+
+///
+
+write me two server sections of a NGINX configuration file that specifies:
+
+- the port and host of each ’server’
+- the server name
+- typical default error pages
+- the client body size limit
+Note:  The first server for a host:port will be the default for this host:port (that means it will answer to all the requests that don’t belong to an other server).
+
+Also include two location sections for each server section, covering the following rules/configuration:
+
+- a list of accepted HTTP methods for the route
+- a HTTP redirection
+- a directory or a file from where the file should be searched (for example, if url /kapouet is rooted to /tmp/www, url /kapouet/pouic/toto/pouet is /tmp/www/pouic/toto/pouet).
+- directory listing turned on
+- a default file to answer if the request is a directory
+- allow CGI based on .php for file upload
+- make the route able to accept uploaded files and configure where they should be saved
