@@ -19,7 +19,7 @@ location:
 - `alias` specifies location to use instead of the given location (default is no alias)
 - `autoindex' turns directory listing on (default is off, overrides `index`)
 - 'index index.html' provides a default index page (default is off, overriden by autoindex)
-- `allow_upload /uploads1` is optional (default is off)
+- `uploads /uploads1` is optional (default is off)
 
 // CHATGPT request
 write me two server sections of a NGINX configuration file that specifies:

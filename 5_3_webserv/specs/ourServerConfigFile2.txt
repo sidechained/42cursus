@@ -13,6 +13,6 @@ server:
 			alias: /tmp
             index: index2.html
 			autoindex: true
-            allow_upload: /uploads
+            uploads: /uploads
 		/:
 			index: index1.html

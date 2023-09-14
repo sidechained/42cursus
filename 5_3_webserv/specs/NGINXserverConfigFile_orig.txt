@@ -33,7 +33,7 @@ server {
         redir /old-url /new-url;
         alias /tmp;
         autoindex;
-        allowupload /uploads;
+        uploads /uploads;
     }
 
     location / {
